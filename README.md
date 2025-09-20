@@ -23,7 +23,7 @@ Based off RHH's pokeemerald-expansion 1.13.1 https://github.com/rh-hideout/pokee
 Please consider [crediting all contributors](CREDITS.md) involved in the project!
 
 # Choosing `pokeemerald` or **`pokeemerald-expansion`**
-
+ 
 - **`pokeemerald-expansion`** supports multiplayer functionality with other games built on **`pokeemerald-expansion`**. It is not compatible with official Pokémon games.
 - If compatibility with official games is important, use [`pokeemerald`](https://github.com/pret/pokeemerald). Otherwise, we recommend using **`pokeemerald-expansion`**.
 - **`pokeemerald-expansion`** incorporates regular updates from `pokeemerald`, including bug fixes and documentation improvements.
