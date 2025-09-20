@@ -1943,17 +1943,16 @@ bool32 ShouldTryOHKO(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbil
 
     if (((gBattleMons[battlerDef].volatiles.lockOn
         && gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
-        || atkAbility == ABILITY_NO_GUARD || defAbility == ABILITY_NO_GUARD)
-        && gBattleMons[battlerAtk].level >= gBattleMons[battlerDef].level)
+        || atkAbility == ABILITY_NO_GUARD || defAbility == ABILITY_NO_GUARD))
     {
         return TRUE;
     }
-    else    // test the odds
+    else    // test the odds - all Pokemon are effectively level 50 now
     {
-        u32 odds = accuracy + (gBattleMons[battlerAtk].level - gBattleMons[battlerDef].level);
+        u32 odds = accuracy; // No level difference bonus since all are level 50
         if (B_SHEER_COLD_ACC >= GEN_7 && GetMoveEffect(move) == EFFECT_SHEER_COLD && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE))
             odds -= 10;
-        if (Random() % 100 + 1 < odds && gBattleMons[battlerAtk].level >= gBattleMons[battlerDef].level)
+        if (Random() % 100 + 1 < odds)
             return TRUE;
     }
     return FALSE;

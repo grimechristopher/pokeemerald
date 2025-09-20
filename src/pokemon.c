@@ -1694,7 +1694,7 @@ static u16 CalculateBoxMonChecksumReencrypt(struct BoxPokemon *boxMon)
 #define CALC_STAT(base, iv, ev, statIndex, field)               \
 {                                                               \
     u8 baseStat = gSpeciesInfo[species].base;                   \
-    s32 n = (((2 * baseStat + iv + ev / 4) * level) / 100) + 5; \
+    s32 n = (((2 * baseStat + iv + ev / 4) * 50) / 100) + 5; \
     n = ModifyStatByNature(nature, n, statIndex);               \
     if (B_FRIENDSHIP_BOOST == TRUE)                             \
         n = n + ((n * 10 * friendship) / (MAX_FRIENDSHIP * 100));\
@@ -1733,7 +1733,7 @@ void CalculateMonStats(struct Pokemon *mon)
     else
     {
         s32 n = 2 * GetSpeciesBaseHP(species) + hpIV;
-        newMaxHP = (((n + hpEV / 4) * level) / 100) + level + 10;
+        newMaxHP = (((n + hpEV / 4) * 50) / 100) + 50 + 10;
     }
 
     gBattleScripting.levelUpHP = newMaxHP - oldMaxHP;
@@ -3657,7 +3657,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefenseIV = GetMonData(src, MON_DATA_SPDEF_IV, NULL);
     dst->personality = GetMonData(src, MON_DATA_PERSONALITY, NULL);
     dst->status1 = GetMonData(src, MON_DATA_STATUS, NULL);
-    dst->level = GetMonData(src, MON_DATA_LEVEL, NULL);
+    dst->level = 50;
     dst->hp = GetMonData(src, MON_DATA_HP, NULL);
     dst->maxHP = GetMonData(src, MON_DATA_MAX_HP, NULL);
     dst->attack = GetMonData(src, MON_DATA_ATK, NULL);
