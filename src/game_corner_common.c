@@ -58,9 +58,10 @@ extern void Snake_Exit(void);
 extern void FlappyBird_Init(void);
 extern void FlappyBird_Main(void);
 extern void FlappyBird_Exit(void);
-static void Blackjack_Init(void);
-static void Blackjack_Main(void);
-static void Blackjack_Exit(void);
+// Blackjack - implemented in game_corner_blackjack.c
+extern void Blackjack_Init(void);
+extern void Blackjack_Main(void);
+extern void Blackjack_Exit(void);
 static void VoltorbFlip_Init(void);
 static void VoltorbFlip_Main(void);
 static void VoltorbFlip_Exit(void);
@@ -166,9 +167,6 @@ const struct MinigameMetadata gMinigameRegistry[MINIGAME_COUNT] = {
 };
 
 // Placeholder implementations (will be replaced when porting each minigame)
-static void Blackjack_Init(void) {}
-static void Blackjack_Main(void) {}
-static void Blackjack_Exit(void) {}
 static void VoltorbFlip_Init(void) {}
 static void VoltorbFlip_Main(void) {}
 static void VoltorbFlip_Exit(void) {}

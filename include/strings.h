@@ -2415,4 +2415,23 @@ extern const u8 gText_CannotSendMonToBoxHM[];
 extern const u8 gText_CannotSendMonToBoxActive[];
 extern const u8 gText_CannotSendMonToBoxPartner[];
 
+// Blackjack
+extern const u8 gText_Blackjack[];
+extern const u8 gText_Dealer[];
+extern const u8 gText_Player[];
+extern const u8 gText_Hit[];
+extern const u8 gText_Stand[];
+extern const u8 gText_Quit[];
+extern const u8 gText_Value[];
+extern const u8 gText_HiddenCard[];
+extern const u8 gText_Ace[];
+extern const u8 gText_Jack[];
+extern const u8 gText_Queen[];
+extern const u8 gText_King[];
+extern const u8 gText_Bust[];
+extern const u8 gText_YouWin[];
+extern const u8 gText_YouLose[];
+extern const u8 gText_Push[];
+extern const u8 gText_PressA[];
+
 #endif // GUARD_STRINGS_H

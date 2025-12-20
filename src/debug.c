@@ -77,6 +77,8 @@
 #include "rtc.h"
 #include "fake_rtc.h"
 #include "save.h"
+#include "game_corner_common.h"
+#include "config/game_corner.h"
 
 enum FollowerNPCCreateDebugMenu
 {
@@ -303,6 +305,16 @@ static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
 static void DebugAction_FlagsVars_RunningShoes(u8 taskId);
+
+static void DebugAction_Minigames_Snake(u8 taskId);
+static void DebugAction_Minigames_FlappyBird(u8 taskId);
+static void DebugAction_Minigames_Blackjack(u8 taskId);
+static void DebugAction_Minigames_VoltorbFlip(u8 taskId);
+static void DebugAction_Minigames_Gacha(u8 taskId);
+static void DebugAction_Minigames_Pachinko(u8 taskId);
+static void DebugAction_Minigames_BlockStacker(u8 taskId);
+static void DebugAction_Minigames_Pinball(u8 taskId);
+static void DebugAction_Minigames_Derby(u8 taskId);
 
 static void DebugAction_Give_Item(u8 taskId);
 static void DebugAction_Give_Item_SelectId(u8 taskId);
@@ -671,6 +683,20 @@ static const u8 *const sDebugMenu_Actions_BagUse_Options[] =
     COMPOUND_STRING("No Bag: {STR_VAR_1}Active"),
 };
 
+static const struct DebugMenuOption sDebugMenu_Actions_Minigames[] =
+{
+    { COMPOUND_STRING("Snake"),         DebugAction_Minigames_Snake },
+    { COMPOUND_STRING("Flappy Bird"),   DebugAction_Minigames_FlappyBird },
+    { COMPOUND_STRING("Blackjack"),     DebugAction_Minigames_Blackjack },
+    { COMPOUND_STRING("Voltorb Flip"),  DebugAction_Minigames_VoltorbFlip },
+    { COMPOUND_STRING("Gacha"),         DebugAction_Minigames_Gacha },
+    { COMPOUND_STRING("Pachinko"),      DebugAction_Minigames_Pachinko },
+    { COMPOUND_STRING("Block Stacker"), DebugAction_Minigames_BlockStacker },
+    { COMPOUND_STRING("Pinball"),       DebugAction_Minigames_Pinball },
+    { COMPOUND_STRING("Derby"),         DebugAction_Minigames_Derby },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Main[] =
 {
     { COMPOUND_STRING("Utilities…"),    DebugAction_OpenSubMenu, sDebugMenu_Actions_Utilities, },
@@ -681,6 +707,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Main[] =
     { COMPOUND_STRING("Scripts…"),      DebugAction_OpenSubMenu, sDebugMenu_Actions_Scripts, },
     { COMPOUND_STRING("Flags & Vars…"), DebugAction_OpenSubMenuFlagsVars, sDebugMenu_Actions_Flags, },
     { COMPOUND_STRING("Sound…"),        DebugAction_OpenSubMenu, sDebugMenu_Actions_Sound, },
+    { COMPOUND_STRING("Minigames…"),    DebugAction_OpenSubMenu, sDebugMenu_Actions_Minigames, },
     { COMPOUND_STRING("ROM Info…"),     DebugAction_OpenSubMenu, sDebugMenu_Actions_ROMInfo2, },
     { COMPOUND_STRING("Cancel"),        DebugAction_Cancel, },
     { NULL }
@@ -4182,6 +4209,59 @@ static void DebugAction_Party_BattleSingle(u8 taskId)
     CalculateEnemyPartyCount();
     BattleSetup_StartTrainerBattle_Debug();
     Debug_DestroyMenu_Full(taskId);
+}
+
+// *******************************
+// Minigames
+static void DebugAction_Minigames_LaunchGame(u8 taskId, enum MinigameId gameId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    GameCorner_InitMinigame(gameId);
+}
+
+static void DebugAction_Minigames_Snake(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_SNAKE);
+}
+
+static void DebugAction_Minigames_FlappyBird(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_FLAPPYBIRD);
+}
+
+static void DebugAction_Minigames_Blackjack(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_BLACKJACK);
+}
+
+static void DebugAction_Minigames_VoltorbFlip(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_VOLTORB_FLIP);
+}
+
+static void DebugAction_Minigames_Gacha(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_GACHA);
+}
+
+static void DebugAction_Minigames_Pachinko(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_PACHINKO);
+}
+
+static void DebugAction_Minigames_BlockStacker(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_BLOCK_STACKER);
+}
+
+static void DebugAction_Minigames_Pinball(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_PINBALL);
+}
+
+static void DebugAction_Minigames_Derby(u8 taskId)
+{
+    DebugAction_Minigames_LaunchGame(taskId, MINIGAME_DERBY);
 }
 
 void CheckEWRAMCounters(struct ScriptContext *ctx)
