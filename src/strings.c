@@ -1346,3 +1346,16 @@ const u8 gText_Pinball[] = _("PINBALL");
 const u8 gText_HoldALaunch[] = _("Hold A to launch");
 const u8 gText_LeftFlipper[] = _("Left/L: L Flipper");
 const u8 gText_RightFlipper[] = _("Right/R: R Flipper");
+
+// Derby
+const u8 gText_Derby[] = _("DERBY");
+const u8 gText_SelectRacer[] = _("Select a racer to bet on:");
+const u8 gText_Odds[] = _("Odds: ");
+const u8 gText_Period[] = _(".");
+const u8 gText_X[] = _("x");
+const u8 gText_Bet[] = _("BET: ");
+const u8 gText_UpDownSelect[] = _("Up/Down: Select  L/R: Bet");
+const u8 gText_Racing[] = _("RACING!");
+const u8 gText_Block[] = _("=");
+const u8 gText_Winner[] = _("WINNER: ");
+const u8 gText_Payout[] = _("PAYOUT: ");

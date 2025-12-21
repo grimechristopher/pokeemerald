@@ -2477,4 +2477,18 @@ extern const u8 gText_HoldALaunch[];
 extern const u8 gText_LeftFlipper[];
 extern const u8 gText_RightFlipper[];
 
+// Derby
+extern const u8 gText_Derby[];
+extern const u8 gText_SelectRacer[];
+extern const u8 gText_RightArrow[];
+extern const u8 gText_Odds[];
+extern const u8 gText_Period[];
+extern const u8 gText_X[];
+extern const u8 gText_Bet[];
+extern const u8 gText_UpDownSelect[];
+extern const u8 gText_Racing[];
+extern const u8 gText_Block[];
+extern const u8 gText_Winner[];
+extern const u8 gText_Payout[];
+
 #endif // GUARD_STRINGS_H

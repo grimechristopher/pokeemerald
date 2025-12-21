@@ -82,9 +82,10 @@ extern void BlockStacker_Exit(void);
 extern void Pinball_Init(void);
 extern void Pinball_Main(void);
 extern void Pinball_Exit(void);
-static void Derby_Init(void);
-static void Derby_Main(void);
-static void Derby_Exit(void);
+// Derby - implemented in game_corner_derby.c
+extern void Derby_Init(void);
+extern void Derby_Main(void);
+extern void Derby_Exit(void);
 
 // Minigame metadata registry
 const struct MinigameMetadata gMinigameRegistry[MINIGAME_COUNT] = {
@@ -170,11 +171,6 @@ const struct MinigameMetadata gMinigameRegistry[MINIGAME_COUNT] = {
         .exitFunc = Derby_Exit,
     },
 };
-
-// Placeholder implementations (will be replaced when porting each minigame)
-static void Derby_Init(void) {}
-static void Derby_Main(void) {}
-static void Derby_Exit(void) {}
 
 // ========================================
 // Initialization & Cleanup
