@@ -62,9 +62,10 @@ extern void FlappyBird_Exit(void);
 extern void Blackjack_Init(void);
 extern void Blackjack_Main(void);
 extern void Blackjack_Exit(void);
-static void VoltorbFlip_Init(void);
-static void VoltorbFlip_Main(void);
-static void VoltorbFlip_Exit(void);
+// Voltorb Flip - implemented in game_corner_voltorb_flip.c
+extern void VoltorbFlip_Init(void);
+extern void VoltorbFlip_Main(void);
+extern void VoltorbFlip_Exit(void);
 static void Gacha_Init(void);
 static void Gacha_Main(void);
 static void Gacha_Exit(void);
@@ -167,9 +168,6 @@ const struct MinigameMetadata gMinigameRegistry[MINIGAME_COUNT] = {
 };
 
 // Placeholder implementations (will be replaced when porting each minigame)
-static void VoltorbFlip_Init(void) {}
-static void VoltorbFlip_Main(void) {}
-static void VoltorbFlip_Exit(void) {}
 static void Gacha_Init(void) {}
 static void Gacha_Main(void) {}
 static void Gacha_Exit(void) {}

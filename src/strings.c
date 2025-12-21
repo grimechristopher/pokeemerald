@@ -1303,3 +1303,15 @@ const u8 gText_Hit[] = _("HIT");
 const u8 gText_Stand[] = _("STAND");
 const u8 gText_Quit[] = _("QUIT");
 const u8 gText_Value[] = _("VAL:");
+
+// Voltorb Flip
+const u8 gText_VoltorbFlip[] = _("VOLTORB FLIP");
+const u8 gText_Voltorb[] = _("VOLTORB");
+const u8 gText_Score[] = _("SCORE:");
+const u8 gText_X1[] = _("x1");
+const u8 gText_X2[] = _("x2");
+const u8 gText_X3[] = _("x3");
+const u8 gText_Marked[] = _("!");
+const u8 gText_Hidden[] = _("?");
+const u8 gText_GameOver[] = _("GAME OVER");
+const u8 gText_FinalScore[] = _("FINAL SCORE:");

@@ -2434,4 +2434,16 @@ extern const u8 gText_YouLose[];
 extern const u8 gText_Push[];
 extern const u8 gText_PressA[];
 
+// Voltorb Flip
+extern const u8 gText_VoltorbFlip[];
+extern const u8 gText_Voltorb[];
+extern const u8 gText_Score[];
+extern const u8 gText_X1[];
+extern const u8 gText_X2[];
+extern const u8 gText_X3[];
+extern const u8 gText_Marked[];
+extern const u8 gText_Hidden[];
+extern const u8 gText_GameOver[];
+extern const u8 gText_FinalScore[];
+
 #endif // GUARD_STRINGS_H

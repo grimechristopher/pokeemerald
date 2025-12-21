@@ -308,8 +308,8 @@ enum {
 #define RIGHT 2
 #define LEFT 3
 
-// Decompression buffer for sprite loading (in EWRAM to save IWRAM space)
-static EWRAM_DATA u8 sDecompressionBuffer[0x8000];
+// Decompression buffer for sprite loading (dynamically allocated to avoid EWRAM/IWRAM overflow)
+static u8 *sDecompressionBuffer = NULL;
 
 struct Snake {
 	u8 state;
@@ -896,6 +896,7 @@ void Snake_Init(void)
 {
 	u8 taskId = 0;
     sSnake = AllocZeroed(sizeof(struct Snake));
+    sDecompressionBuffer = Alloc(0x8000);
     taskId = CreateTask(FadeToSnakeScreen, 0);
 }
 
@@ -955,6 +956,7 @@ static void ExitSnake(void)
         SetMainCallback2(CB2_ReturnToField);
         ScriptContext_Enable();
         FREE_AND_SET_NULL(sSnake);
+        FREE_AND_SET_NULL(sDecompressionBuffer);
     }
 }
 

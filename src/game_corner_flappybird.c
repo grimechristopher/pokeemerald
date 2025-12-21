@@ -79,8 +79,8 @@ enum {
 #define MAX_SPRITES_CREDIT 4
 #define MAX_SPRITES_HISCORE 4
 
-// Decompression buffer for sprite loading (in EWRAM to save IWRAM space)
-static EWRAM_DATA u8 sDecompressionBuffer[0x8000];
+// Decompression buffer for sprite loading (dynamically allocated to avoid EWRAM/IWRAM overflow)
+static u8 *sDecompressionBuffer = NULL;
 
 struct FlappyBird {
 	u8 state;
@@ -743,6 +743,7 @@ void FlappyBird_Init(void)
 {
 	u8 taskId = 0;
     sFlappy = AllocZeroed(sizeof(struct FlappyBird));
+    sDecompressionBuffer = Alloc(0x8000);
     taskId = CreateTask(FadeToFlappyBirdScreen, 0);
 }
 
@@ -787,6 +788,7 @@ static void ExitFlappyBird(void)
         SetMainCallback2(CB2_ReturnToField);
         ScriptContext_Enable();
         FREE_AND_SET_NULL(sFlappy);
+        FREE_AND_SET_NULL(sDecompressionBuffer);
     }
 }
 
