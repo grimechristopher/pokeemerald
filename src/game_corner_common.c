@@ -70,9 +70,10 @@ extern void VoltorbFlip_Exit(void);
 extern void Gacha_Init(void);
 extern void Gacha_Main(void);
 extern void Gacha_Exit(void);
-static void Pachinko_Init(void);
-static void Pachinko_Main(void);
-static void Pachinko_Exit(void);
+// Pachinko - implemented in game_corner_pachinko.c
+extern void Pachinko_Init(void);
+extern void Pachinko_Main(void);
+extern void Pachinko_Exit(void);
 static void BlockStacker_Init(void);
 static void BlockStacker_Main(void);
 static void BlockStacker_Exit(void);
@@ -169,9 +170,6 @@ const struct MinigameMetadata gMinigameRegistry[MINIGAME_COUNT] = {
 };
 
 // Placeholder implementations (will be replaced when porting each minigame)
-static void Pachinko_Init(void) {}
-static void Pachinko_Main(void) {}
-static void Pachinko_Exit(void) {}
 static void BlockStacker_Init(void) {}
 static void BlockStacker_Main(void) {}
 static void BlockStacker_Exit(void) {}

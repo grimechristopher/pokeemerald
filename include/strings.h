@@ -2457,4 +2457,11 @@ extern const u8 gText_Rare[];
 extern const u8 gText_SuperRare[];
 extern const u8 gText_Prize[];
 
+// Pachinko
+extern const u8 gText_Pachinko[];
+extern const u8 gText_Balls[];
+extern const u8 gText_CoinsWon[];
+extern const u8 gText_AToLaunch[];
+extern const u8 gText_TotalCoins[];
+
 #endif // GUARD_STRINGS_H

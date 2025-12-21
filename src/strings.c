@@ -1326,3 +1326,10 @@ const u8 gText_Common[] = _("COMMON");
 const u8 gText_Rare[] = _("RARE");
 const u8 gText_SuperRare[] = _("SUPER RARE");
 const u8 gText_Prize[] = _(" PRIZE!");
+
+// Pachinko
+const u8 gText_Pachinko[] = _("PACHINKO");
+const u8 gText_Balls[] = _("BALLS: ");
+const u8 gText_CoinsWon[] = _("COINS: ");
+const u8 gText_AToLaunch[] = _("A: Launch Ball");
+const u8 gText_TotalCoins[] = _("TOTAL: ");
