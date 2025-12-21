@@ -1639,7 +1639,13 @@
 #define DAILY_FLAGS_END                             (FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
-#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
+// Expansion Flags - Reserved for multi-region game expansion
+// Provides additional flags for new regions, events, and features
+#define EXPANSION_FLAGS_START                       (DAILY_FLAGS_END + 1)
+#define EXPANSION_FLAGS_END                         0xF9F  // 4000 - 1
+#define NUM_EXPANSION_FLAGS                         (EXPANSION_FLAGS_END - EXPANSION_FLAGS_START + 1)
+
+#define FLAGS_COUNT                                 0xFA0  // 4000 flags total
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000

@@ -20,14 +20,14 @@
 #define SECTOR_ID_SAVEBLOCK1_START    1
 #define SECTOR_ID_SAVEBLOCK1_END      4
 #define SECTOR_ID_PKMN_STORAGE_START  5
-#define SECTOR_ID_PKMN_STORAGE_END   13
-#define NUM_SECTORS_PER_SLOT         14
-// Save Slot 1: 0-13;  Save Slot 2: 14-27
-#define SECTOR_ID_HOF_1              28
-#define SECTOR_ID_HOF_2              29
-#define SECTOR_ID_TRAINER_HILL       30
-#define SECTOR_ID_RECORDED_BATTLE    31
-#define SECTORS_COUNT                32
+#define SECTOR_ID_PKMN_STORAGE_END   48  // 44 sectors for 72 boxes (~170 KB)
+#define NUM_SECTORS_PER_SLOT         49  // 1 + 4 + 44 sectors
+// Save Slot 1: 0-48;  Save Slot 2: 49-97
+#define SECTOR_ID_HOF_1              98
+#define SECTOR_ID_HOF_2              99
+#define SECTOR_ID_TRAINER_HILL      100
+#define SECTOR_ID_RECORDED_BATTLE   101
+#define SECTORS_COUNT               102  // Fits in 512 KB (128 sectors available)
 
 #define NUM_HOF_SECTORS 2
 
@@ -61,11 +61,11 @@ enum
 };
 
 // A save sector location holds a pointer to the data for a particular sector
-// and the size of that data. Size cannot be greater than SECTOR_DATA_SIZE.
+// and the size of that data. For 72-box storage, offsets can exceed 65535, so size is u32.
 struct SaveSectorLocation
 {
     void *data;
-    u16 size;
+    u32 size;  // Changed from u16 to u32 for large structure offsets
 };
 
 struct SaveSector

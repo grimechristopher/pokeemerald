@@ -53,8 +53,8 @@ static void CopyFromSaveBlock3(u32, struct SaveSector *);
 
 struct
 {
-    u16 offset;
-    u16 size;
+    u32 offset;  // Changed to u32 for large structure offsets (72-box support)
+    u32 size;    // Changed to u32 for large structure sizes
 } static const sSaveSlotLayout[NUM_SECTORS_PER_SLOT] =
 {
     SAVEBLOCK_CHUNK(struct SaveBlock2, 0), // SECTOR_ID_SAVEBLOCK2
@@ -64,7 +64,7 @@ struct
     SAVEBLOCK_CHUNK(struct SaveBlock1, 2),
     SAVEBLOCK_CHUNK(struct SaveBlock1, 3), // SECTOR_ID_SAVEBLOCK1_END
 
-    SAVEBLOCK_CHUNK(struct PokemonStorage, 0), // SECTOR_ID_PKMN_STORAGE_START
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 0), // SECTOR_ID_PKMN_STORAGE_START - 72 boxes across 44 sectors
     SAVEBLOCK_CHUNK(struct PokemonStorage, 1),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 2),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 3),
@@ -72,7 +72,42 @@ struct
     SAVEBLOCK_CHUNK(struct PokemonStorage, 5),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 6),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 7),
-    SAVEBLOCK_CHUNK(struct PokemonStorage, 8), // SECTOR_ID_PKMN_STORAGE_END
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 8),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 9),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 10),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 11),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 12),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 13),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 14),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 15),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 16),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 17),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 18),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 19),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 20),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 21),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 22),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 23),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 24),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 25),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 26),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 27),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 28),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 29),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 30),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 31),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 32),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 33),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 34),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 35),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 36),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 37),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 38),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 39),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 40),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 41),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 42),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 43), // SECTOR_ID_PKMN_STORAGE_END
 };
 
 // These will produce an error if a save struct is larger than the space
@@ -525,7 +560,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
     u16 checksum;
     u32 saveSlot1Counter = 0;
     u32 saveSlot2Counter = 0;
-    u32 validSectorFlags = 0;
+    u64 validSectorFlags = 0;  // Changed to u64 for 49-sector support
     bool8 signatureValid = FALSE;
     u8 saveSlot1Status;
     u8 saveSlot2Status;
@@ -541,14 +576,14 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
             if (gReadWriteSector->checksum == checksum)
             {
                 saveSlot1Counter = gReadWriteSector->counter;
-                validSectorFlags |= 1 << gReadWriteSector->id;
+                validSectorFlags |= 1ULL << gReadWriteSector->id;  // 64-bit shift for 49 sectors
             }
         }
     }
 
     if (signatureValid)
     {
-        if (validSectorFlags == (1 << NUM_SECTORS_PER_SLOT) - 1)
+        if (validSectorFlags == (1ULL << NUM_SECTORS_PER_SLOT) - 1)  // 64-bit shift for 49 sectors
             saveSlot1Status = SAVE_STATUS_OK;
         else
             saveSlot1Status = SAVE_STATUS_ERROR;
@@ -573,14 +608,14 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
             if (gReadWriteSector->checksum == checksum)
             {
                 saveSlot2Counter = gReadWriteSector->counter;
-                validSectorFlags |= 1 << gReadWriteSector->id;
+                validSectorFlags |= 1ULL << gReadWriteSector->id;  // 64-bit shift for 49 sectors
             }
         }
     }
 
     if (signatureValid)
     {
-        if (validSectorFlags == (1 << NUM_SECTORS_PER_SLOT) - 1)
+        if (validSectorFlags == (1ULL << NUM_SECTORS_PER_SLOT) - 1)  // 64-bit shift for 49 sectors
             saveSlot2Status = SAVE_STATUS_OK;
         else
             saveSlot2Status = SAVE_STATUS_ERROR;
