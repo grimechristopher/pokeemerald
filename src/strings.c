@@ -1333,3 +1333,10 @@ const u8 gText_Balls[] = _("BALLS: ");
 const u8 gText_CoinsWon[] = _("COINS: ");
 const u8 gText_AToLaunch[] = _("A: Launch Ball");
 const u8 gText_TotalCoins[] = _("TOTAL: ");
+
+// Block Stacker
+const u8 gText_BlockStacker[] = _("BLOCK STACKER");
+const u8 gText_Lines[] = _("LINES: ");
+const u8 gText_DPadMove[] = _("D-Pad: Move");
+const u8 gText_ARotate[] = _("A: Rotate");
+const u8 gText_DownDrop[] = _("Down: Drop");

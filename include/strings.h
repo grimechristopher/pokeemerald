@@ -2464,4 +2464,11 @@ extern const u8 gText_CoinsWon[];
 extern const u8 gText_AToLaunch[];
 extern const u8 gText_TotalCoins[];
 
+// Block Stacker
+extern const u8 gText_BlockStacker[];
+extern const u8 gText_Lines[];
+extern const u8 gText_DPadMove[];
+extern const u8 gText_ARotate[];
+extern const u8 gText_DownDrop[];
+
 #endif // GUARD_STRINGS_H
