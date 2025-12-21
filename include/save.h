@@ -18,15 +18,15 @@
 
 #define SECTOR_ID_SAVEBLOCK2          0      // 1 sector
 #define SECTOR_ID_SAVEBLOCK1_START    1
-#define SECTOR_ID_SAVEBLOCK1_END      16   // 16 sectors = 63 KB for multi-region data
-#define SECTOR_ID_PKMN_STORAGE_START  17
-#define SECTOR_ID_PKMN_STORAGE_END   62    // 46 sectors for 74 boxes (~182 KB)
-#define NUM_SECTORS_PER_SLOT         63    // 1 + 16 + 46 sectors
-// Save Slot 1: 0-62;  Save Slot 2: 63-125
-#define SECTOR_ID_HOF_1             126
-#define SECTOR_ID_HOF_2             127
-#define SECTOR_ID_TRAINER_HILL      -1    // Disabled - out of sectors
-#define SECTOR_ID_RECORDED_BATTLE   -1    // Disabled - out of sectors
+#define SECTOR_ID_SAVEBLOCK1_END      17   // 17 sectors = 67 KB for multi-region data
+#define SECTOR_ID_PKMN_STORAGE_START  18
+#define SECTOR_ID_PKMN_STORAGE_END   61    // 44 sectors for 72 boxes (~174 KB)
+#define NUM_SECTORS_PER_SLOT         62    // 1 + 17 + 44 sectors
+// Save Slot 1: 0-61;  Save Slot 2: 62-123
+#define SECTOR_ID_HOF_1             124
+#define SECTOR_ID_HOF_2             125
+#define SECTOR_ID_TRAINER_HILL      126
+#define SECTOR_ID_RECORDED_BATTLE   127
 #define SECTORS_COUNT               128    // Uses all 512 KB flash (128 sectors)
 
 #define NUM_HOF_SECTORS 2
