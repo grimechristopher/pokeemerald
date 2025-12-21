@@ -2471,4 +2471,10 @@ extern const u8 gText_DPadMove[];
 extern const u8 gText_ARotate[];
 extern const u8 gText_DownDrop[];
 
+// Pinball
+extern const u8 gText_Pinball[];
+extern const u8 gText_HoldALaunch[];
+extern const u8 gText_LeftFlipper[];
+extern const u8 gText_RightFlipper[];
+
 #endif // GUARD_STRINGS_H

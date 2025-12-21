@@ -1340,3 +1340,9 @@ const u8 gText_Lines[] = _("LINES: ");
 const u8 gText_DPadMove[] = _("D-Pad: Move");
 const u8 gText_ARotate[] = _("A: Rotate");
 const u8 gText_DownDrop[] = _("Down: Drop");
+
+// Pinball
+const u8 gText_Pinball[] = _("PINBALL");
+const u8 gText_HoldALaunch[] = _("Hold A to launch");
+const u8 gText_LeftFlipper[] = _("Left/L: L Flipper");
+const u8 gText_RightFlipper[] = _("Right/R: R Flipper");
