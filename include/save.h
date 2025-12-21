@@ -18,16 +18,16 @@
 
 #define SECTOR_ID_SAVEBLOCK2          0
 #define SECTOR_ID_SAVEBLOCK1_START    1
-#define SECTOR_ID_SAVEBLOCK1_END      4
-#define SECTOR_ID_PKMN_STORAGE_START  5
-#define SECTOR_ID_PKMN_STORAGE_END   48  // 44 sectors for 72 boxes (~170 KB)
-#define NUM_SECTORS_PER_SLOT         49  // 1 + 4 + 44 sectors
-// Save Slot 1: 0-48;  Save Slot 2: 49-97
-#define SECTOR_ID_HOF_1              98
-#define SECTOR_ID_HOF_2              99
-#define SECTOR_ID_TRAINER_HILL      100
-#define SECTOR_ID_RECORDED_BATTLE   101
-#define SECTORS_COUNT               102  // Fits in 512 KB (128 sectors available)
+#define SECTOR_ID_SAVEBLOCK1_END      12  // Expanded from 4 to 12 for multi-region support
+#define SECTOR_ID_PKMN_STORAGE_START  13
+#define SECTOR_ID_PKMN_STORAGE_END   56  // 44 sectors for 72 boxes (~170 KB)
+#define NUM_SECTORS_PER_SLOT         57  // 1 + 12 + 44 sectors
+// Save Slot 1: 0-56;  Save Slot 2: 57-113
+#define SECTOR_ID_HOF_1             114
+#define SECTOR_ID_HOF_2             115
+#define SECTOR_ID_TRAINER_HILL      116
+#define SECTOR_ID_RECORDED_BATTLE   117
+#define SECTORS_COUNT               118  // Fits in 512 KB (128 sectors available)
 
 #define NUM_HOF_SECTORS 2
 
