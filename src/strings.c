@@ -1315,3 +1315,14 @@ const u8 gText_Marked[] = _("!");
 const u8 gText_Hidden[] = _("?");
 const u8 gText_GameOver[] = _("GAME OVER");
 const u8 gText_FinalScore[] = _("FINAL SCORE:");
+
+// Gacha
+const u8 gText_Gacha[] = _("GACHA");
+const u8 gText_GachaInstructions[] = _("Pull a prize capsule!");
+const u8 gText_CoinsPerPlay[] = _(" Coins per play");
+const u8 gText_AToPlay[] = _("A: Play");
+const u8 gText_BToQuit[] = _("B: Quit");
+const u8 gText_Common[] = _("COMMON");
+const u8 gText_Rare[] = _("RARE");
+const u8 gText_SuperRare[] = _("SUPER RARE");
+const u8 gText_Prize[] = _(" PRIZE!");

@@ -2446,4 +2446,15 @@ extern const u8 gText_Hidden[];
 extern const u8 gText_GameOver[];
 extern const u8 gText_FinalScore[];
 
+// Gacha
+extern const u8 gText_Gacha[];
+extern const u8 gText_GachaInstructions[];
+extern const u8 gText_CoinsPerPlay[];
+extern const u8 gText_AToPlay[];
+extern const u8 gText_BToQuit[];
+extern const u8 gText_Common[];
+extern const u8 gText_Rare[];
+extern const u8 gText_SuperRare[];
+extern const u8 gText_Prize[];
+
 #endif // GUARD_STRINGS_H
