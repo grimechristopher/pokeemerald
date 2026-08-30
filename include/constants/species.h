@@ -1665,7 +1665,73 @@
 #define SPECIES_DRAMPA_MEGA                             1548
 #define SPECIES_FALINKS_MEGA                            1549
 
-#define SPECIES_EGG                                     (SPECIES_FALINKS_MEGA + 1)
+// Magikarp Jump Patterns
+#define SPECIES_MAGIKARP_SKELLY                         1550
+#define SPECIES_MAGIKARP_CALICO_ORANGE_WHITE            1551
+#define SPECIES_MAGIKARP_CALICO_ORANGE_WHITE_BLACK      1552
+#define SPECIES_MAGIKARP_CALICO_WHITE_ORANGE            1553
+#define SPECIES_MAGIKARP_CALICO_ORANGE_GOLD             1554
+#define SPECIES_MAGIKARP_ORANGE_TWO_TONE                1555
+#define SPECIES_MAGIKARP_ORANGE_ORCA                    1556
+#define SPECIES_MAGIKARP_ORANGE_DAPPLES                 1557
+#define SPECIES_MAGIKARP_PINK_TWO_TONE                  1558
+#define SPECIES_MAGIKARP_PINK_ORCA                      1559
+#define SPECIES_MAGIKARP_PINK_DAPPLES                   1560
+#define SPECIES_MAGIKARP_GRAY_BUBBLES                   1561
+#define SPECIES_MAGIKARP_GRAY_DIAMONDS                  1562
+#define SPECIES_MAGIKARP_GRAY_PATCHES                   1563
+#define SPECIES_MAGIKARP_PURPLE_BUBBLES                 1564
+#define SPECIES_MAGIKARP_PURPLE_DIAMONDS                1565
+#define SPECIES_MAGIKARP_PURPLE_PATCHES                 1566
+#define SPECIES_MAGIKARP_APRICOT_TIGER                  1567
+#define SPECIES_MAGIKARP_APRICOT_ZEBRA                  1568
+#define SPECIES_MAGIKARP_APRICOT_STRIPES                1569
+#define SPECIES_MAGIKARP_BROWN_TIGER                    1570
+#define SPECIES_MAGIKARP_BROWN_ZEBRA                    1571
+#define SPECIES_MAGIKARP_BROWN_STRIPES                  1572
+#define SPECIES_MAGIKARP_ORANGE_FOREHEAD                1573
+#define SPECIES_MAGIKARP_ORANGE_MASK                    1574
+#define SPECIES_MAGIKARP_BLACK_FOREHEAD                 1575
+#define SPECIES_MAGIKARP_BLACK_MASK                     1576
+#define SPECIES_MAGIKARP_SAUCY_BLUE                     1577
+#define SPECIES_MAGIKARP_BLUE_RAINDROP                  1578
+#define SPECIES_MAGIKARP_VIOLET_BLUE                    1579
+#define SPECIES_MAGIKARP_VIOLET_RAINDROP                1580
+
+// Gyarados Jump Patterns
+#define SPECIES_GYARADOS_SKELLY                         1581
+#define SPECIES_GYARADOS_CALICO_ORANGE_WHITE            1582
+#define SPECIES_GYARADOS_CALICO_ORANGE_WHITE_BLACK      1583
+#define SPECIES_GYARADOS_CALICO_WHITE_ORANGE            1584
+#define SPECIES_GYARADOS_CALICO_ORANGE_GOLD             1585
+#define SPECIES_GYARADOS_ORANGE_TWO_TONE                1586
+#define SPECIES_GYARADOS_ORANGE_ORCA                    1587
+#define SPECIES_GYARADOS_ORANGE_DAPPLES                 1588
+#define SPECIES_GYARADOS_PINK_TWO_TONE                  1589
+#define SPECIES_GYARADOS_PINK_ORCA                      1590
+#define SPECIES_GYARADOS_PINK_DAPPLES                   1591
+#define SPECIES_GYARADOS_GRAY_BUBBLES                   1592
+#define SPECIES_GYARADOS_GRAY_DIAMONDS                  1593
+#define SPECIES_GYARADOS_GRAY_PATCHES                   1594
+#define SPECIES_GYARADOS_PURPLE_BUBBLES                 1595
+#define SPECIES_GYARADOS_PURPLE_DIAMONDS                1596
+#define SPECIES_GYARADOS_PURPLE_PATCHES                 1597
+#define SPECIES_GYARADOS_APRICOT_TIGER                  1598
+#define SPECIES_GYARADOS_APRICOT_ZEBRA                  1599
+#define SPECIES_GYARADOS_APRICOT_STRIPES                1600
+#define SPECIES_GYARADOS_BROWN_TIGER                    1601
+#define SPECIES_GYARADOS_BROWN_ZEBRA                    1602
+#define SPECIES_GYARADOS_BROWN_STRIPES                  1603
+#define SPECIES_GYARADOS_ORANGE_FOREHEAD                1604
+#define SPECIES_GYARADOS_ORANGE_MASK                    1605
+#define SPECIES_GYARADOS_BLACK_FOREHEAD                 1606
+#define SPECIES_GYARADOS_BLACK_MASK                     1607
+#define SPECIES_GYARADOS_SAUCY_BLUE                     1608
+#define SPECIES_GYARADOS_BLUE_RAINDROP                  1609
+#define SPECIES_GYARADOS_VIOLET_BLUE                    1610
+#define SPECIES_GYARADOS_VIOLET_RAINDROP                1611
+
+#define SPECIES_EGG                                     (SPECIES_GYARADOS_VIOLET_RAINDROP + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 
