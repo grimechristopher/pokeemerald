@@ -59,4 +59,6 @@ bool8 FldEff_Defog(void);
 bool32 SetUpFieldMove_Headbutt(void);
 bool8 FldEff_UseHeadbutt(void);
 
+void Task_EnterCaveTransition2(u8 taskId);
+
 #endif // GUARD_FLDEFF_H

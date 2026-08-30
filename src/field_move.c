@@ -10,16 +10,25 @@
 
 static bool32 IsFieldMoveUnlocked_Cut(void)
 {
+    if (IS_FRLG)
+        return FlagGet(FLAG_BADGE02_GET);
+
     return FlagGet(FLAG_BADGE01_GET);
 }
 
 static bool32 IsFieldMoveUnlocked_Flash(void)
 {
+    if (IS_FRLG)
+        return FlagGet(FLAG_BADGE01_GET);
+
     return FlagGet(FLAG_BADGE02_GET);
 }
 
 static bool32 IsFieldMoveUnlocked_RockSmash(void)
 {
+    if (IS_FRLG)
+        return FlagGet(FLAG_BADGE06_GET);
+
     return FlagGet(FLAG_BADGE03_GET);
 }
 
@@ -35,6 +44,9 @@ static bool32 IsFieldMoveUnlocked_Surf(void)
 
 static bool32 IsFieldMoveUnlocked_Fly(void)
 {
+    if (IS_FRLG)
+        return FlagGet(FLAG_BADGE03_GET);
+
     return FlagGet(FLAG_BADGE06_GET);
 }
 
@@ -45,15 +57,16 @@ static bool32 IsFieldMoveUnlocked_Dive(void)
 
 static bool32 IsFieldMoveUnlocked_Waterfall(void)
 {
+    if (IS_FRLG)
+        return FlagGet(FLAG_BADGE07_GET);
+
     return FlagGet(FLAG_BADGE08_GET);
 }
 
-#if OW_ROCK_CLIMB_FIELD_MOVE == TRUE
 static bool32 IsFieldMoveUnlocked_RockClimb(void)
 {
-    return TRUE;
+    return OW_ROCK_CLIMB_FIELD_MOVE;
 }
-#endif
 
 static bool32 IsFieldMoveUnlocked_Teleport(void)
 {
@@ -91,12 +104,10 @@ static bool32 IsFieldMoveUnlocked_Headbutt(void)
     return TRUE;
 }
 
-#if OW_DEFOG_FIELD_MOVE == TRUE
 static bool32 IsFieldMoveUnlocked_Defog(void)
 {
-    return TRUE;
+    return OW_DEFOG_FIELD_MOVE;
 }
-#endif
 
 const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
 {
@@ -211,7 +222,6 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
         .moveID = MOVE_SWEET_SCENT,
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
     },
-#if OW_ROCK_CLIMB_FIELD_MOVE == TRUE
     [FIELD_MOVE_ROCK_CLIMB] =
     {
         .fieldMoveFunc = SetUpFieldMove_RockClimb,
@@ -219,8 +229,6 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
         .moveID = MOVE_ROCK_CLIMB,
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
     },
-#endif
-#if OW_DEFOG_FIELD_MOVE == TRUE
     [FIELD_MOVE_DEFOG] =
     {
         .fieldMoveFunc = SetUpFieldMove_Defog,
@@ -228,8 +236,6 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
         .moveID = MOVE_DEFOG,
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
     },
-#endif
-
     [FIELD_MOVE_HEADBUTT] =
     {
         .fieldMoveFunc = SetUpFieldMove_Headbutt,

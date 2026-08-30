@@ -6,6 +6,22 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
 }
 
+SINGLE_BATTLE_TEST("Court Change swaps entry hazard counts together with the hazard queues")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TOXIC_SPIKES); }
+        TURN { MOVE(opponent, MOVE_COURT_CHANGE); }
+    } THEN {
+        EXPECT_EQ(gBattleStruct->hazardsQueue[B_SIDE_PLAYER][0], HAZARDS_TOXIC_SPIKES);
+        EXPECT_EQ(gBattleStruct->hazardsQueue[B_SIDE_OPPONENT][0], HAZARDS_NONE);
+        EXPECT_EQ(gBattleStruct->numHazards[B_SIDE_PLAYER], 1);
+        EXPECT_EQ(gBattleStruct->numHazards[B_SIDE_OPPONENT], 0);
+    }
+}
+
 DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
 {
     GIVEN {
@@ -81,7 +97,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
 DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Aurora Veil, Reflect, Light Screen, Tailwind")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_TAILWIND_TURNS, GEN_5);
+        WITH_CONFIG(B_TAILWIND_TURNS, GEN_5);
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WYNAUT);
@@ -93,10 +109,10 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Auror
         TURN { MOVE(opponentLeft, MOVE_AURORA_VEIL); MOVE(opponentRight, MOVE_REFLECT); }
         TURN { MOVE(opponentLeft, MOVE_LIGHT_SCREEN); MOVE(opponentRight, MOVE_TAILWIND); }
         TURN { MOVE(playerLeft, MOVE_COURT_CHANGE); }
-        TURN { }
-        TURN { }
-        TURN { }
-        TURN { }
+        TURN {}
+        TURN {}
+        TURN {}
+        TURN {}
     } SCENE {
         MESSAGE("Wynaut used Snowscape!");
         MESSAGE("The opposing Wobbuffet used Mist!");
@@ -120,7 +136,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Auror
 DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aurora Veil, Reflect, Light Screen, Tailwind")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_TAILWIND_TURNS, GEN_5);
+        WITH_CONFIG(B_TAILWIND_TURNS, GEN_5);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -132,10 +148,10 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aur
         TURN { MOVE(playerLeft, MOVE_AURORA_VEIL); MOVE(playerRight, MOVE_REFLECT); }
         TURN { MOVE(playerLeft, MOVE_LIGHT_SCREEN); MOVE(playerRight, MOVE_TAILWIND); }
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
-        TURN { }
-        TURN { }
-        TURN { }
-        TURN { }
+        TURN {}
+        TURN {}
+        TURN {}
+        TURN {}
     } SCENE {
         MESSAGE("Wobbuffet used Mist!");
         MESSAGE("Wobbuffet used Safeguard!");
@@ -163,7 +179,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Steelsurge")
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WYNAUT) { HP(999); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_IRON_HEAD, target: opponentRight, gimmick: GIMMICK_DYNAMAX); }
@@ -173,9 +189,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Steelsurge")
         MESSAGE("Copperajah used G-Max Steelsurge!");
         SEND_IN_MESSAGE("Wobbuffet");
         MESSAGE("The sharp steel bit into Wobbuffet!");
-        NONE_OF {
-            MESSAGE("The sharp steel bit into the opposing Wynaut!");
-        }
+        NOT MESSAGE("The sharp steel bit into the opposing Wynaut!");
     }
 }
 
@@ -222,7 +236,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Vine Lash, G-Max
 
 AI_SINGLE_BATTLE_TEST("AI uses Court Change")
 {
-    u32 move;
+    enum Move move;
 
     PARAMETRIZE { move = MOVE_HEADBUTT; }
     PARAMETRIZE { move = MOVE_REFLECT; }
