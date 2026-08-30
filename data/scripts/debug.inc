@@ -308,6 +308,19 @@ Debug_EventScript_Mining_Minigame::
 	release
 	end
 
+@ Sliding tile puzzle (Ruins of Alph style). VAR_0x8004 picks which
+@ puzzle: 0 = Kabuto, 1 = Omanyte, 2 = Aerodactyl, 3 = Ho-Oh (see
+@ include/constants/sliding_puzzles.h). Defaults to Kabuto here -
+@ change the setvar to test the others.
+Debug_EventScript_SlidingPuzzle::
+	setvar VAR_0x8004, SLIDING_PUZZLE_KABUTO
+	setvar VAR_0x8005, FALSE
+	fadescreen FADE_TO_BLACK
+	special DoSlidingPuzzle
+	waitstate
+	release
+	end
+
 Debug_BerryPestsDisabled::
 	msgbox DebugText_BerryPestsDisabled, MSGBOX_DEFAULT
 	release

@@ -570,3 +570,4 @@ gSpecials::
 	def_special Special_PlaySnake
 	def_special Special_PlayFlappyBird
 	def_special StartMining
+	def_special DoSlidingPuzzle
