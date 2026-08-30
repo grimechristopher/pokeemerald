@@ -9323,6 +9323,17 @@
       "border_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/map.bin",
       "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ROUTE_STUB",
+      "name": "JohtoRouteStub_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/JohtoRouteStub/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoRouteStub/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

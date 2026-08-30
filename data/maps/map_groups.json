@@ -74,7 +74,8 @@
     "gMapGroup_IndoorFiveIslandRoute_Frlg",
     "gMapGroup_IndoorTwoIslandRoute_Frlg",
     "gMapGroup_IndoorSixIslandRoute_Frlg",
-    "gMapGroup_IndoorSevenIslandRoute_Frlg"
+    "gMapGroup_IndoorSevenIslandRoute_Frlg",
+    "gMapGroup_TownsAndRoutes_Johto"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1160,5 +1161,30 @@
   ],
   "gMapGroup_IndoorSevenIslandRoute_Frlg": [
     "SevenIsland_SevaultCanyon_House_Frlg"
+  ],
+  "gMapGroup_TownsAndRoutes_Johto": [
+    "Route26_Johto",
+    "Route27_Johto",
+    "Route28_Johto",
+    "Route29_Johto",
+    "Route30_Johto",
+    "Route31_Johto",
+    "Route32_Johto",
+    "Route33_Johto",
+    "Route34_Johto",
+    "Route35_Johto",
+    "Route36_Johto",
+    "Route37_Johto",
+    "Route38_Johto",
+    "Route39_Johto",
+    "Route40_Johto",
+    "Route41_Johto",
+    "Route42_Johto",
+    "Route43_Johto",
+    "Route44_Johto",
+    "Route45_Johto",
+    "Route46_Johto",
+    "Route47_Johto",
+    "Route48_Johto"
   ]
 }

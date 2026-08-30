@@ -1,0 +1,17 @@
+{
+  "id": "MAP_ROUTE45_JOHTO",
+  "name": "Route45_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_STUB",
+  "music": "MUS_ROUTE101",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_DYNAMIC",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null
+}
