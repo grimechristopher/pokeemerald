@@ -1669,7 +1669,10 @@
 #define FLAG_STORING_ITEMS_IN_PYRAMID_BAG       (SPECIAL_FLAGS_START + 0x4)
 #define FLAG_SAFE_FOLLOWER_MOVEMENT             (SPECIAL_FLAGS_START + 0x5) // When set, applymovement does not put the follower inside a pokeball
                                                                             // Also, scripted movements on the player will move follower(s), too
-// FLAG_SPECIAL_FLAG_0x4005 - 0x407F also exist and are unused
+#define FLAG_SYS_DEXNAV_GET                     (SPECIAL_FLAGS_START + 0x6) // Set once the player has the DexNav - shows it in the start menu
+#define FLAG_SYS_DEXNAV_SEARCHING               (SPECIAL_FLAGS_START + 0x7) // Set while actively searching for the currently-registered DexNav species
+#define FLAG_SYS_DEXNAV_DETECTOR_MODE           (SPECIAL_FLAGS_START + 0x8) // Set while detector mode (reveals hidden overworld mons) is active
+// FLAG_SPECIAL_FLAG_0x4009 - 0x407F also exist and are unused
 #define SPECIAL_FLAGS_END                       (SPECIAL_FLAGS_START + 0x7F)
 #define NUM_SPECIAL_FLAGS                       (SPECIAL_FLAGS_END - SPECIAL_FLAGS_START + 1)
 
