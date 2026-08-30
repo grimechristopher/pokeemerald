@@ -4246,8 +4246,8 @@ static void GachaMain(u8 taskId)
 		break;
 	case STATE_POKEBALL_ARRIVE_WAIT:		
 		if (gSprites[sGacha->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
-			{	CreateMon(&mon, sGacha->CalculatedSpecies, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
-				party = GiveMonToPlayer(&mon);
+			{	CreateMon(&mon, sGacha->CalculatedSpecies, level, Random32(), OTID_STRUCT_PLAYER_ID);
+				party = GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
 				GetSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_SEEN);
 				HandleSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_CAUGHT, GetMonData(&mon, MON_DATA_PERSONALITY));
 				// RHH expansion: CreateMonPicSprite_Affine handles palette and sprite loading

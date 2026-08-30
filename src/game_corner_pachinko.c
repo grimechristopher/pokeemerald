@@ -2690,11 +2690,11 @@ static const u16 sFlipperRadiusMagnitudes[32] = {
     0x00F8, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC, 0x00FC,
 };
 
-static const s16 sTiltLeftOnlyVelocityDeltas[] = INCBIN_S16("data/pinball/tilt_left_deltas.bin");
-static const s16 sTiltRightOnlyVelocityDeltas[] = INCBIN_S16("data/pinball/tilt_right_deltas.bin");
-static const s16 sTiltDownOnlyVelocityDeltas[] = INCBIN_S16("data/pinball/tilt_down_deltas.bin");
-static const s16 sTiltDownRightVelocityDeltas[] = INCBIN_S16("data/pinball/tilt_down_right_deltas.bin");
-static const s16 sTiltDownLeftVelocityDeltas[] = INCBIN_S16("data/pinball/tilt_down_left_deltas.bin");
+static const s16 sTiltLeftOnlyVelocityDeltas[] = INCBIN_U16("data/pinball/tilt_left_deltas.bin");
+static const s16 sTiltRightOnlyVelocityDeltas[] = INCBIN_U16("data/pinball/tilt_right_deltas.bin");
+static const s16 sTiltDownOnlyVelocityDeltas[] = INCBIN_U16("data/pinball/tilt_down_deltas.bin");
+static const s16 sTiltDownRightVelocityDeltas[] = INCBIN_U16("data/pinball/tilt_down_right_deltas.bin");
+static const s16 sTiltDownLeftVelocityDeltas[] = INCBIN_U16("data/pinball/tilt_down_left_deltas.bin");
 
 static const s16 *const sTiltVelocityDeltas[] = {
     NULL,

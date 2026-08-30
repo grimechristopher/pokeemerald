@@ -10039,7 +10039,7 @@ static void Cmd_handleballthrow(void)
                     BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER,
                                                     BALL_3_SHAKES_SUCCESS);
                     MarkBattlerForControllerExec(gBattlerAttacker);
-                    TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
+                    TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE, GetBattlerAbility(gBattlerTarget));
                     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                     struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
                     SetMonData(caughtMon, MON_DATA_POKEBALL, &pokeballId);

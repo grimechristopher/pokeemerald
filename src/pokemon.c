@@ -723,19 +723,19 @@ UNUSED static const struct BoxPokemon sBoxPokemonConstantsFit =
     .language = NUM_LANGUAGES - 1,
     .hiddenNatureModifier = NUM_NATURES - 1,
     .compressedStatus = ARRAY_COUNT(sCompressedStatuses) - 1,
-    .secure.substructs[0].type0 = {
+    .secure.named.substruct0 = {
         .species = NUM_SPECIES - 1,
         .teraType = NUMBER_OF_MON_TYPES - 1,
         .heldItem = ITEMS_COUNT - 1,
         .pokeball = POKEBALL_COUNT - 1,
     },
-    .secure.substructs[1].type1 = {
+    .secure.named.substruct1 = {
         .move1 = MOVES_COUNT_ALL - 1,
         .move2 = MOVES_COUNT_ALL - 1,
         .move3 = MOVES_COUNT_ALL - 1,
         .move4 = MOVES_COUNT_ALL - 1,
     },
-    .secure.substructs[2].type2 = {
+    .secure.named.substruct2 = {
         .hpEV = MAX_PER_STAT_EVS,
         .attackEV = MAX_PER_STAT_EVS,
         .defenseEV = MAX_PER_STAT_EVS,
@@ -743,7 +743,7 @@ UNUSED static const struct BoxPokemon sBoxPokemonConstantsFit =
         .spAttackEV = MAX_PER_STAT_EVS,
         .spDefenseEV = MAX_PER_STAT_EVS,
     },
-    .secure.substructs[3].type3 = {
+    .secure.named.substruct3 = {
         .metLocation = min(MAPSEC_COUNT, min(METLOC_SPECIAL_EGG, min(METLOC_IN_GAME_TRADE, METLOC_FATEFUL_ENCOUNTER))),
         .metLevel = MAX_LEVEL,
         .metGame = NUM_VERSIONS, // NOTE: NUM_VERSIONS is inclusive!
