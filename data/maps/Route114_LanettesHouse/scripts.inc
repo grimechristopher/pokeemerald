@@ -46,7 +46,7 @@ Route114_LanettesHouse_EventScript_PC::
 	end
 
 Route114_LanettesHouse_Text_EverythingClutteredKeepThis:
-	.string "LANETTE: Oh! {PLAYER}{KUN}!\p"
+	.string "[Lanette]: Oh! {PLAYER}{KUN}!\p"
 	.string "I'm sorry everything is so cluttered…\n"
 	.string "When I get engrossed in research,\l"
 	.string "things end up this way…\p"
@@ -54,7 +54,7 @@ Route114_LanettesHouse_Text_EverythingClutteredKeepThis:
 	.string "this a secret in exchange for this.$"
 
 Route114_LanettesHouse_Text_OrganizeYourBoxes:
-	.string "May I offer advice about my POKéMON\n"
+	.string "May I offer advice about my [Pokémon]\n"
 	.string "Storage System?\p"
 	.string "You should organize your BOXES so you\n"
 	.string "can tell which POKéMON are in them.$"
@@ -69,7 +69,7 @@ Route114_LanettesHouse_Text_ResearchNotesPage1:
 
 Route114_LanettesHouse_Text_ResearchNotesPage2:
 	.string "A marking system should be added to\n"
-	.string "make POKéMON easier to organize.\p"
+	.string "make [Pokémon] easier to organize.\p"
 	.string "The name and wallpaper design of each\n"
 	.string "BOX will be made changeable to please\l"
 	.string "the stored POKéMON.\p"

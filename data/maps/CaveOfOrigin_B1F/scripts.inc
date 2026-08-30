@@ -69,11 +69,11 @@ CaveOfOrigin_B1F_Text_WallaceStory:
 	.string "with the GYM's operation.\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
-	.string "GROUDON and KYOGRE, the two POKéMON\n"
+	.string "[Groudon] and [Kyogre], the two [Pokémon]\n"
 	.string "wreaking havoc here, are considered\l"
-	.string "to be super-ancient POKéMON.\p"
+	.string "to be super-ancient [Pokémon].\p"
 	.string "But there aren't just two super-\n"
-	.string "ancient POKéMON.\p"
+	.string "ancient [Pokémon].\p"
 	.string "There is one more somewhere.\p"
 	.string "Somewhere, there is a super-\n"
 	.string "ancient POKéMON named RAYQUAZA.\p"
@@ -81,7 +81,7 @@ CaveOfOrigin_B1F_Text_WallaceStory:
 	.string "becalmed the two combatants in\l"
 	.string "the distant past.\p"
 	.string "But even I have no clue as to\n"
-	.string "RAYQUAZA's whereabouts…$"
+	.string "[Rayquaza's] whereabouts…$"
 
 CaveOfOrigin_B1F_Text_WhereIsRayquaza:
 	.string "WALLACE: {PLAYER}{KUN}, do you perhaps\n"
@@ -89,14 +89,14 @@ CaveOfOrigin_B1F_Text_WhereIsRayquaza:
 	.string "If you do, please tell me.$"
 
 CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin:
-	.string "WALLACE: The CAVE OF ORIGIN?\p"
+	.string "[Wallace]: The [Cave] [Of] [Origin]?\p"
 	.string "But that's right here!\n"
 	.string "I need you to do better than that!\p"
 	.string "Please, I need you to think about\n"
-	.string "where RAYQUAZA might be right now.$"
+	.string "where [Rayquaza] might be right now.$"
 
 CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat:
-	.string "WALLACE: MT. PYRE?\p"
+	.string "[Wallace]: [Mt]. [Pyre]?\p"
 	.string "But when I met the old lady there\n"
 	.string "earlier, she made no mention of it.\p"
 	.string "I very much doubt that the old lady\n"
@@ -105,14 +105,14 @@ CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat:
 	.string "more carefully for me?$"
 
 CaveOfOrigin_B1F_Text_CantYouRememberSomehow:
-	.string "WALLACE: Huh? You don't remember?\n"
+	.string "[Wallace]: Huh? You don't remember?\n"
 	.string "Hmm… That's a problem…\p"
 	.string "Can't you remember somehow?$"
 
 CaveOfOrigin_B1F_Text_WellHeadToSkyPillar:
-	.string "WALLACE: The SKY PILLAR?\p"
+	.string "[Wallace]: The [Sky] [Pillar]?\p"
 	.string "That's it!\n"
-	.string "It must be the SKY PILLAR!\p"
+	.string "It must be the [Sky] [Pillar]!\p"
 	.string "{PLAYER}{KUN}, there's not a moment to lose!\n"
-	.string "We'll head to the SKY PILLAR right away!$"
+	.string "We'll head to the [Sky] [Pillar] right away!$"
 

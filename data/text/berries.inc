@@ -4,9 +4,9 @@ PetalburgCity_Gym_Text_GiveEnigmaBerry:
 	.string "I'd like you to have it.$"
 
 Route104_Text_PlantBerriesInSoilTakeThis:
-	.string "If you see BERRIES growing in loamy\n"
+	.string "If you see [Berries] growing in loamy\n"
 	.string "soil, feel free to take them.\p"
-	.string "But make sure you plant a BERRY in the\n"
+	.string "But make sure you plant a [Berry] in the\n"
 	.string "same spot. That's common courtesy.\p"
 	.string "Here, I'll share this with you.$"
 
@@ -21,17 +21,17 @@ Route104_Text_TrainersOftenMakeMonHoldBerries:
 Route111_Text_WateredPlantsEveryDayTakeBerry:
 	.string "I watered the plants every day.\n"
 	.string "They grew lots of flowers.\p"
-	.string "And they gave me lots of BERRIES, too.\p"
+	.string "And they gave me lots of [Berries], too.\p"
 	.string "Here you go!\n"
 	.string "You can have it!$"
 
 Route111_Text_GoingToTryToMakeDifferentColorBerries:
 	.string "I'm going to try really hard and make\n"
-	.string "BERRIES in different colors.\p"
+	.string "[Berries] in different colors.\p"
 	.string "I hope you try hard, too!$"
 
 Route111_Text_WhatColorBerriesToLookForToday:
-	.string "I wonder what color BERRIES I'll look\n"
+	.string "I wonder what color [Berries] I'll look\n"
 	.string "for today?$"
 
 Route114_Text_LoveUsingBerryCrushShareBerry:
@@ -40,7 +40,7 @@ Route114_Text_LoveUsingBerryCrushShareBerry:
 	.string "I'll share one with you, if you'd like.$"
 
 Route114_Text_TryBerryCrushWithFriends:
-	.string "You should try the BERRY CRUSH\n"
+	.string "You should try the [Berry] [Crush]\n"
 	.string "machine with your friends.$"
 
 Route114_Text_FunToThinkAboutBerries:
@@ -65,7 +65,7 @@ Route120_Text_MakeYourOwnImpressions:
 	.string "You can have this.$"
 
 Route120_Text_BerryIsRareRaiseItWithCare:
-	.string "I think that BERRY is rare.\n"
+	.string "I think that [Berry] is rare.\n"
 	.string "I hope you raise it with loving care.$"
 
 Route120_Text_IllGetMoreBerriesFromBerryMaster:
@@ -76,22 +76,22 @@ LilycoveCity_Text_BerrySuitsYou:
 	.string "When it gets right down to it…\p"
 	.string "The same way suits suit me perfectly,\n"
 	.string "a crisp breeze suits the sea.\p"
-	.string "And you, a BERRY suits you to a “T”…\p"
+	.string "And you, a [Berry] suits you to a “T”…\p"
 	.string "Why should that be so?$"
 
 LilycoveCity_Text_BecauseYoureTrainer:
 	.string "When it gets right down to it…\p"
-	.string "It's because you're a TRAINER!$"
+	.string "It's because you're a [Trainer]!$"
 
 LilycoveCity_Text_PokeblocksSuitPokemon:
 	.string "When it gets right down to it…\p"
 	.string "The way dignified simplicity suits me,\n"
-	.string "{POKEBLOCK}S perfectly suit POKéMON.$"
+	.string "{POKEBLOCK}[s] perfectly suit [Pokémon].$"
 
 Route123_BerryMastersHouse_Text_YoureDeservingOfBerry:
-	.string "You may call me the BERRY MASTER.\p"
+	.string "You may call me the [Berry] [Master].\p"
 	.string "I dream of filling the world with\n"
-	.string "beautiful flowers, so I raise BERRIES\l"
+	.string "beautiful flowers, so I raise [Berries]\l"
 	.string "and hand them out to everyone.\p"
 	.string "You're deserving of one!$"
 
@@ -110,7 +110,7 @@ Route123_BerryMastersHouse_Text_DoneForToday:
 	.string "Let flowers fill the world!$"
 
 Route123_BerryMastersHouse_Text_HeardAGoodSayingLately:
-	.string "The way my husband grows BERRIES,\n"
+	.string "The way my husband grows [Berries],\n"
 	.string "oh, he's the best in the world.\p"
 	.string "He makes me proud, that he does.\p"
 	.string "Incidentally, child, have you heard\n"
@@ -141,27 +141,27 @@ Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop:
 
 Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries:
 	.string "{PLAYER}{KUN}, would you like to learn about\n"
-	.string "BERRIES?$"
+	.string "[Berries]?$"
 
 Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries:
 	.string "Your name is?\p"
 	.string "{PLAYER}{KUN}.\n"
 	.string "That's a nice name.\p"
 	.string "{PLAYER}{KUN}, would you like to learn about\n"
-	.string "BERRIES?$"
+	.string "[Berries]?$"
 
 Route104_PrettyPetalFlowerShop_Text_BerriesExplanation:
-	.string "BERRIES grow on trees that thrive\n"
+	.string "[Berries] grow on trees that thrive\n"
 	.string "only in soft, loamy soil.\p"
-	.string "If you take some BERRIES, be sure to\n"
+	.string "If you take some [Berries], be sure to\n"
 	.string "plant one in the loamy soil again.\p"
-	.string "A planted BERRY will soon sprout,\n"
+	.string "A planted [Berry] will soon sprout,\n"
 	.string "grow into a plant, flower beautifully,\l"
-	.string "then grow BERRIES again.\p"
+	.string "then grow [Berries] again.\p"
 	.string "I want to see the whole wide world\n"
 	.string "filled with beautiful flowers.\l"
 	.string "That's my dream.\p"
-	.string "Please help me, {PLAYER}{KUN}. Plant BERRIES\n"
+	.string "Please help me, {PLAYER}{KUN}. Plant [Berries]\n"
 	.string "and bring more flowers into the world.$"
 
 Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness:
@@ -179,7 +179,7 @@ Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation:
 	.string "While BERRY plants are growing,\n"
 	.string "water them with the WAILMER PAIL.\p"
 	.string "Oh, another thing.\p"
-	.string "If you don't pick BERRIES for a while,\n"
+	.string "If you don't pick [Berries] for a while,\n"
 	.string "they'll drop off onto the ground.\l"
 	.string "But they'll sprout again.\p"
 	.string "Isn't that awesome?\n"
@@ -203,14 +203,14 @@ SootopolisCity_Text_NameIsKiriHaveOneOfThese:
 	.string "Hi, what's your name?\p"
 	.string "… … …  … … …  … … …\n"
 	.string "Okay. That's nice!\p"
-	.string "My name is KIRI.\p"
+	.string "My name is [Kiri].\p"
 	.string "My mommy and daddy named me that so\n"
 	.string "I would grow healthy and warmhearted.\l"
 	.string "That's what they wished.\p"
 	.string "You can have one of these.$"
 
 SootopolisCity_Text_GiveYouThisBerryToo:
-	.string "KIRI will give you this BERRY, too!\n"
+	.string "[Kiri] will give you this [Berry], too!\n"
 	.string "I really like it lots!$"
 
 SootopolisCity_Text_WhatKindOfWishInYourName:
@@ -224,7 +224,7 @@ SootopolisCity_Text_LikeSeasonBornIn:
 	.string "summer, do you like the summer?$"
 
 SootopolisCity_Text_ThenILoveAutumn:
-	.string "Then KIRI was born in the autumn,\n"
+	.string "Then [Kiri] was born in the autumn,\n"
 	.string "so I love the autumn!\p"
 	.string "Which season do you like?$"
 

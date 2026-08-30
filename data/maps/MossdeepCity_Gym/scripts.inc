@@ -370,22 +370,22 @@ MossdeepCity_Gym_EventScript_RedFloorSwitch::
 	end
 
 MossdeepCity_Gym_Text_GymGuideAdvice:
-	.string "Yo, how's it going, CHAMPION-bound\n"
+	.string "Yo, how's it going, [Champion]-bound\n"
 	.string "{PLAYER}?\p"
 	.string "The GYM LEADERS here use\n"
 	.string "PSYCHIC-type POKéMON.\p"
 	.string "If you go up against them with\n"
-	.string "FIGHTING- or POISON-type POKéMON,\l"
+	.string "[Fighting]- or [Poison]-type [Pokémon],\l"
 	.string "they'll inflict horrible damage!\p"
 	.string "Plus, they'll come at you with\n"
 	.string "outstanding combination attacks.\p"
 	.string "If you want to win, you'll need to show\n"
 	.string "them how tight you are with your\l"
-	.string "POKéMON. Go for it!$"
+	.string "[Pokémon]. Go for it!$"
 
 MossdeepCity_Gym_Text_GymGuidePostVictory:
 	.string "Wow, you're astounding!\n"
-	.string "You're one great TRAINER!$"
+	.string "You're one great [Trainer]!$"
 
 MossdeepCity_Gym_Text_PrestonIntro:
 	.string "Battles hinge on the strength of your\n"
@@ -407,7 +407,7 @@ MossdeepCity_Gym_Text_VirgilDefeat:
 
 MossdeepCity_Gym_Text_VirgilPostBattle:
 	.string "If there are prodigies in the world,\n"
-	.string "then our GYM LEADERS are them!\p"
+	.string "then our [Gym] [Leaders] are them!\p"
 	.string "However, you may be even more talented\n"
 	.string "than them…$"
 
@@ -419,11 +419,11 @@ MossdeepCity_Gym_Text_BlakeIntro:
 	.string "Sometimes, I'm out of sync…$"
 
 MossdeepCity_Gym_Text_BlakeDefeat:
-	.string "My POKéMON battling skills are out\n"
+	.string "My [Pokémon] battling skills are out\n"
 	.string "of sync, too!$"
 
 MossdeepCity_Gym_Text_BlakePostBattle:
-	.string "A POKé BALL was too heavy to lift\n"
+	.string "A [Poké] [Ball] was too heavy to lift\n"
 	.string "psychically. But this dust bunny…\p"
 	.string "Whoooooooooooooooh!\n"
 	.string "… … … … … …\p"
@@ -456,7 +456,7 @@ MossdeepCity_Gym_Text_SamanthaDefeat:
 
 MossdeepCity_Gym_Text_SamanthaPostBattle:
 	.string "You will wage a terrifically intense\n"
-	.string "battle with our GYM LEADERS…\p"
+	.string "battle with our [Gym] [Leaders]…\p"
 	.string "The result…\n"
 	.string "You won't hear it from me!$"
 
@@ -492,7 +492,7 @@ MossdeepCity_Gym_Text_SylviaPostBattle:
 MossdeepCity_Gym_Text_NateIntro:
 	.string "Hohoho.\p"
 	.string "You need me to show you how tenacious\n"
-	.string "the PSYCHIC type can be.$"
+	.string "the [Psychic] type can be.$"
 
 MossdeepCity_Gym_Text_NateDefeat:
 	.string "Oh! My, my!\n"
@@ -535,12 +535,12 @@ MossdeepCity_Gym_Text_MaceyDefeat:
 
 MossdeepCity_Gym_Text_MaceyPostBattle:
 	.string "Humph! You may be strong, but you're\n"
-	.string "not suitable for the PSYCHIC type!\p"
+	.string "not suitable for the [Psychic] type!\p"
 	.string "The way you battle is somehow brutal!$"
 
 MossdeepCity_Gym_Text_NicholasIntro:
 	.string "Wroooar! Have a taste of my super\n"
-	.string "POKéMON hard-battling power!$"
+	.string "[Pokémon] hard-battling power!$"
 
 MossdeepCity_Gym_Text_NicholasDefeat:
 	.string "Oh!\n"
@@ -548,7 +548,7 @@ MossdeepCity_Gym_Text_NicholasDefeat:
 
 MossdeepCity_Gym_Text_NicholasPostBattle:
 	.string "All right! I think I'll develop a special\n"
-	.string "invincible POKéMON power next.$"
+	.string "invincible [Pokémon] power next.$"
 
 MossdeepCity_Gym_Text_TateAndLizaIntro:
 	.string "TATE: Hehehe… Were you surprised?\p"
@@ -592,13 +592,13 @@ MossdeepCity_Gym_Text_ExplainCalmMind:
 
 MossdeepCity_Gym_Text_RegisteredTateAndLiza:
 	.string "Registered GYM LEADERS TATE & LIZA\n"
-	.string "in the POKéNAV.$"
+	.string "in the [PokéNav].$"
 
 MossdeepCity_Gym_Text_TateAndLizaPostBattle:
 	.string "TATE: Looks like the bond between you\n"
 	.string "and your POKéMON is far stronger than\l"
 	.string "the bond that we share as twins.\p"
-	.string "LIZA: You will become even stronger!\n"
+	.string "[Liza]: You will become even stronger!\n"
 	.string "We've battled you, so we know.$"
 
 MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons:
@@ -611,7 +611,7 @@ MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons:
 	.string "bring some more POKéMON.$"
 
 MossdeepCity_Gym_Text_GymStatue:
-	.string "MOSSDEEP CITY POKéMON GYM$"
+	.string "[Mossdeep] [City] [Pokémon] [Gym]$"
 
 MossdeepCity_Gym_Text_GymStatueCertified:
 	.string "MOSSDEEP CITY POKéMON GYM\p"
@@ -635,9 +635,9 @@ MossdeepCity_Gym_Text_TateAndLizaRematchDefeat:
 	.string "LIZA: It's as if you were siblings!$"
 
 MossdeepCity_Gym_Text_TateAndLizaPostRematch:
-	.string "TATE: You can knock us down,\n"
+	.string "[Tate]: You can knock us down,\n"
 	.string "but we'll never stay down!\p"
-	.string "LIZA: Because the two of us,\n"
+	.string "[Liza]: Because the two of us,\n"
 	.string "we always support each other!$"
 
 MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons:

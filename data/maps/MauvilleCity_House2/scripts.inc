@@ -53,7 +53,7 @@ MauvilleCity_House2_Text_TradeHarborMailForCoinCase:
 
 MauvilleCity_House2_Text_IllTradeYouCoinCase:
 	.string "Oh, I'm so happy!\n"
-	.string "Okay, I'll trade you a COIN CASE!$"
+	.string "Okay, I'll trade you a [Coin] [Case]!$"
 
 MauvilleCity_House2_Text_UseCoinCaseAtGameCorner:
 	.string "That COIN CASE can be used\n"

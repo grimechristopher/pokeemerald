@@ -1028,32 +1028,32 @@ Route104_Text_LikeFillingMouthWithSeedsTakeThis:
 	.string "I like filling my mouth with seeds,\n"
 	.string "then spitting them out fast!\p"
 	.string "You can have this, so you try it out!\p"
-	.string "Use it on a POKéMON, and it will learn\n"
+	.string "Use it on a [Pokémon], and it will learn\n"
 	.string "a move for firing seeds rapidly.$"
 
 Route104_Text_TMsAreOneTimeUse:
 	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
+	.string "A TM, [Technical] [Machine], is good only\n"
 	.string "for one-time use.\p"
 	.string "Once you use it, it's gone.\n"
 	.string "Think twice before using it!$"
 
 Route104_Text_DontNeedThisTakeIt:
-	.string "This FLOWER SHOP started selling\n"
+	.string "This [Flower] [Shop] started selling\n"
 	.string "saplings recently.\p"
 	.string "It made me so happy, I went overboard\n"
 	.string "shopping.\p"
-	.string "I don't need this WHITE HERB anymore.\n"
+	.string "I don't need this [White] [Herb] anymore.\n"
 	.string "Would you take it, please?$"
 
 Route104_Text_FlowerShopSellingSaplings:
-	.string "This FLOWER SHOP started selling\n"
+	.string "This [Flower] [Shop] started selling\n"
 	.string "saplings recently.\p"
 	.string "It made me so happy, I went overboard\n"
 	.string "shopping. Where should I put them?$"
 
 Route104_Text_MrBrineysCottage:
-	.string "MR. BRINEY'S COTTAGE$"
+	.string "[Mr]. [Briney's] [Cottage]$"
 
 Route104_Text_RouteSignPetalburg:
 	.string "ROUTE 1O4\n"
@@ -1064,10 +1064,10 @@ Route104_Text_RouteSignRustboro:
 	.string "{UP_ARROW} RUSTBORO CITY$"
 
 Route104_Text_PrettyPetalFlowShop:
-	.string "PRETTY PETAL FLOWER SHOP$"
+	.string "[Pretty] [Petal] [Flower] [Shop]$"
 
 Route104_Text_TrainerTipsDoubleBattles:
-	.string "TRAINER TIPS\p"
+	.string "[Trainer] [Tips]\p"
 	.string "In the HOENN region there are pairs\n"
 	.string "of TRAINERS who challenge others\l"
 	.string "for 2-on-2 POKéMON battles called\l"
@@ -1075,7 +1075,7 @@ Route104_Text_TrainerTipsDoubleBattles:
 	.string "In a DOUBLE BATTLE, the TRAINER must\n"
 	.string "send out two POKéMON, the one at the\l"
 	.string "left of the list and the top one.\l"
-	.string "Watch how POKéMON are lined up.$"
+	.string "Watch how [Pokémon] are lined up.$"
 
 Route104_Text_MayWeShouldRegister:
 	.string "MAY: Oh, hi, {PLAYER}{KUN}!\p"
@@ -1086,7 +1086,7 @@ Route104_Text_MayWeShouldRegister:
 
 Route104_Text_RegisteredMay:
 	.string "{PLAYER} registered MAY\n"
-	.string "in the POKéNAV.$"
+	.string "in the [PokéNav].$"
 
 Route104_Text_MayHowsYourPokedex:
 	.string "MAY: Oh, by the way, {PLAYER}{KUN},\n"
@@ -1098,17 +1098,17 @@ Route104_Text_MayMinesDecentLetsBattle:
 	.string "How about a little battle?$"
 
 Route104_Text_MayHaventRaisedPokemon:
-	.string "MAY: Oh, what's the matter?\p"
+	.string "[May]: Oh, what's the matter?\p"
 	.string "Haven't you caught or raised your\n"
 	.string "POKéMON very much?\p"
 	.string "That's not very good for a TRAINER!$"
 
 Route104_Text_MayLetsBattle:
-	.string "MAY: So, what do you think?\n"
+	.string "[May]: So, what do you think?\n"
 	.string "How about a little battle here?$"
 
 Route104_Text_MayIntro:
-	.string "MAY: You just became a TRAINER,\n"
+	.string "[May]: You just became a [Trainer],\n"
 	.string "{PLAYER}{KUN}. I'm not going to lose!$"
 
 Route104_Text_MayDefeat:
@@ -1119,23 +1119,23 @@ Route104_Text_MayPostBattle:
 	.string "MAY: I can tell you've gotten pretty\n"
 	.string "good with the way you handle POKéMON.\p"
 	.string "But instead of only making them\n"
-	.string "battle, you should be like MR. BRINEY.\p"
+	.string "battle, you should be like [Mr]. [Briney].\p"
 	.string "It's important to become friends with\n"
-	.string "POKéMON, too.$"
+	.string "[Pokémon], too.$"
 
 Route104_Text_BrendanWeShouldRegister:
 	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
 	.string "Cool, you had DEVON install the MATCH\n"
 	.string "CALL system on your POKéNAV!\p"
 	.string "Let's register each other in our\n"
-	.string "POKéNAVS so we can keep in touch.$"
+	.string "[PokéNavs] so we can keep in touch.$"
 
 Route104_Text_RegisteredBrendan:
 	.string "{PLAYER} registered BRENDAN\n"
-	.string "in the POKéNAV.$"
+	.string "in the [PokéNav].$"
 
 Route104_Text_BrendanHowsYourPokedex:
-	.string "BRENDAN: {PLAYER}, how's your POKéDEX?\n"
+	.string "[Brendan]: {PLAYER}, how's your [Pokédex]?\n"
 	.string "Have you filled in any pages yet?$"
 
 Route104_Text_BrendanDoingGreatLetsBattle:
@@ -1148,7 +1148,7 @@ Route104_Text_BrendanNoConfidence:
 	.string "any confidence in your POKéMON?$"
 
 Route104_Text_BrendanLetsBattle:
-	.string "BRENDAN: What's up?\n"
+	.string "[Brendan]: What's up?\n"
 	.string "Want to have a battle with me?$"
 
 Route104_Text_BrendanIntro:

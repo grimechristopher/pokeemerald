@@ -97,7 +97,7 @@ static void ContestEffect_GreatAppealButNoMoreMoves(void)
     SetContestantEffectStringID(eContestAppealResults.contestant, CONTEST_STRING_NO_APPEAL);
 }
 
-// Can be used repeatedly without boring the JUDGE.
+// Can be used repeatedly without boring the [Judge].
 static void ContestEffect_RepetitionNotBoring(void)
 {
     eContestantStatus[eContestAppealResults.contestant].usedRepeatableMove = TRUE;
@@ -244,7 +244,7 @@ static void ContestEffect_StartlePrevMons2(void)
         SetContestantEffectStringID2(eContestAppealResults.contestant, CONTEST_STRING_MESSED_UP2);
 }
 
-// Shifts the JUDGE's attention from others.
+// Shifts the [Judge's] attention from others.
 static void ContestEffect_ShiftJudgeAttention(void)
 {
     bool32 hitAny = FALSE;

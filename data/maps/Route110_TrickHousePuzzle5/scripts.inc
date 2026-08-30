@@ -898,7 +898,7 @@ Route110_TrickHousePuzzle5_Movement_MechadollShake:
 Route110_TrickHousePuzzle5_Text_WroteSecretCodeLockOpened:
 	.string "{PLAYER} wrote down the secret code\n"
 	.string "on the door.\p"
-	.string "“TRICK MASTER is a genius.”\n"
+	.string "“[Trick] [Master] is a genius.”\n"
 	.string "… … … … … … … …\p"
 	.string "The lock clicked open!$"
 
@@ -907,7 +907,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll1Intro:
 	.string "MECHADOLL 1 AM I!\p"
 	.string "IF YOU ANSWER QUIZZES CORRECTLY,\n"
 	.string "THEN YOU WILL GO TO MECHADOLL 5.\l"
-	.string "THEN YOU CAN OBTAIN THE SECRET CODE.$"
+	.string "THEN YOU CAN OBTAIN [The] SECRET CODE.$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz1:
 	.string "MECHADOLL 1 QUIZ.\p"
@@ -968,7 +968,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll3Intro:
 Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz1:
 	.string "MECHADOLL 3 QUIZ.\p"
 	.string "Which costs more?\n"
-	.string "Three HARBOR MAILS or one BURN HEAL?$"
+	.string "Three [Harbor] [Mails] or one [Burn] [Heal]?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz2:
 	.string "MECHADOLL 3 QUIZ.\p"
@@ -1003,7 +1003,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll4Quiz3:
 Route110_TrickHousePuzzle5_Text_Mechadoll5Intro:
 	.string "CLICKETY-CLACK…\n"
 	.string "MECHADOLL 5 AM I!\p"
-	.string "THE MASTER'S BEST AND PROUDEST\n"
+	.string "[The] MASTER'S BEST AND PROUDEST\n"
 	.string "ACHIEVEMENT AM I.$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz1:

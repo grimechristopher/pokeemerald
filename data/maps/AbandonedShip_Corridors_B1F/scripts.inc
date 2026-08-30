@@ -64,7 +64,7 @@ AbandonedShip_Corridors_B1F_Text_DuncanDefeat:
 AbandonedShip_Corridors_B1F_Text_DuncanPostBattle:
 	.string "The ship's bottom has sunk into the\n"
 	.string "depths.\p"
-	.string "If a POKéMON knew how to go underwater,\n"
+	.string "If a [Pokémon] knew how to go underwater,\n"
 	.string "we might make some progress…$"
 
 AbandonedShip_Corridors_B1F_Text_YayItsAShip:

@@ -4842,7 +4842,7 @@ static inline void ShowUtilityPrompt(s16 mode)
     const u8* promptText = NULL;
     const u8* gText_SkillPageIvs = COMPOUND_STRING("IVs");
     const u8* gText_SkillPageEvs = COMPOUND_STRING("EVs");
-    const u8* gText_SkillPageStats = COMPOUND_STRING("STATS");
+    const u8* gText_SkillPageStats = COMPOUND_STRING("[Stats]");
 
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
     {

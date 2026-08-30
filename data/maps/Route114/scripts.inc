@@ -177,7 +177,7 @@ Route114_EventScript_Kai::
 	end
 
 Route114_Text_AllMyMonDoesIsRoarTakeThis:
-	.string "All my POKéMON does is ROAR…\n"
+	.string "All my [Pokémon] does is [Roar]…\n"
 	.string "No one dares to come near me…\p"
 	.string "Sigh… If you would, please take\n"
 	.string "this TM away…$"
@@ -194,9 +194,9 @@ Route114_Text_MeteorFallsSign:
 	.string "RUSTBORO CITY THROUGH HERE$"
 
 Route114_Text_FossilManiacsHouseSign:
-	.string "FOSSIL MANIAC'S HOUSE\n"
+	.string "[Fossil] [Maniac's] [House]\n"
 	.string "“Fossils gratefully accepted!”$"
 
 Route114_Text_LanettesHouse:
-	.string "LANETTE'S HOUSE$"
+	.string "[Lanette's] [House]$"
 

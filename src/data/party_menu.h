@@ -660,7 +660,7 @@ static const u8 *const sActionStringTable[] =
     [PARTY_MSG_ALREADY_HOLDING_ONE]    = gText_AlreadyHoldingOne,
     [PARTY_MSG_WHICH_APPLIANCE]        = gText_WhichAppliance,
     [PARTY_MSG_CHOOSE_SECOND_FUSION]   = gText_NextFusionMon,
-    [PARTY_MSG_NO_POKEMON]             = COMPOUND_STRING("You have no POKéMON."),
+    [PARTY_MSG_NO_POKEMON]             = COMPOUND_STRING("You have no [Pokémon]."),
     [PARTY_MSG_CHOOSE_MON_FOR_BOX]     = gText_SendWhichMonToPC,
     [PARTY_MSG_MOVE_ITEM_WHERE]        = gText_MoveItemWhere,
 };
@@ -690,7 +690,7 @@ static const u16 sUnusedData[] =
     0x0121, 0x013b, 0x000f, 0x0013, 0x0039, 0x0046, 0x0094, 0x00f9, 0x007f, 0x0123,
 };
 
-static const u8 sText_Trade4[] = _("TRADE");
+static const u8 sText_Trade4[] = _("[Trade]");
 
 struct
 {
@@ -701,7 +701,7 @@ struct
     [MENU_SUMMARY]         = {COMPOUND_STRING("SUMMARY"),         CursorCb_Summary},
     [MENU_SWITCH]          = {COMPOUND_STRING("SWITCH"),          CursorCb_Switch},
     [MENU_CANCEL1]         = {gText_Cancel2,                      CursorCb_Cancel1},
-    [MENU_ITEM]            = {COMPOUND_STRING("ITEM"),            CursorCb_Item},
+    [MENU_ITEM]            = {COMPOUND_STRING("[Item]"),            CursorCb_Item},
     [MENU_GIVE]            = {gMenuText_Give,                     CursorCb_Give},
     [MENU_TAKE_ITEM]       = {COMPOUND_STRING("TAKE"),            CursorCb_TakeItem},
     [MENU_MOVE_ITEM]       = {COMPOUND_STRING("MOVE"),            CursorCb_MoveItem},

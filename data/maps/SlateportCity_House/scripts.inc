@@ -14,7 +14,7 @@ SlateportCity_House_Text_NatureToDoWithStatGains:
 	.string "It has higher SPEED compared to\n"
 	.string "my other POKéMON.\p"
 	.string "Maybe their nature has something to\n"
-	.string "do with the stat gains of POKéMON.$"
+	.string "do with the stat gains of [Pokémon].$"
 
 SlateportCity_House_Text_MustBeGoingToBattleTent:
 	.string "You're a TRAINER, aren't you?\p"

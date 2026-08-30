@@ -326,23 +326,23 @@ PetalburgWoods_Text_HaveYouSeenShroomish:
 
 PetalburgWoods_Text_IWasGoingToAmbushYou:
 	.string "I was going to ambush you, but you\n"
-	.string "had to dawdle in PETALBURG WOODS\l"
+	.string "had to dawdle in [Petalburg] [Woods]\l"
 	.string "forever, didn't you?\p"
 	.string "I got sick of waiting, so here I am!$"
 
 PetalburgWoods_Text_HandOverThosePapers:
-	.string "You! DEVON RESEARCHER!\p"
+	.string "You! [Devon] [Researcher]!\p"
 	.string "Hand over those papers!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe:
 	.string "Aiyeeeh!\p"
-	.string "You're a POKéMON TRAINER, aren't you?\n"
+	.string "You're a [Pokémon] [Trainer], aren't you?\n"
 	.string "You've got to help me, please!$"
 
 PetalburgWoods_Text_NoOneCrossesTeamAqua:
 	.string "Hunh? What do you think you're doing?\n"
 	.string "What, you're going to protect him?\p"
-	.string "No one who crosses TEAM AQUA\n"
+	.string "No one who crosses [Team] [Aqua]\n"
 	.string "gets any mercy, not even a kid!\p"
 	.string "Come on and battle me!$"
 
@@ -351,10 +351,10 @@ PetalburgWoods_Text_YoureKiddingMe:
 
 PetalburgWoods_Text_YouveGotSomeNerve:
 	.string "Grrr… You've got some nerve\n"
-	.string "meddling with TEAM AQUA!\l"
+	.string "meddling with [Team] [Aqua]!\l"
 	.string "Come on and battle me again!\p"
 	.string "I wish I could say that, but I'm out of\n"
-	.string "POKéMON…\p"
+	.string "[Pokémon]…\p"
 	.string "And, hey, we of TEAM AQUA are also\n"
 	.string "after something in RUSTBORO.\p"
 	.string "I'll let you go today!$"
@@ -364,13 +364,13 @@ PetalburgWoods_Text_ThatWasAwfullyClose:
 	.string "That was awfully close!\p"
 	.string "Thanks to you, he didn't rob me of\n"
 	.string "these important papers.\p"
-	.string "I know, I'll give you a GREAT BALL as\n"
+	.string "I know, I'll give you a [Great] [Ball] as\n"
 	.string "my thanks!$"
 
 PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro:
-	.string "Didn't that TEAM AQUA thug say\n"
+	.string "Didn't that [Team] [Aqua] thug say\n"
 	.string "they were after something in\l"
-	.string "RUSTBORO, too?$"
+	.string "[Rustboro], too?$"
 
 PetalburgWoods_Text_ICantBeWastingTime:
 	.string "Uh-oh! It's a crisis!\n"
@@ -378,15 +378,15 @@ PetalburgWoods_Text_ICantBeWastingTime:
 
 PetalburgWoods_Text_YoureLoadedWithItems:
 	.string "You're loaded with items.\n"
-	.string "I can't give you this GREAT BALL.$"
+	.string "I can't give you this [Great] [Ball].$"
 
 PetalburgWoods_Text_GoBugPokemonTeam:
-	.string "I caught a whole bunch of POKéMON!\p"
+	.string "I caught a whole bunch of [Pokémon]!\p"
 	.string "Go, go, go!\n"
-	.string "My BUG POKéMON team!$"
+	.string "My [Bug] [Pokémon] team!$"
 
 PetalburgWoods_Text_ICouldntWin:
-	.string "I have all these POKéMON,\n"
+	.string "I have all these [Pokémon],\n"
 	.string "but I couldn't win…$"
 
 PetalburgWoods_Text_ImOutOfPokeBalls:
@@ -394,14 +394,14 @@ PetalburgWoods_Text_ImOutOfPokeBalls:
 	.string "Now I'm out of POKé BALLS.$"
 
 PetalburgWoods_Text_InstantlyPopularWithBugPokemon:
-	.string "If you take BUG POKéMON to school,\n"
+	.string "If you take [Bug] [Pokémon] to school,\n"
 	.string "you get to be instantly popular!$"
 
 PetalburgWoods_Text_CantBePopularIfILose:
 	.string "I can't be popular if I lose.$"
 
 PetalburgWoods_Text_PeopleRespectYou:
-	.string "If you have a big BUG POKéMON,\n"
+	.string "If you have a big [Bug] [Pokémon],\n"
 	.string "people respect you for it.$"
 
 PetalburgWoods_Text_IWantRematch1:
@@ -415,7 +415,7 @@ PetalburgWoods_Text_IWantRematch2:
 	.string "I'm registering you in my POKéNAV!$"
 
 PetalburgWoods_Text_MyPokemonHaveGrown:
-	.string "My BUG POKéMON have grown.\n"
+	.string "My [Bug] [Pokémon] have grown.\n"
 	.string "I'll be popular again.$"
 
 PetalburgWoods_Text_CantBePopularIfLose:
@@ -423,7 +423,7 @@ PetalburgWoods_Text_CantBePopularIfLose:
 
 PetalburgWoods_Text_IveBeenTrainingHard:
 	.string "You get to be popular if you have\n"
-	.string "strong POKéMON, right?\l"
+	.string "strong [Pokémon], right?\l"
 	.string "So, I've been training hard.$"
 
 PetalburgWoods_Text_StayOutOfTallGrass:
@@ -454,7 +454,7 @@ PetalburgWoods_Text_MiracleSeedExplanation:
 	.string "to hold.$"
 
 PetalburgWoods_Text_TrainerTipsExperience:
-	.string "TRAINER TIPS\p"
+	.string "[Trainer] [Tips]\p"
 	.string "Any POKéMON that appears even once\n"
 	.string "in a battle is awarded EXP Points.\p"
 	.string "To raise a weak POKéMON, put it at the\n"
@@ -464,7 +464,7 @@ PetalburgWoods_Text_TrainerTipsExperience:
 	.string "being exposed to any harm.$"
 
 PetalburgWoods_Text_TrainerTipsPP:
-	.string "TRAINER TIPS\p"
+	.string "[Trainer] [Tips]\p"
 	.string "In addition to Hit Points (HP), POKéMON\n"
 	.string "have Power Points (PP) that are used to\l"
 	.string "make moves during battle.\p"

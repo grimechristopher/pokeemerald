@@ -176,7 +176,7 @@ SootopolisCity_Gym_1F_EventScript_GymStatue::
 	end
 
 SootopolisCity_Gym_1F_Text_GymGuideAdvice:
-	.string "Yo! How's it going, CHAMPION-\n"
+	.string "Yo! How's it going, [Champion]-\n"
 	.string "bound {PLAYER}?\p"
 	.string "SOOTOPOLIS's GYM LEADER JUAN is\n"
 	.string "a master of WATER-type POKéMON.\p"
@@ -201,7 +201,7 @@ SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "It was I who taught WALLACE everything\n"
 	.string "there is to know about POKéMON.\p"
 	.string "Once, I had given up my position as\n"
-	.string "the GYM LEADER.\p"
+	.string "the [Gym] [Leader].\p"
 	.string "In my place, I had entrusted WALLACE\n"
 	.string "with the GYM.\p"
 	.string "However, a compelling reason arose for\n"
@@ -211,7 +211,7 @@ SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "Please, you shall bear witness to\n"
 	.string "our artistry.\p"
 	.string "A grand illusion of water sculpted\n"
-	.string "by POKéMON and myself!$"
+	.string "by [Pokémon] and myself!$"
 
 @ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
 @ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
@@ -223,14 +223,14 @@ SootopolisCity_Gym_1F_Text_JuanDefeat:
 	.string "From you, I sense the brilliant shine\n"
 	.string "of skill that will overcome all.\p"
 	.string "However, compared with me or even\n"
-	.string "WALLACE, you are lacking in elegance.\p"
+	.string "[Wallace], you are lacking in elegance.\p"
 	.string "Perhaps I should make you a loan\n"
 	.string "of my outfit?\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "Hahaha, I merely jest!\p"
 	.string "Rather than my clothes, I shall reward\n"
-	.string "you with this, the RAIN BADGE!$"
+	.string "you with this, the [Rain] [Badge]!$"
 
 SootopolisCity_Gym_1F_Text_ReceivedRainBadge:
 	.string "{PLAYER} received the RAIN BADGE\n"
@@ -255,13 +255,13 @@ SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
 
 SootopolisCity_Gym_1F_Text_RegisteredJuan:
 	.string "Registered GYM LEADER JUAN\n"
-	.string "in the POKéNAV.$"
+	.string "in the [PokéNav].$"
 
 SootopolisCity_Gym_1F_Text_JuanPostBattle:
 	.string "The TRAINERS who have gathered all\n"
 	.string "the GYM BADGES of HOENN should make\l"
 	.string "way to the ultimate destination.\p"
-	.string "The POKéMON LEAGUE.\p"
+	.string "The [Pokémon] [League].\p"
 	.string "Travel to the easternmost reaches\n"
 	.string "of HOENN, to the island EVER GRANDE.\p"
 	.string "There, you shall find the POKéMON\n"
@@ -275,7 +275,7 @@ SootopolisCity_Gym_1F_Text_GoGetFortreeBadge:
 	.string "BADGE from the GYM in FORTREE.$"
 
 SootopolisCity_Gym_1F_Text_GymStatue:
-	.string "SOOTOPOLIS CITY POKéMON GYM$"
+	.string "[Sootopolis] [City] [Pokémon] [Gym]$"
 
 SootopolisCity_Gym_1F_Text_GymStatueCertified:
 	.string "SOOTOPOLIS CITY POKéMON GYM\p"
@@ -283,7 +283,7 @@ SootopolisCity_Gym_1F_Text_GymStatueCertified:
 	.string "{PLAYER}$"
 
 SootopolisCity_Gym_1F_Text_JuanPreRematch:
-	.string "JUAN: Ah, this GYM had returned to its\n"
+	.string "[Juan]: Ah, this [Gym] had returned to its\n"
 	.string "usual state of serenity…\p"
 	.string "But our young typhoon has returned\n"
 	.string "to put us to the test again!\p"
@@ -296,7 +296,7 @@ SootopolisCity_Gym_1F_Text_JuanRematchDefeat:
 	.string "You have defeated me again!$"
 
 SootopolisCity_Gym_1F_Text_JuanPostRematch:
-	.string "JUAN: If I told you to become my\n"
+	.string "[Juan]: If I told you to become my\n"
 	.string "apprentice, you will refuse, I am sure.\p"
 	.string "I would like to make a gift of my coat\n"
 	.string "to you.\p"
@@ -306,14 +306,14 @@ SootopolisCity_Gym_1F_Text_JuanPostRematch:
 	.string "of nobility!$"
 
 SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons:
-	.string "JUAN: Ah, this GYM had returned to its\n"
+	.string "[Juan]: Ah, this [Gym] had returned to its\n"
 	.string "usual state of serenity…\p"
 	.string "But our young typhoon has returned\n"
 	.string "to put us to the test again!\p"
 	.string "Well, my friend, most certainly!\n"
 	.string "I shall be delighted to dance with you…\p"
 	.string "Ah, no, no, no.\n"
-	.string "You have with you but one POKéMON.\p"
+	.string "You have with you but one [Pokémon].\p"
 	.string "I wish that you would return with\n"
-	.string "two, perhaps more, POKéMON, please.$"
+	.string "two, perhaps more, [Pokémon], please.$"
 

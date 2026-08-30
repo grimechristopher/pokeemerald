@@ -105,14 +105,14 @@ Route109_SeashoreHouse_Text_SeashoreHouseIntro:
 	.string "I'm the owner of the SEASHORE HOUSE.\n"
 	.string "But you can call me MR. SEA!\p"
 	.string "What I love above all is to see hot\n"
-	.string "POKéMON battles.\p"
+	.string "[Pokémon] battles.\p"
 	.string "Let me see that your heart burns hot!\p"
-	.string "If you can defeat all the TRAINERS\n"
+	.string "If you can defeat all the [Trainers]\n"
 	.string "here, I'll reward your efforts.$"
 
 Route109_SeashoreHouse_Text_ShowMeSomeHotMatches:
 	.string "Show me some hot matches!\p"
-	.string "I run this SEASHORE HOUSE just for\n"
+	.string "I run this [Seashore] [House] just for\n"
 	.string "that reason alone!$"
 
 Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles:
@@ -121,10 +121,10 @@ Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles:
 	.string "I'm more than just satisfied!\p"
 	.string "As thanks for showing me your hot\n"
 	.string "streak, I want you to take these.\p"
-	.string "It's half a dozen bottles of SODA POP!$"
+	.string "It's half a dozen bottles of [Soda] [Pop]!$"
 
 Route109_SeashoreHouse_Text_BagFull:
-	.string "Oh, but hey, your BAG's jammed full.\n"
+	.string "Oh, but hey, your [Bag's] jammed full.\n"
 	.string "I'll hang on to these for you.$"
 
 Route109_SeashoreHouse_Text_WantToBuySodaPop:
@@ -159,24 +159,24 @@ Route109_SeashoreHouse_Text_DwaynePostBattle:
 Route109_SeashoreHouse_Text_JohannaIntro:
 	.string "Boring battles aren't worth the effort.\p"
 	.string "Fiery hot battles are what toughen up\n"
-	.string "TRAINERS and POKéMON!$"
+	.string "[Trainers] and [Pokémon]!$"
 
 Route109_SeashoreHouse_Text_JohannaDefeated:
 	.string "That's hot!$"
 
 Route109_SeashoreHouse_Text_JohannaPostBattle:
 	.string "Whew, I'm all thirsty.\n"
-	.string "Maybe I'll have a SODA POP.$"
+	.string "Maybe I'll have a [Soda] [Pop].$"
 
 Route109_SeashoreHouse_Text_SimonIntro:
 	.string "I'm going to show you how great\n"
-	.string "my POKéMON are, but don't cry!$"
+	.string "my [Pokémon] are, but don't cry!$"
 
 Route109_SeashoreHouse_Text_SimonDefeated:
 	.string "…I lost, but I won't cry…$"
 
 Route109_SeashoreHouse_Text_SimonPostBattle:
-	.string "If one of my POKéMON knew the move\n"
+	.string "If one of my [Pokémon] knew the move\n"
 	.string "for carrying me across water on its\l"
 	.string "back, I could get rid of this inner tube.$"
 

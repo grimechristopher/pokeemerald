@@ -244,12 +244,12 @@ Route118_EventScript_Deandre::
 	end
 
 Route118_Text_StevenQuestions:
-	.string "STEVEN: Hi, {PLAYER}{KUN}!\p"
+	.string "[Steven]: Hi, {PLAYER}{KUN}!\p"
 	.string "It's me, STEVEN!\n"
 	.string "We met in the cave near DEWFORD.\p"
 	.string "Have you met many kinds of POKéMON\n"
 	.string "since I last saw you?\p"
-	.string "There are many, many kinds of POKéMON\n"
+	.string "There are many, many kinds of [Pokémon]\n"
 	.string "in this wide world of ours.\p"
 	.string "If you wanted to raise only your\n"
 	.string "favorites, that's fine.\p"
@@ -263,14 +263,14 @@ Route118_Text_StevenQuestions:
 
 Route118_Text_YouAgreeGoodRodIsGood:
 	.string "Hmm!\n"
-	.string "A GOOD ROD is really good!\p"
+	.string "A [Good] [Rod] is really good!\p"
 	.string "Wouldn't you agree?$"
 
 Route118_Text_IdenticalMindsTakeThis:
 	.string "Hmm!\n"
 	.string "We're of identical minds!\p"
 	.string "Hmm!\n"
-	.string "Take this GOOD ROD!$"
+	.string "Take this [Good] [Rod]!$"
 
 Route118_Text_TryYourLuckFishing:
 	.string "Wherever there's water, try your luck\n"

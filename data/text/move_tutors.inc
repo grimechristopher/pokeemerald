@@ -6,11 +6,11 @@ MoveTutor_Text_SwaggerTeach:
 	.string "Heh! My POKéMON totally rules!\n"
 	.string "It's cooler than any POKéMON!\p"
 	.string "I was lipping off with a swagger in\n"
-	.string "my step like that when the CHAIRMAN\l"
+	.string "my step like that when the [Chairman]\l"
 	.string "chewed me out.\p"
 	.string "That took the swagger out of my step.\p"
 	.string "If you'd like, I'll teach the move\n"
-	.string "SWAGGER to a POKéMON of yours.$"
+	.string "[Swagger] to a [Pokémon] of yours.$"
 
 MoveTutor_Text_SwaggerDeclined:
 	.string "What, no? Can't you get into\n"
@@ -21,7 +21,7 @@ MoveTutor_Text_SwaggerWhichMon:
 	.string "learn how to SWAGGER?$"
 
 MoveTutor_Text_SwaggerTaught:
-	.string "I'll just praise my POKéMON from now\n"
+	.string "I'll just praise my [Pokémon] from now\n"
 	.string "on without the swagger.$"
 
 MoveTutor_Text_RolloutTeach:
@@ -30,9 +30,9 @@ MoveTutor_Text_RolloutTeach:
 	.string "without changing direction?\p"
 	.string "I might even be able to roll\n"
 	.string "that way.\p"
-	.string "Do you think your POKéMON will\n"
+	.string "Do you think your [Pokémon] will\n"
 	.string "want to roll, too?\p"
-	.string "I can teach one the move ROLLOUT\n"
+	.string "I can teach one the move [Rollout]\n"
 	.string "if you'd like.$"
 
 MoveTutor_Text_RolloutDeclined:
@@ -41,7 +41,7 @@ MoveTutor_Text_RolloutDeclined:
 
 MoveTutor_Text_RolloutWhichMon:
 	.string "Ehehe, sure thing! It'd be great if\n"
-	.string "the POKéMON looked like me.$"
+	.string "the [Pokémon] looked like me.$"
 
 MoveTutor_Text_RolloutTaught:
 	.string "Rolling around in the grass makes me\n"
@@ -50,7 +50,7 @@ MoveTutor_Text_RolloutTaught:
 MoveTutor_Text_FuryCutterTeach:
 	.string "There's a move that gets stronger\n"
 	.string "when you keep using it in a row.\p"
-	.string "It's a BUG-type move, and it is\n"
+	.string "It's a [Bug]-type move, and it is\n"
 	.string "wickedly cool.\p"
 	.string "It's called FURY CUTTER.\n"
 	.string "Want me to teach it to a POKéMON?$"
@@ -60,7 +60,7 @@ MoveTutor_Text_FuryCutterDeclined:
 
 MoveTutor_Text_FuryCutterWhichMon:
 	.string "Yay!\n"
-	.string "Show me which POKéMON I should teach.$"
+	.string "Show me which [Pokémon] I should teach.$"
 
 MoveTutor_Text_FuryCutterTaught:
 	.string "I get a thrill watching to see if\n"
@@ -73,7 +73,7 @@ MoveTutor_MimicTeach:
 	.string "folks of this town.\p"
 	.string "What do you say, young one?\n"
 	.string "Would you agree to it if I were to\l"
-	.string "offer to teach the move MIMIC?$"
+	.string "offer to teach the move [Mimic]?$"
 
 MoveTutor_MimicDeclined:
 	.string "Oh, boo! I wanted to teach MIMIC\n"
@@ -81,11 +81,11 @@ MoveTutor_MimicDeclined:
 
 MoveTutor_Text_MimicWhichMon:
 	.string "Fwofwo! And so I shall!\n"
-	.string "Let me see the POKéMON\l"
+	.string "Let me see the [Pokémon]\l"
 	.string "you wish me to teach.$"
 
 MoveTutor_Text_MimicTaught:
-	.string "MIMIC is a move of great depth.\p"
+	.string "[Mimic] is a move of great depth.\p"
 	.string "Could you execute it to perfection\n"
 	.string "as well as me…?$"
 
@@ -106,7 +106,7 @@ MoveTutor_Text_MetronomeDeclined:
 
 MoveTutor_Text_MetronomeWhichMon:
 	.string "Okay! I'll teach it!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which [Pokémon] should I teach?$"
 
 MoveTutor_Text_MetronomeTaught:
 	.string "When a POKéMON waggles its finger\n"
@@ -125,17 +125,17 @@ MoveTutor_Text_SleepTalkTeach:
 
 MoveTutor_Text_SleepTalkDeclined:
 	.string "Oh, fine, fine. You want to stay awake\n"
-	.string "with HIDDEN POWER, too…$"
+	.string "with [Hidden] [Power], too…$"
 
 MoveTutor_Text_SleepTalkWhichMon:
 	.string "Ah, an appreciative child!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which [Pokémon] should I teach?$"
 
 MoveTutor_Text_SleepTalkTaught:
 	.string "I've never once gotten my wife's\n"
 	.string "coin trick right.\p"
 	.string "I would be happy if I got it right\n"
-	.string "even as I SLEEP TALK…$"
+	.string "even as I [Sleep] [Talk]…$"
 
 MoveTutor_Text_SubstituteTeach:
 	.string "When I see the wide world from up\n"
@@ -146,11 +146,11 @@ MoveTutor_Text_SubstituteTeach:
 	.string "Of course it's not possible.\n"
 	.string "Giggle…\p"
 	.string "I know! Would you be interested in\n"
-	.string "having a POKéMON learn SUBSTITUTE?$"
+	.string "having a [Pokémon] learn [Substitute]?$"
 
 MoveTutor_Text_SubstituteDeclined:
 	.string "Oh, no?\p"
-	.string "A POKéMON can make a copy of\n"
+	.string "A [Pokémon] can make a copy of\n"
 	.string "itself using it, you know.$"
 
 MoveTutor_Text_SubstituteWhichMon:
@@ -182,7 +182,7 @@ MoveTutor_Text_DynamicPunchDeclined:
 
 MoveTutor_Text_DynamicPunchWhichMon:
 	.string "What? You do? You're a good person!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which [Pokémon] should I teach?$"
 
 MoveTutor_Text_DynamicPunchTaught:
 	.string "I want you to win at the MOSSDEEP GYM\n"
@@ -190,11 +190,11 @@ MoveTutor_Text_DynamicPunchTaught:
 
 MoveTutor_Text_DoubleEdgeTeach:
 	.string "Sigh…\p"
-	.string "SOOTOPOLIS's GYM LEADER is really\n"
+	.string "[Sootopolis's] [Gym] [Leader] is really\n"
 	.string "lovably admirable.\p"
 	.string "But that also means I have many\n"
 	.string "rivals for his attention.\p"
-	.string "He's got appeal with a DOUBLE-EDGE.\n"
+	.string "He's got appeal with a [Double]-[Edge].\n"
 	.string "I couldn't even catch his eye.\p"
 	.string "Please, let me teach your POKéMON\n"
 	.string "the move DOUBLE-EDGE!$"
@@ -217,9 +217,9 @@ MoveTutor_Text_ExplosionTeach:
 	.string "You watch me, I'll get out to the city\n"
 	.string "and become a huge hit.\p"
 	.string "Seriously, I'm going to cause\n"
-	.string "a huge EXPLOSION of popularity!\p"
+	.string "a huge [Explosion] of popularity!\p"
 	.string "If you overheard that, I'll happily\n"
-	.string "teach EXPLOSION to your POKéMON!$"
+	.string "teach [Explosion] to your [Pokémon]!$"
 
 MoveTutor_Text_ExplosionDeclined:
 	.string "Gaah! You're turning me down because\n"

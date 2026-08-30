@@ -83,7 +83,7 @@ VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande::
 	end
 
 VerdanturfTown_WandasHouse_Text_StrongerSpeech:
-	.string "WALLY: I lost to you, {PLAYER}, but I'm\n"
+	.string "[Wally]: I lost to you, {PLAYER}, but I'm\n"
 	.string "not feeling down anymore.\p"
 	.string "Because I have a new purpose in life.\n"
 	.string "Together with my RALTS, I'm going\l"
@@ -95,7 +95,7 @@ VerdanturfTown_WandasHouse_Text_StrongerSpeech:
 	.string "to another battle.$"
 
 VerdanturfTown_WandasHouse_Text_StrongerSpeechShort:
-	.string "WALLY: Please watch me, {PLAYER}.\n"
+	.string "[Wally]: Please watch me, {PLAYER}.\n"
 	.string "I'm going to get stronger than you.\p"
 	.string "When I do, I'm going to challenge you\n"
 	.string "to another battle.$"
@@ -106,13 +106,13 @@ VerdanturfTown_WandasHouse_Text_WallysNextDoor:
 	.string "But, boy, there's something I have to\n"
 	.string "tell you.\p"
 	.string "This natural environment is doing\n"
-	.string "wonders for WALLY's health.\p"
+	.string "wonders for [Wally's] health.\p"
 	.string "Maybe it's not just the environment.\n"
 	.string "It could be POKéMON that are giving\l"
 	.string "the boy hope.$"
 
 VerdanturfTown_WandasHouse_Text_WallySlippedOff:
-	.string "WALLY's gone away…\n"
+	.string "[Wally's] gone away…\n"
 	.string "He slipped off on his own…$"
 
 VerdanturfTown_WandasHouse_Text_WallyGoneThatFar:
@@ -123,17 +123,17 @@ VerdanturfTown_WandasHouse_Text_WallyGoneThatFar:
 	.string "my little brother's son.$"
 
 VerdanturfTown_WandasHouse_Text_MeetWanda:
-	.string "WANDA: You are?\n"
+	.string "[Wanda]: You are?\n"
 	.string "Oh, right, I get it!\p"
-	.string "You're the {PLAYER} who WALLY was\n"
+	.string "You're the {PLAYER} who [Wally] was\n"
 	.string "telling me about.\p"
-	.string "I'm WALLY's cousin.\n"
+	.string "I'm [Wally's] cousin.\n"
 	.string "Glad to meet you!\p"
-	.string "I think WALLY's become a lot more lively\n"
+	.string "I think [Wally's] become a lot more lively\n"
 	.string "and healthy since he came here.$"
 
 VerdanturfTown_WandasHouse_Text_DontWorryAboutWally:
-	.string "WANDA: Don't worry about WALLY.\n"
+	.string "[Wanda]: Don't worry about [Wally].\n"
 	.string "He'll be just fine.\p"
 	.string "I know my little cousin, and he has\n"
 	.string "POKéMON with him, too.$"
@@ -157,9 +157,9 @@ VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging:
 	.string "It's so incredible!$"
 
 VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally:
-	.string "If anything were to happen to WALLY,\n"
+	.string "If anything were to happen to [Wally],\n"
 	.string "I would never be able to look his\l"
-	.string "parents in PETALBURG in the eye…$"
+	.string "parents in [Petalburg] in the eye…$"
 
 VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande:
 	.string "WALLY was in EVER GRANDE?\p"

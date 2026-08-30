@@ -176,7 +176,7 @@ Route123_Text_LoveGrassMonsHaveAny:
 
 Route123_Text_YouLikeGrassMonsTooHaveThis:
 	.string "Oh?\p"
-	.string "You like GRASS-type POKéMON, too,\n"
+	.string "You like [Grass]-type [Pokémon], too,\n"
 	.string "don't you?\p"
 	.string "I'm so happy, you can have this!\n"
 	.string "It's a token of our friendship.$"
@@ -190,9 +190,9 @@ Route123_Text_RouteSign:
 	.string "{LEFT_ARROW} ROUTE 118$"
 
 Route123_Text_RouteSignMtPyre:
-	.string "{UP_ARROW} MT. PYRE\n"
+	.string "{UP_ARROW} [Mt]. [Pyre]\n"
 	.string "“Forbidden to the faint of heart.”$"
 
 Route123_Text_BerryMastersHouse:
-	.string "BERRY MASTER'S HOUSE$"
+	.string "[Berry] [Master's] [House]$"
 

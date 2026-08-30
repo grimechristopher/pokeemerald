@@ -53,10 +53,10 @@ SootopolisCity_Gym_B1F_EventScript_Daphne::
 
 SootopolisCity_Gym_B1F_Text_AndreaIntro:
 	.string "I'll show you the sublime techniques\n"
-	.string "I learned from our LEADER JUAN!$"
+	.string "I learned from our [Leader] [Juan]!$"
 
 SootopolisCity_Gym_B1F_Text_AndreaDefeat:
-	.string "Please forgive me, JUAN…$"
+	.string "Please forgive me, [Juan]…$"
 
 SootopolisCity_Gym_B1F_Text_AndreaPostBattle:
 	.string "Watch what happens if you crack all\n"
@@ -64,7 +64,7 @@ SootopolisCity_Gym_B1F_Text_AndreaPostBattle:
 
 SootopolisCity_Gym_B1F_Text_CrissyIntro:
 	.string "You came all the way here, but you won't\n"
-	.string "get to see JUAN.\p"
+	.string "get to see [Juan].\p"
 	.string "Not if you lose to me, you won't!$"
 
 SootopolisCity_Gym_B1F_Text_CrissyDefeat:
@@ -73,13 +73,13 @@ SootopolisCity_Gym_B1F_Text_CrissyDefeat:
 
 SootopolisCity_Gym_B1F_Text_CrissyPostBattle:
 	.string "You might be good enough to avoid\n"
-	.string "being wiped out in one hit by JUAN.$"
+	.string "being wiped out in one hit by [Juan].$"
 
 SootopolisCity_Gym_B1F_Text_DaphneIntro:
-	.string "The sight of JUAN conducting\n"
+	.string "The sight of [Juan] conducting\n"
 	.string "a battle…\p"
 	.string "The very beauty of it compelled me to\n"
-	.string "become a TRAINER.$"
+	.string "become a [Trainer].$"
 
 SootopolisCity_Gym_B1F_Text_DaphneDefeat:
 	.string "You battled with more beauty than\n"
@@ -89,7 +89,7 @@ SootopolisCity_Gym_B1F_Text_DaphnePostBattle:
 	.string "The grace you bring to battle is\n"
 	.string "fabulous.\p"
 	.string "Oh… I'm so fortunate to have found\n"
-	.string "POKéMON.$"
+	.string "[Pokémon].$"
 
 SootopolisCity_Gym_B1F_Text_ConnieIntro:
 	.string "I should teach you how harsh battles\n"
@@ -101,7 +101,7 @@ SootopolisCity_Gym_B1F_Text_ConnieDefeat:
 
 SootopolisCity_Gym_B1F_Text_ConniePostBattle:
 	.string "I'll tell you something good.\p"
-	.string "If you want to reach JUAN, you\n"
+	.string "If you want to reach [Juan], you\n"
 	.string "need to walk on each floor tile once.$"
 
 SootopolisCity_Gym_B1F_Text_BridgetIntro:
@@ -114,7 +114,7 @@ SootopolisCity_Gym_B1F_Text_BridgetDefeat:
 
 SootopolisCity_Gym_B1F_Text_BridgetPostBattle:
 	.string "Rather than being satisfied by being\n"
-	.string "in a strong GYM, I imagine training in\l"
+	.string "in a strong [Gym], I imagine training in\l"
 	.string "other places will make you stronger.\l"
 	.string "But above all, it looks more fun.$"
 
@@ -133,7 +133,7 @@ SootopolisCity_Gym_B1F_Text_OliviaPostBattle:
 SootopolisCity_Gym_B1F_Text_TiffanyIntro:
 	.string "A graceful glide across the ice while\n"
 	.string "crossing no lines…\p"
-	.string "A TRAINER putting on that performance\n"
+	.string "A [Trainer] putting on that performance\n"
 	.string "would be elegantly beautiful!$"
 
 SootopolisCity_Gym_B1F_Text_TiffanyDefeat:
@@ -141,11 +141,11 @@ SootopolisCity_Gym_B1F_Text_TiffanyDefeat:
 
 SootopolisCity_Gym_B1F_Text_TiffanyPostBattle:
 	.string "This is really obvious, but how strong\n"
-	.string "you are as a TRAINER has nothing to do\l"
+	.string "you are as a [Trainer] has nothing to do\l"
 	.string "with how young or old you are.$"
 
 SootopolisCity_Gym_B1F_Text_BethanyIntro:
-	.string "When I'm with my POKéMON, the time\n"
+	.string "When I'm with my [Pokémon], the time\n"
 	.string "flies by before you can say, “Oops!”$"
 
 SootopolisCity_Gym_B1F_Text_BethanyDefeat:
@@ -156,12 +156,12 @@ SootopolisCity_Gym_B1F_Text_BethanyPostBattle:
 	.string "before I can manage an “Oops!”$"
 
 SootopolisCity_Gym_B1F_Text_AnnikaIntro:
-	.string "I can battle with really rare POKéMON\n"
+	.string "I can battle with really rare [Pokémon]\n"
 	.string "if you'd like.$"
 
 SootopolisCity_Gym_B1F_Text_AnnikaDefeat:
 	.string "Oh, there now! Did you have a good look\n"
-	.string "at my POKéMON?$"
+	.string "at my [Pokémon]?$"
 
 SootopolisCity_Gym_B1F_Text_AnnikaPostBattle:
 	.string "I came to this GYM because JUAN\n"
@@ -178,6 +178,6 @@ SootopolisCity_Gym_B1F_Text_BriannaDefeat:
 	.string "I went much too easy on you.$"
 
 SootopolisCity_Gym_B1F_Text_BriannaPostBattle:
-	.string "You couldn't lay a finger on JUAN,\n"
+	.string "You couldn't lay a finger on [Juan],\n"
 	.string "I'm sure. Giggle…$"
 

@@ -67,9 +67,9 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott::
 	end
 
 LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex:
-	.string "I'm the GAME DESIGNER.\p"
+	.string "I'm the [Game] [Designer].\p"
 	.string "Oh, is that right?\n"
-	.string "You're working on a POKéDEX?\p"
+	.string "You're working on a [Pokédex]?\p"
 	.string "It's tough trying to complete it,\n"
 	.string "but don't give up.\p"
 	.string "If you do complete it, please come\n"
@@ -110,10 +110,10 @@ LilycoveCity_CoveLilyMotel_2F_Text_NeverLeaveWithoutGameBoy:
 	.string "You never know when and where\n"
 	.string "people will challenge you.\p"
 	.string "That's why I never leave home without\n"
-	.string "my GAME BOY ADVANCE.$"
+	.string "my [Game] [Boy] [Advance].$"
 
 LilycoveCity_CoveLilyMotel_2F_Text_SnoozingPreferBattles:
-	.string "SCOTT: … … … … …\n"
+	.string "[Scott]: … … … … …\n"
 	.string "… … … … … Zzz…\p"
 	.string "… … … … … Huh?!\n"
 	.string "Oh, sorry, sorry! I was snoozing!\p"
@@ -122,10 +122,10 @@ LilycoveCity_CoveLilyMotel_2F_Text_SnoozingPreferBattles:
 	.string "I have to admit, it does look quite\n"
 	.string "entertaining, but…\p"
 	.string "Consider me a purist--I prefer\n"
-	.string "battles and tough TRAINERS.\p"
+	.string "battles and tough [Trainers].\p"
 	.string "But that's just me.\p"
 	.string "{PLAYER}{KUN}, I hope you'll enjoy everything\n"
-	.string "like the GYMS, CONTESTS, BATTLE TENT,\l"
+	.string "like the [Gyms], [Contests], [Battle] [Tent],\l"
 	.string "the whole works!$"
 
 LilycoveCity_CoveLilyMotel_2F_Text_ContestsDoTakeStrategy:

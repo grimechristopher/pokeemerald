@@ -423,11 +423,11 @@ RusturfTunnel_Text_ComeAndGetSome:
 	.string "Come and get some, then!$"
 
 RusturfTunnel_Text_Peeko:
-	.string "PEEKO: Pii pihyoh!$"
+	.string "[Peeko]: Pii pihyoh!$"
 
 RusturfTunnel_Text_GruntIntro:
 	.string "Grah, keelhaul it all!\p"
-	.string "That hostage POKéMON turned out to\n"
+	.string "That hostage [Pokémon] turned out to\n"
 	.string "be worthless!\p"
 	.string "And to think I made a getaway…\n"
 	.string "In this tunnel to nowhere!\p"
@@ -440,15 +440,15 @@ RusturfTunnel_Text_GruntDefeat:
 
 RusturfTunnel_Text_GruntTakePackage:
 	.string "This is plain not right…\p"
-	.string "The BOSS told me this would be a\n"
+	.string "The [boss] told me this would be a\n"
 	.string "slick-and-easy job to pull.\p"
 	.string "All I had to do was steal some package\n"
-	.string "from DEVON.\p"
+	.string "from [Devon].\p"
 	.string "Tch!\n"
 	.string "You want it back that badly, take it!$"
 
 RusturfTunnel_Text_PeekoGladToSeeYouSafe:
-	.string "PEEKO!\n"
+	.string "[Peeko]!\n"
 	.string "Am I glad to see you're safe!$"
 
 RusturfTunnel_Text_ThankYouLetsGoHomePeeko:
@@ -465,7 +465,7 @@ RusturfTunnel_Text_ThankYouLetsGoHomePeeko:
 	.string "by the sea near PETALBURG WOODS.\p"
 	.string "Come, PEEKO, we should make our way\n"
 	.string "home.\p"
-	.string "PEEKO: Pihyoh!$"
+	.string "[Peeko]: Pihyoh!$"
 
 RusturfTunnel_Text_WhyCantTheyKeepDigging:
 	.string "… …\p"
@@ -497,7 +497,7 @@ RusturfTunnel_Text_ExplainStrength:
 	.string "large boulders.$"
 
 RusturfTunnel_Text_WandaReunion:
-	.string "WANDA!\n"
+	.string "[Wanda]!\n"
 	.string "Now I can see you anytime!\p"
 	.string "WANDA: That's…wonderful.\p"
 	.string "Please, take some rest at my home.$"
@@ -517,11 +517,11 @@ RusturfTunnel_Text_MikeIntro:
 	.string "the mountains a mountain POKéMON?$"
 
 RusturfTunnel_Text_MikeDefeat:
-	.string "My POKéMON…\n"
+	.string "My [Pokémon]…\n"
 	.string "Ran out of power…$"
 
 RusturfTunnel_Text_MikePostBattle:
 	.string "They halted development here to\n"
-	.string "protect POKéMON, right?\l"
+	.string "protect [Pokémon], right?\l"
 	.string "There's a feel-good story!$"
 

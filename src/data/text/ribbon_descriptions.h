@@ -10,12 +10,12 @@ const u8 gRibbonDescriptionPart2_SuperRank[] = _("Super Rank winner!");
 const u8 gRibbonDescriptionPart2_HyperRank[] = _("Hyper Rank winner!");
 const u8 gRibbonDescriptionPart2_MasterRank[] = _("Master Rank winner!");
 const u8 gRibbonDescriptionPart1_Winning[] = _("For clearing LV50");
-const u8 gRibbonDescriptionPart2_Winning[] = _("at the BATTLE TOWER.");
+const u8 gRibbonDescriptionPart2_Winning[] = _("at the [Battle] [Tower].");
 const u8 gRibbonDescriptionPart1_Victory[] = _("For clearing Open Level");
 const u8 gRibbonDescriptionPart2_Victory[] = _("at the BATTLE TOWER.");
 const u8 gRibbonDescriptionPart1_Artist[] = _("RIBBON for being chosen");
 const u8 gRibbonDescriptionPart2_Artist[] = _("as a super sketch model.");
-const u8 gRibbonDescriptionPart1_Effort[] = _("RIBBON awarded for");
+const u8 gRibbonDescriptionPart1_Effort[] = _("[Ribbon] awarded for");
 const u8 gRibbonDescriptionPart2_Effort[] = _("being a hard worker.");
 
 const u8 *const gRibbonDescriptionPointers[][2] =

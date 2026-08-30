@@ -252,7 +252,7 @@ static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/outer.
 static const u16 sUnused_Pal[] = INCBIN_U16("graphics/berry_blender/unused.gbapal");
 static const u16 sEmpty_Pal[16 * 14] = {0};
 
-static const u8 sText_BerryBlenderStart[] = _("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p");
+static const u8 sText_BerryBlenderStart[] = _("Starting up the [Berry] [Blender].\pPlease select a [Berry] from your [Bag]\nto put in the [Berry] [Blender].\p");
 static const u8 sText_NewParagraph[] = _("\p");
 static const u8 sText_WasMade[] = _(" was made!");
 
@@ -277,11 +277,11 @@ static const u8 sText_SpaceBerry[] = _(" BERRY");
 static const u8 sText_Time[] = _("Time:");
 static const u8 sText_Min[] = _(" min. ");
 static const u8 sText_Sec[] = _(" sec.");
-static const u8 sText_MaximumSpeed[] = _("MAXIMUM SPEED");
+static const u8 sText_MaximumSpeed[] = _("[Maximum] [Speed]");
 static const u8 sText_RPM[] = _(" RPM");
 static const u8 sText_Dot[] = _(".");
 static const u8 sText_NewLine[] = _("\n");
-static const u8 sText_Ranking[] = _("RANKING");
+static const u8 sText_Ranking[] = _("[Ranking]");
 static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
 static const u8 sText_Dot2[] = _(".");

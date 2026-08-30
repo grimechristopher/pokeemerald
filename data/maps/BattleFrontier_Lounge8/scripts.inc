@@ -14,7 +14,7 @@ BattleFrontier_Lounge8_EventScript_NinjaBoy::
 	end
 
 BattleFrontier_Lounge8_Text_WhatATrainerNeeds:
-	.string "What a TRAINER needs…\p"
+	.string "What a [Trainer] needs…\p"
 	.string "Knowledge…\n"
 	.string "Strategy…\l"
 	.string "Luck…\l"
@@ -24,7 +24,7 @@ BattleFrontier_Lounge8_Text_WhatATrainerNeeds:
 	.string "And ability…\p"
 	.string "Well, I'm all set in every way!\n"
 	.string "I'll be unstoppable at every building!\p"
-	.string "Huh? POKéMON?\n"
+	.string "Huh? [Pokémon]?\n"
 	.string "What's that?$"
 
 BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains:
@@ -35,7 +35,7 @@ BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains:
 	.string "facilities in the BATTLE FRONTIER.$"
 
 BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling:
-	.string "At the BATTLE TOWER, an older girl\n"
+	.string "At the [Battle] [Tower], an older girl\n"
 	.string "told me that I have a lot of talent\l"
 	.string "for battling!\p"
 	.string "I like POKéMON CONTESTS more!\p"

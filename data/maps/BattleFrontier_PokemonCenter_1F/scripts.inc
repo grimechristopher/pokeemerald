@@ -39,7 +39,7 @@ BattleFrontier_PokemonCenter_1F_EventScript_Skitty::
 
 BattleFrontier_PokemonCenter_1F_Text_NeverSeenPokemon:
 	.string "There was someone here using a \n"
-	.string "POKéMON I've never seen before.\p"
+	.string "[Pokémon] I've never seen before.\p"
 	.string "I never learned about it at\n"
 	.string "TRAINER'S SCHOOL at least.\p"
 	.string "I wonder where you can catch POKéMON\n"
@@ -55,5 +55,5 @@ BattleFrontier_PokemonCenter_1F_Text_GoingThroughEveryChallenge:
 	.string "challenge with just this baby!$"
 
 BattleFrontier_PokemonCenter_1F_Text_Skitty:
-	.string "SKITTY: Mya myaaah!$"
+	.string "[Skitty]: Mya myaaah!$"
 

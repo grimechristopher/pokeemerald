@@ -60,12 +60,12 @@ Route114_FossilManiacsTunnel_Text_LookInDesertForFossils:
 	.string "But the FOSSILS around these parts all\n"
 	.string "belong to me… None for you…\p"
 	.string "If you can't bear to go without\n"
-	.string "a FOSSIL, look in a desert where there\l"
+	.string "a [Fossil], look in a desert where there\l"
 	.string "are boulders and sand that may hide\l"
-	.string "FOSSILS…$"
+	.string "[Fossils]…$"
 
 Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils:
-	.string "You found a FOSSIL, didn't you?\n"
+	.string "You found a [Fossil], didn't you?\n"
 	.string "That's so nice… It's so dreamy…\p"
 	.string "What are you going to do with that\n"
 	.string "FOSSIL?\p"
@@ -76,7 +76,7 @@ Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils:
 	.string "do anything like that…$"
 
 Route114_FossilManiacsTunnel_Text_FossilsAreWonderful:
-	.string "FOSSILS are so… Wonderful…\n"
+	.string "[Fossils] are so… Wonderful…\n"
 	.string "It's so dreamy…$"
 
 Route114_FossilManiacsTunnel_Text_NotSafeThatWay:
@@ -87,5 +87,5 @@ Route114_FossilManiacsTunnel_Text_NotSafeThatWay:
 	.string "I think there's a giant cavern\n"
 	.string "underneath now…\p"
 	.string "But I've left it alone because I don't\n"
-	.string "think there are any FOSSILS there…$"
+	.string "think there are any [Fossils] there…$"
 

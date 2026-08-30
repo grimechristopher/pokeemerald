@@ -29,13 +29,13 @@ AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner:
 	.string "but I haven't had any success…$"
 
 AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner:
-	.string "Oh! That's a SCANNER!\p"
+	.string "Oh! That's a [Scanner]!\p"
 	.string "Listen, can I get you to deliver that\n"
-	.string "to CAPT. STERN?\p"
+	.string "to [Capt]. [Stern]?\p"
 	.string "I want to investigate this ship a\n"
 	.string "little more.$"
 
 AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus:
-	.string "This ship is called S.S. CACTUS.\n"
+	.string "This ship is called S.S. [Cactus].\n"
 	.string "It seems to be from an earlier era.$"
 

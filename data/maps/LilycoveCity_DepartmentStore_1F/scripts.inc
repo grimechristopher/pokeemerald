@@ -139,7 +139,7 @@ LilycoveCity_DepartmentStore_1F_EventScript_FloorNamesSign::
 	end
 
 LilycoveCity_DepartmentStore_1F_Text_WelcomeToDeptStore:
-	.string "Welcome to LILYCOVE DEPARTMENT STORE.$"
+	.string "Welcome to [Lilycove] [Department] [Store].$"
 
 LilycoveCity_DepartmentStore_1F_Text_IBuyAllSortsOfThings:
 	.string "Whenever I come to the DEPARTMENT\n"
@@ -155,7 +155,7 @@ LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill:
 	.string "as a reward for winning a CONTEST.$"
 
 LilycoveCity_DepartmentStore_1F_Text_Azumarill:
-	.string "AZUMARILL: Maririroo!$"
+	.string "[Azumarill]: Maririroo!$"
 
 LilycoveCity_DepartmentStore_1F_Text_FloorNamesSign:
 	.string "1F: SERVICE COUNTER\n"

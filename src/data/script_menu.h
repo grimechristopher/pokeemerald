@@ -8,7 +8,7 @@ static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
 
 static const struct MenuAction MultichoiceList_EnterInfo[] =
 {
-    {COMPOUND_STRING("ENTER")},
+    {COMPOUND_STRING("[Enter]")},
     {gText_Info2},
     {gText_Exit},
 };
@@ -72,7 +72,7 @@ static const struct MenuAction MultichoiceList_StatusInfo[] =
 
 static const struct MenuAction MultichoiceList_BrineyOffDewford[] =
 {
-    {COMPOUND_STRING("DEWFORD")},
+    {COMPOUND_STRING("[Dewford]")},
     {gText_Exit},
 };
 
@@ -608,14 +608,14 @@ static const struct MenuAction MultichoiceList_Fossil[] =
 static const struct MenuAction MultichoiceList_YesNo[] =
 {
     {gText_Yes},
-    {COMPOUND_STRING("NO")},
+    {COMPOUND_STRING("[No]")},
 };
 
 static const struct MenuAction MultichoiceList_FrontierRules[] =
 {
     {COMPOUND_STRING("TWO STYLES")},
     {COMPOUND_STRING("LV. 50")},
-    {COMPOUND_STRING("OPEN LEVEL")},
+    {COMPOUND_STRING("[Open] [Level]")},
     {COMPOUND_STRING("{PKMN} TYPE & NO.")},
     {COMPOUND_STRING("HOLD ITEMS")},
     {gText_Exit},
@@ -661,7 +661,7 @@ static const struct MenuAction MultichoiceList_BattleFactoryRules[] =
     {gText_SwapPartners},
     {gText_SwapNumber},
     {gText_SwapNotes},
-    {COMPOUND_STRING("OPEN LEVEL")},
+    {COMPOUND_STRING("[Open] [Level]")},
     {gText_Exit},
 };
 

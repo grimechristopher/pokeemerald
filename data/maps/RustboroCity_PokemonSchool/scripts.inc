@@ -201,19 +201,19 @@ RustboroCity_PokemonSchool_EventScript_ScottWatchStudents::
 
 RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges:
 	.string "The blackboard lists status changes\n"
-	.string "that may affect POKéMON in battle.$"
+	.string "that may affect [Pokémon] in battle.$"
 
 RustboroCity_PokemonSchool_Text_ReadWhichTopic:
 	.string "Which topic do you want to read?$"
 
 RustboroCity_PokemonSchool_Text_ExplainPoison:
-	.string "If a POKéMON is poisoned, it will\n"
+	.string "If a [Pokémon] is poisoned, it will\n"
 	.string "steadily lose HP.\p"
 	.string "The effects of poison remain after\n"
 	.string "a battle.\p"
-	.string "A poisoned POKéMON's HP will drop\n"
+	.string "A poisoned [Pokémon's] HP will drop\n"
 	.string "while it is traveling.\p"
-	.string "Heal a poisoning using an ANTIDOTE.$"
+	.string "Heal a poisoning using an [Antidote].$"
 
 RustboroCity_PokemonSchool_Text_ExplainParalysis:
 	.string "If a POKéMON becomes paralyzed,\n"
@@ -221,56 +221,56 @@ RustboroCity_PokemonSchool_Text_ExplainParalysis:
 	.string "It may also not be able to move while\n"
 	.string "it is in battle.\p"
 	.string "Paralysis remains after battle.\n"
-	.string "Cure it using a PARLYZ HEAL.$"
+	.string "Cure it using a [Paralyze] [Heal].$"
 
 RustboroCity_PokemonSchool_Text_ExplainSleep:
-	.string "If a POKéMON falls asleep, it will be\n"
+	.string "If a [Pokémon] falls asleep, it will be\n"
 	.string "unable to attack.\p"
-	.string "A POKéMON may wake up on its own,\n"
+	.string "A [Pokémon] may wake up on its own,\n"
 	.string "but if a battle ends while it is\l"
 	.string "sleeping, it will stay asleep.\p"
-	.string "Wake it up using an AWAKENING.$"
+	.string "Wake it up using an [Awakening].$"
 
 RustboroCity_PokemonSchool_Text_ExplainBurn:
-	.string "A burn reduces ATTACK power, and it\n"
+	.string "A burn reduces [Attack] power, and it\n"
 	.string "steadily reduces the victim's HP.\p"
 	.string "A burn lingers after battle.\n"
-	.string "Cure a burn using a BURN HEAL.$"
+	.string "Cure a burn using a [Burn] [Heal].$"
 
 RustboroCity_PokemonSchool_Text_ExplainFreeze:
-	.string "If a POKéMON is frozen, it becomes\n"
+	.string "If a [Pokémon] is frozen, it becomes\n"
 	.string "completely helpless.\p"
 	.string "It will remain frozen after battle.\n"
-	.string "Thaw it out using an ICE HEAL.$"
+	.string "Thaw it out using an [Ice] [Heal].$"
 
 RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
 	.string "Students who don't study get a little\n"
-	.string "taste of my QUICK CLAW.\p"
+	.string "taste of my [Quick] [Claw].\p"
 	.string "Whether or not you are a good student \n"
 	.string "will be evident from the way you use\l"
 	.string "this item.$"
 
 RustboroCity_PokemonSchool_Text_ExplainQuickClaw:
-	.string "A POKéMON holding the QUICK CLAW will\n"
+	.string "A [Pokémon] holding the [Quick] [Claw] will\n"
 	.string "occasionally speed up and get to move\l"
 	.string "before its opponent.\p"
 	.string "There are many other items that are\n"
-	.string "meant to be held by POKéMON.\p"
+	.string "meant to be held by [Pokémon].\p"
 	.string "Just those alone will give you many\n"
 	.string "topics to study!$"
 
 RustboroCity_PokemonSchool_Text_TradingRightNow:
-	.string "I'm trading POKéMON with my friend\n"
+	.string "I'm trading [Pokémon] with my friend\n"
 	.string "right now.$"
 
 RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot:
-	.string "I always wanted a SEEDOT, and\n"
+	.string "I always wanted a [Seedot], and\n"
 	.string "I'm finally getting one!$"
 
 RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems:
-	.string "POKéMON can hold items, but they\n"
+	.string "[Pokémon] can hold items, but they\n"
 	.string "don't know what to do with man-made\l"
-	.string "items like POTION and ANTIDOTE.$"
+	.string "items like [Potion] and [Antidote].$"
 
 RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself:
 	.string "You know how some POKéMON moves can\n"
@@ -281,10 +281,10 @@ RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself:
 	.string "return to normal.$"
 
 RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry:
-	.string "A POKéMON holding a BERRY will heal\n"
+	.string "A [Pokémon] holding a [Berry] will heal\n"
 	.string "itself…\p"
 	.string "There are many kinds of items that\n"
-	.string "POKéMON can hold…\p"
+	.string "[Pokémon] can hold…\p"
 	.string "Boy, it sure is hard taking notes\n"
 	.string "down…$"
 
@@ -303,22 +303,22 @@ RustboroCity_PokemonSchool_Text_StudentsNotes:
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut:
 	.string "Hello? Didn't we meet before?\n"
-	.string "I think back in PETALBURG CITY.\p"
+	.string "I think back in [Petalburg] [City].\p"
 	.string "Let me introduce myself.\n"
-	.string "My name's SCOTT.\p"
+	.string "My name's [Scott].\p"
 	.string "I've been traveling everywhere in\n"
-	.string "search of outstanding TRAINERS.\p"
+	.string "search of outstanding [Trainers].\p"
 	.string "More specifically, I'm looking for\n"
-	.string "POKéMON battle experts.\p"
+	.string "[Pokémon] battle experts.\p"
 	.string "So, what brings you to this SCHOOL?\n"
 	.string "Are you a TRAINER, too?\p"
 	.string "The first thing you should do is to\n"
-	.string "have a POKéMON learn the move CUT.\p"
+	.string "have a [Pokémon] learn the move [Cut].\p"
 	.string "If I remember correctly, someone in\n"
-	.string "this town has CUT.$"
+	.string "this town has [Cut].$"
 
 RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown:
-	.string "SCOTT: Hmm…\p"
+	.string "[Scott]: Hmm…\p"
 	.string "The talent levels of the students here\n"
 	.string "are unknown. The potential's there.$"
 
@@ -329,23 +329,23 @@ RustboroCity_PokemonSchool_Text_ScottStoneBadge:
 	.string "But, you know, I would've loved to see\n"
 	.string "you in battle.\p"
 	.string "It's hard to tell what you're like as\n"
-	.string "a TRAINER from a LEAGUE BADGE.$"
+	.string "a [Trainer] from a [League] [Badge].$"
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge:
 	.string "Hello? Didn't we meet before?\n"
-	.string "I think back in PETALBURG CITY.\p"
+	.string "I think back in [Petalburg] [City].\p"
 	.string "Let me introduce myself.\n"
-	.string "My name's SCOTT.\p"
+	.string "My name's [Scott].\p"
 	.string "I've been traveling everywhere in\n"
-	.string "search of outstanding TRAINERS.\p"
+	.string "search of outstanding [Trainers].\p"
 	.string "More specifically, I'm looking for\n"
-	.string "POKéMON battle experts.\p"
+	.string "[Pokémon] battle experts.\p"
 	.string "Oh, what's that?\n"
-	.string "It's a STONE BADGE, isn't it?\p"
+	.string "It's a [Stone] [Badge], isn't it?\p"
 	.string "That's pretty impressive, I'd say, for\n"
-	.string "a starting TRAINER like yourself.\p"
+	.string "a starting [Trainer] like yourself.\p"
 	.string "But, you know, I would've loved to see\n"
 	.string "you in battle.\p"
 	.string "It's hard to tell what you're like as\n"
-	.string "a TRAINER from a LEAGUE BADGE.$"
+	.string "a [Trainer] from a [League] [Badge].$"
 

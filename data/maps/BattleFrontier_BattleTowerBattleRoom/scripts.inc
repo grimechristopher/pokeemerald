@@ -434,7 +434,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_RetireChallenge::
 	end
 
 BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth:
-	.string "We will restore your POKéMON to\n"
+	.string "We will restore your [Pokémon] to\n"
 	.string "full health.$"
 
 @ Unused
@@ -468,11 +468,11 @@ BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor7thOpponent:
 
 BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle:
 	.string "Record your battle on your\n"
-	.string "FRONTIER PASS?$"
+	.string "[Frontier] [Pass]?$"
 
 BattleFrontier_BattleTowerLobby_Text_BattleRecordedOnPass:
 	.string "{PLAYER}'s battle was recorded\n"
-	.string "on the FRONTIER PASS.$"
+	.string "on the [Frontier] [Pass].$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame:
 	.string "Would you like to save and\n"
@@ -492,12 +492,12 @@ BattleFrontier_BattleTowerBattleRoom_Text_RecordCouldntBeSaved::
 
 BattleFrontier_BattleTowerBattleRoom_Text_SalonMaidenOnHerWay:
 	.string "Excuse me, but…\p"
-	.string "Our leader, the SALON MAIDEN, is on\n"
+	.string "Our leader, the [Salon] [Maiden], is on\n"
 	.string "her way here in hopes of battling you.\p"
 	.string "She should be arriving very shortly.$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_ReadyForSalonMaiden:
-	.string "You will be facing the SALON MAIDEN.\n"
+	.string "You will be facing the [Salon] [Maiden].\n"
 	.string "Are you prepared?$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_GreetingsImAnabel:
@@ -523,11 +523,11 @@ BattleFrontier_BattleTowerBattleRoom_Text_AnabelTalentShallBeRecognized:
 
 BattleFrontier_BattleTowerBattleRoom_Text_ReceivedAbilitySymbol:
 	.string "The Ability Symbol was embossed on\n"
-	.string "the FRONTIER PASS!$"
+	.string "the [Frontier] [Pass]!$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_UntilNextTime:
 	.string "… … … … … …\p"
-	.string "You have confidence in your POKéMON\n"
+	.string "You have confidence in your [Pokémon]\n"
 	.string "battling talent, don't you?\p"
 	.string "I urge you to keep battling and\n"
 	.string "keep on winning.\p"
@@ -535,7 +535,7 @@ BattleFrontier_BattleTowerBattleRoom_Text_UntilNextTime:
 	.string "Until the next time we meet…$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_AnabelYouCameBack:
-	.string "ANABEL: You really did come back to\n"
+	.string "[Anabel]: You really did come back to\n"
 	.string "see me…\p"
 	.string "… … … … … …\p"
 	.string "You've won straight matches to see me…\n"
@@ -557,7 +557,7 @@ BattleFrontier_BattleTowerBattleRoom_Text_AbilitySymbolTookGoldenShine:
 
 BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
 	.string "That was fun…\p"
-	.string "I have never had a POKéMON battle\n"
+	.string "I have never had a [Pokémon] battle\n"
 	.string "so enjoyable before…\p"
 	.string "I wish I could battle with you again…$"
 

@@ -89,7 +89,7 @@ RustboroCity_DevonCorp_1F_Text_StaffGotRobbed:
 	.string "got robbed of an important parcel.$"
 
 RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct:
-	.string "Hey, those RUNNING SHOES!\n"
+	.string "Hey, those [Running] [Shoes]!\n"
 	.string "They're one of our products!\p"
 	.string "It makes me happy when I see someone\n"
 	.string "using something we made.$"
@@ -103,7 +103,7 @@ RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright:
 
 RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered:
 	.string "It sounds like they've recovered\n"
-	.string "the ripped-off DEVON GOODS.$"
+	.string "the ripped-off [Devon] [Goods].$"
 
 RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter:
 	.string "I'm sorry, only authorized people\n"
@@ -122,7 +122,7 @@ RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay:
 	.string "displayed in the glass case.\p"
 	.string "There's a panel with some writing\n"
 	.string "on it…\p"
-	.string "“DEVON CORPORATION got its start as\n"
+	.string "“[Devon] [Corporation] got its start as\n"
 	.string "a producer of stones from quarries.\p"
 	.string "“The company also produced iron from\n"
 	.string "filings in the sand.\p"
@@ -136,7 +136,7 @@ RustboroCity_DevonCorp_1F_Text_ProductDisplay:
 	.string "the glass display case.\p"
 	.string "There's a panel with a description…\p"
 	.string "“In addition to industrial products,\n"
-	.string "DEVON now markets sundries and\l"
+	.string "[Devon] now markets sundries and\l"
 	.string "pharmaceuticals for better lifestyles.\p"
 	.string "“Recently, DEVON has begun marketing\n"
 	.string "tools for POKéMON TRAINERS, including\l"

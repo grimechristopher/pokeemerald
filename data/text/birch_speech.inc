@@ -7,7 +7,7 @@ gText_Birch_Welcome::
 	.string "$"
 
 gText_Birch_Pokemon::
-	.string "This is what we call a “POKéMON.”\p"
+	.string "This is what we call a “[Pokémon].”\p"
 	.string "\n"
 	.string "$"
 
@@ -20,7 +20,7 @@ gText_Birch_MainSpeech::
 	.string "And sometimes, we band together\n"
 	.string "and battle others like us.\p"
 	.string "But despite our closeness, we don't\n"
-	.string "know everything about POKéMON.\p"
+	.string "know everything about [Pokémon].\p"
 	.string "In fact, there are many, many\n"
 	.string "secrets surrounding POKéMON.\p"
 	.string "To unravel POKéMON mysteries,\n"
@@ -45,7 +45,7 @@ gText_Birch_SoItsPlayer::
 gText_Birch_YourePlayer::
 	.string "Ah, okay!\p"
 	.string "You're {PLAYER}{KUN} who's moving to my\n"
-	.string "hometown of LITTLEROOT.\l"
+	.string "hometown of [Littleroot].\l"
 	.string "I get it now!\p"
 	.string "$"
 
@@ -54,8 +54,8 @@ gText_Birch_AreYouReady::
 	.string "Your very own adventure is about\n"
 	.string "to unfold.\p"
 	.string "Take courage, and leap into the\n"
-	.string "world of POKéMON where dreams,\l"
+	.string "world of [Pokémon] where dreams,\l"
 	.string "adventure, and friendships await!\p"
 	.string "Well, I'll be expecting you later.\n"
-	.string "Come see me in my POKéMON LAB.\p"
+	.string "Come see me in my [Pokémon] [Lab].\p"
 	.string "$"

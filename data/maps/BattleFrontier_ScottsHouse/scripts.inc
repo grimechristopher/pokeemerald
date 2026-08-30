@@ -210,10 +210,10 @@ BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayWest::
 	return
 
 BattleFrontier_ScottsHouse_Text_WelcomeToBattleFrontier:
-	.string "SCOTT: Well, hello and welcome!\n"
+	.string "[Scott]: Well, hello and welcome!\n"
 	.string "Heheh… Sorry about the cramped space.\p"
 	.string "Anyway, {PLAYER}{KUN}, let me formally\n"
-	.string "welcome you to the BATTLE FRONTIER.\p"
+	.string "welcome you to the [Battle] [Frontier].\p"
 	.string "This is my dream come true.\n"
 	.string "It took me years and years, but I've\l"
 	.string "finally given shape to my dream.$"
@@ -222,7 +222,7 @@ BattleFrontier_ScottsHouse_Text_HowMuchEffortItTookToMakeReal:
 	.string "On reflection, it was a terribly long\n"
 	.string "journey…\p"
 	.string "I left home alone on a quest to find\n"
-	.string "strong TRAINERS.\p"
+	.string "strong [Trainers].\p"
 	.string "No one can imagine how much effort\n"
 	.string "or time it took to make this real.$"
 
@@ -243,7 +243,7 @@ BattleFrontier_ScottsHouse_Text_ExplainBattlePoints:
 	.string "SCOTT: You can check your Battle\n"
 	.string "Points on your FRONTIER PASS.\p"
 	.string "The more success you have here at\n"
-	.string "the BATTLE FRONTIER, the more Battle\l"
+	.string "the [Battle] [Frontier], the more Battle\l"
 	.string "Points you will collect.\p"
 	.string "Use your Battle Points the way you\n"
 	.string "see fit, like trading them for items.$"
@@ -252,7 +252,7 @@ BattleFrontier_ScottsHouse_Text_ExpectingGreatThings:
 	.string "I'm expecting great things from you!$"
 
 BattleFrontier_ScottsHouse_Text_WhyIGoSeekingTrainers:
-	.string "SCOTT: Every TRAINER is an individual.\n"
+	.string "[Scott]: Every [Trainer] is an individual.\n"
 	.string "They all lead lives of their own.\p"
 	.string "But when they're in a battle,\n"
 	.string "it doesn't matter who they are.\p"
@@ -260,7 +260,7 @@ BattleFrontier_ScottsHouse_Text_WhyIGoSeekingTrainers:
 	.string "I love the purity of battle,\n"
 	.string "where everyone is equal.\p"
 	.string "That's why I go everywhere seeking\n"
-	.string "TRAINERS who are serious about\l"
+	.string "[Trainers] who are serious about\l"
 	.string "battling, and invite them here.$"
 
 BattleFrontier_ScottsHouse_Text_HaveYouMetFrontierBrain:
@@ -274,10 +274,10 @@ BattleFrontier_ScottsHouse_Text_HaveYouMetFrontierBrain:
 	.string "you are will startle even them!$"
 
 BattleFrontier_ScottsHouse_Text_MayFindWildMonsInFrontier:
-	.string "SCOTT: You don't just train for battle,\n"
+	.string "[Scott]: You don't just train for battle,\n"
 	.string "right?\p"
 	.string "I think I remember you working on\n"
-	.string "a POKéDEX as well.\p"
+	.string "a [Pokédex] as well.\p"
 	.string "Well, guess what?\p"
 	.string "You may run into wild POKéMON in\n"
 	.string "the BATTLE FRONTIER somewhere…\l"
@@ -288,7 +288,7 @@ BattleFrontier_ScottsHouse_Text_YouveCollectedAllSilverSymbols:
 	.string "the BATTLE FRONTIER?\p"
 	.string "…Wait a second…\n"
 	.string "Oh!\p"
-	.string "Your FRONTIER PASS!\n"
+	.string "Your [Frontier] [Pass]!\n"
 	.string "You've collected the full set\l"
 	.string "of silver symbols!\p"
 	.string "That's more than impressive!\n"
@@ -303,7 +303,7 @@ BattleFrontier_ScottsHouse_Text_YouveCollectedAllGoldSymbols:
 	.string "everything in the BATTLE FRONTIER.\p"
 	.string "…Wait a second…\n"
 	.string "Oh, my disbelieving eyes!\p"
-	.string "Your FRONTIER PASS!\n"
+	.string "Your [Frontier] [Pass]!\n"
 	.string "You've gathered up the full set\l"
 	.string "of gold symbols!\p"
 	.string "That's more than stupendous!\n"
@@ -315,12 +315,12 @@ BattleFrontier_ScottsHouse_Text_YouveCollectedAllGoldSymbols:
 
 BattleFrontier_ScottsHouse_Text_SoGladIBroughtYouHere:
 	.string "I must say I have the gift of knowing\n"
-	.string "a good TRAINER when I see one.\p"
+	.string "a good [Trainer] when I see one.\p"
 	.string "I'm so glad I had the foresight to\n"
 	.string "bring you here!$"
 
 BattleFrontier_ScottsHouse_Text_BerryPocketStuffed:
-	.string "Your BERRY POCKET seems to\n"
+	.string "Your [Berry] [Pocket] seems to\n"
 	.string "be stuffed.$"
 
 BattleFrontier_ScottsHouse_Text_Beat50TrainersInARow:

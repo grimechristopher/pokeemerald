@@ -29,7 +29,7 @@ VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon:
 	.string "TRAINER if you don't have faith\l"
 	.string "in your POKéMON.\p"
 	.string "Only those people who can believe\n"
-	.string "in their battling POKéMON can win\l"
+	.string "in their battling [Pokémon] can win\l"
 	.string "through to the very end.$"
 
 VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent:

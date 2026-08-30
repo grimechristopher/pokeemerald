@@ -60,16 +60,16 @@ FallarborTown_Text_ShadyCharactersCozmosHome:
 FallarborTown_Text_RegionKnownForMeteors:
 	.string "This region's been known for meteors\n"
 	.string "since the olden days.\p"
-	.string "They say METEOR FALLS was gouged out\n"
+	.string "They say [Meteor] [Falls] was gouged out\n"
 	.string "by a falling meteorite long ago.$"
 
 FallarborTown_Text_MyPreciousAzurill:
 	.string "See! Take a look!\n"
-	.string "This is my precious AZURILL!\p"
+	.string "This is my precious [Azurill]!\p"
 	.string "It's slick and smooth and plushy, too!$"
 
 FallarborTown_Text_Azurill:
-	.string "AZURILL: Rooreelooo.$"
+	.string "[Azurill]: Rooreelooo.$"
 
 FallarborTown_Text_HaveYouChallengedFlannery:
 	.string "Have you already challenged FLANNERY,\n"
@@ -82,11 +82,11 @@ FallarborTown_Text_HaveYouChallengedFlannery:
 	.string "right.$"
 
 FallarborTown_Text_BattleTentSign:
-	.string "BATTLE TENT FALLARBOR SITE\n"
+	.string "[Battle] [Tent] [Fallarbor] [Site]\n"
 	.string "“May the Greatest Teams Gather!”$"
 
 FallarborTown_Text_TownSign:
-	.string "FALLARBOR TOWN\n"
+	.string "[Fallarbor] [Town]\n"
 	.string "“A farm community with small gardens.”$"
 
 FallarborTown_Text_MoveTutorSign:
