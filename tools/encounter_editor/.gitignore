@@ -1,0 +1,6 @@
+/encounter_editor
+
+# Vendored third-party JS (root .gitignore's blanket *.js rule would
+# otherwise swallow this - it's a checked-in dependency, not a build
+# artifact).
+!static/htmx.min.js
