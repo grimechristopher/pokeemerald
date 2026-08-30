@@ -15057,6 +15057,23 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_CAPTURE_STYLER] =
+    {
+        .name = ITEM_NAME("CaptureStyler"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A Ranger device\n"
+            "to catch Pokémon\n"
+            "via rhythm game."),
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_USE_BAG_MENU,
+        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .secondaryId = BALL_POKE,
+        .notConsumed = TRUE,
+        .iconPic = gItemIcon_PokeBall,
+        .iconPalette = gItemIconPalette_PokeBall,
+    },
 };
 
 #undef ITEM_NAME
