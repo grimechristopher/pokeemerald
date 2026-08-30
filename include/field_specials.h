@@ -37,4 +37,15 @@ void GetObjectPosition(u16*, u16*, u32, u32);
 bool32 CheckObjectAtXY(u32, u32);
 bool32 CheckPartyHasSpecies(u32);
 
+// Game Corner minigames
+void Special_PlaySnake(void);
+void Special_PlayFlappyBird(void);
+void Special_PlayBlackjack(void);
+void Special_PlayVoltorbFlip(void);
+void Special_PlayGacha(void);
+void Special_PlayPachinko(void);
+void Special_PlayBlockStacker(void);
+void Special_PlayPinball(void);
+void Special_PlayDerby(void);
+
 #endif // GUARD_FIELD_SPECIALS_H

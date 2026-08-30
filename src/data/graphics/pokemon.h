@@ -5504,6 +5504,1744 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS && OW_BATTLE_ONLY_FORMS
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_MAGIKARP
+// Magikarp Jump Pattern Forms
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpSkelly[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/normal.gbapal");
+    const u32 gMonBackPic_MagikarpSkelly[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpSkelly[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpSkelly[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpSkelly[] = INCBIN_U8("graphics/pokemon/magikarp/skelly/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpSkelly[] = INCBIN_U8("graphics/pokemon/magikarp/skelly/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpSkelly[] = INCBIN_COMP("graphics/pokemon/magikarp/skelly/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpSkelly[] = INCBIN_U16("graphics/pokemon/magikarp/skelly/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpSkellyF[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpSkellyF[] = INCBIN_U32("graphics/pokemon/magikarp/skelly/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/normal.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpCalicoOrangeWhite[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_white/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpCalicoOrangeWhite[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_white/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpCalicoOrangeWhite[] = INCBIN_COMP("graphics/pokemon/magikarp/calico_orange_white/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhiteF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhiteF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/normal.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_white_black/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_white_black/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_COMP("graphics/pokemon/magikarp/calico_orange_white_black/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_white_black/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeWhiteBlackF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpCalicoOrangeWhiteBlackF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_white_black/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/normal.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpCalicoWhiteOrange[] = INCBIN_U8("graphics/pokemon/magikarp/calico_white_orange/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpCalicoWhiteOrange[] = INCBIN_U8("graphics/pokemon/magikarp/calico_white_orange/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpCalicoWhiteOrange[] = INCBIN_COMP("graphics/pokemon/magikarp/calico_white_orange/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/magikarp/calico_white_orange/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoWhiteOrangeF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpCalicoWhiteOrangeF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_white_orange/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/normal.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpCalicoOrangeGold[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_gold/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpCalicoOrangeGold[] = INCBIN_U8("graphics/pokemon/magikarp/calico_orange_gold/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpCalicoOrangeGold[] = INCBIN_COMP("graphics/pokemon/magikarp/calico_orange_gold/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/magikarp/calico_orange_gold/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpCalicoOrangeGoldF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpCalicoOrangeGoldF[] = INCBIN_U32("graphics/pokemon/magikarp/calico_orange_gold/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/normal.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpOrangeTwoTone[] = INCBIN_U8("graphics/pokemon/magikarp/orange_two_tone/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpOrangeTwoTone[] = INCBIN_U8("graphics/pokemon/magikarp/orange_two_tone/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpOrangeTwoTone[] = INCBIN_COMP("graphics/pokemon/magikarp/orange_two_tone/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/orange_two_tone/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeTwoToneF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpOrangeTwoToneF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_two_tone/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeOrca[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/normal.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeOrca[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpOrangeOrca[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeOrca[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpOrangeOrca[] = INCBIN_U8("graphics/pokemon/magikarp/orange_orca/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpOrangeOrca[] = INCBIN_U8("graphics/pokemon/magikarp/orange_orca/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpOrangeOrca[] = INCBIN_COMP("graphics/pokemon/magikarp/orange_orca/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpOrangeOrca[] = INCBIN_U16("graphics/pokemon/magikarp/orange_orca/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeOrcaF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpOrangeOrcaF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_orca/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeDapples[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/normal.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeDapples[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpOrangeDapples[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeDapples[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpOrangeDapples[] = INCBIN_U8("graphics/pokemon/magikarp/orange_dapples/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpOrangeDapples[] = INCBIN_U8("graphics/pokemon/magikarp/orange_dapples/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpOrangeDapples[] = INCBIN_COMP("graphics/pokemon/magikarp/orange_dapples/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpOrangeDapples[] = INCBIN_U16("graphics/pokemon/magikarp/orange_dapples/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeDapplesF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpOrangeDapplesF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_dapples/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPinkTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPinkTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPinkTwoTone[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPinkTwoTone[] = INCBIN_U8("graphics/pokemon/magikarp/pink_two_tone/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPinkTwoTone[] = INCBIN_U8("graphics/pokemon/magikarp/pink_two_tone/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPinkTwoTone[] = INCBIN_COMP("graphics/pokemon/magikarp/pink_two_tone/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPinkTwoTone[] = INCBIN_U16("graphics/pokemon/magikarp/pink_two_tone/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkTwoToneF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPinkTwoToneF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_two_tone/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkOrca[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPinkOrca[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPinkOrca[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPinkOrca[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPinkOrca[] = INCBIN_U8("graphics/pokemon/magikarp/pink_orca/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPinkOrca[] = INCBIN_U8("graphics/pokemon/magikarp/pink_orca/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPinkOrca[] = INCBIN_COMP("graphics/pokemon/magikarp/pink_orca/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPinkOrca[] = INCBIN_U16("graphics/pokemon/magikarp/pink_orca/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkOrcaF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPinkOrcaF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_orca/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkDapples[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPinkDapples[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPinkDapples[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPinkDapples[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPinkDapples[] = INCBIN_U8("graphics/pokemon/magikarp/pink_dapples/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPinkDapples[] = INCBIN_U8("graphics/pokemon/magikarp/pink_dapples/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPinkDapples[] = INCBIN_COMP("graphics/pokemon/magikarp/pink_dapples/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPinkDapples[] = INCBIN_U16("graphics/pokemon/magikarp/pink_dapples/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPinkDapplesF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPinkDapplesF[] = INCBIN_U32("graphics/pokemon/magikarp/pink_dapples/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/normal.gbapal");
+    const u32 gMonBackPic_MagikarpGrayBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpGrayBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpGrayBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpGrayBubbles[] = INCBIN_U8("graphics/pokemon/magikarp/gray_bubbles/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpGrayBubbles[] = INCBIN_U8("graphics/pokemon/magikarp/gray_bubbles/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpGrayBubbles[] = INCBIN_COMP("graphics/pokemon/magikarp/gray_bubbles/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpGrayBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/gray_bubbles/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayBubblesF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpGrayBubblesF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_bubbles/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/normal.gbapal");
+    const u32 gMonBackPic_MagikarpGrayDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpGrayDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpGrayDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpGrayDiamonds[] = INCBIN_U8("graphics/pokemon/magikarp/gray_diamonds/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpGrayDiamonds[] = INCBIN_U8("graphics/pokemon/magikarp/gray_diamonds/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpGrayDiamonds[] = INCBIN_COMP("graphics/pokemon/magikarp/gray_diamonds/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpGrayDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/gray_diamonds/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayDiamondsF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpGrayDiamondsF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_diamonds/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayPatches[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/normal.gbapal");
+    const u32 gMonBackPic_MagikarpGrayPatches[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpGrayPatches[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpGrayPatches[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpGrayPatches[] = INCBIN_U8("graphics/pokemon/magikarp/gray_patches/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpGrayPatches[] = INCBIN_U8("graphics/pokemon/magikarp/gray_patches/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpGrayPatches[] = INCBIN_COMP("graphics/pokemon/magikarp/gray_patches/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpGrayPatches[] = INCBIN_U16("graphics/pokemon/magikarp/gray_patches/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpGrayPatchesF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpGrayPatchesF[] = INCBIN_U32("graphics/pokemon/magikarp/gray_patches/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurpleBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPurpleBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPurpleBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPurpleBubbles[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPurpleBubbles[] = INCBIN_U8("graphics/pokemon/magikarp/purple_bubbles/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPurpleBubbles[] = INCBIN_U8("graphics/pokemon/magikarp/purple_bubbles/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPurpleBubbles[] = INCBIN_COMP("graphics/pokemon/magikarp/purple_bubbles/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPurpleBubbles[] = INCBIN_U16("graphics/pokemon/magikarp/purple_bubbles/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurpleBubblesF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPurpleBubblesF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_bubbles/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPurpleDiamonds[] = INCBIN_U8("graphics/pokemon/magikarp/purple_diamonds/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPurpleDiamonds[] = INCBIN_U8("graphics/pokemon/magikarp/purple_diamonds/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPurpleDiamonds[] = INCBIN_COMP("graphics/pokemon/magikarp/purple_diamonds/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/magikarp/purple_diamonds/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurpleDiamondsF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPurpleDiamondsF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_diamonds/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurplePatches[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/normal.gbapal");
+    const u32 gMonBackPic_MagikarpPurplePatches[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpPurplePatches[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpPurplePatches[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpPurplePatches[] = INCBIN_U8("graphics/pokemon/magikarp/purple_patches/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpPurplePatches[] = INCBIN_U8("graphics/pokemon/magikarp/purple_patches/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpPurplePatches[] = INCBIN_COMP("graphics/pokemon/magikarp/purple_patches/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpPurplePatches[] = INCBIN_U16("graphics/pokemon/magikarp/purple_patches/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpPurplePatchesF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpPurplePatchesF[] = INCBIN_U32("graphics/pokemon/magikarp/purple_patches/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotTiger[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/normal.gbapal");
+    const u32 gMonBackPic_MagikarpApricotTiger[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpApricotTiger[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpApricotTiger[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpApricotTiger[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_tiger/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpApricotTiger[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_tiger/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpApricotTiger[] = INCBIN_COMP("graphics/pokemon/magikarp/apricot_tiger/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpApricotTiger[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_tiger/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotTigerF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpApricotTigerF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_tiger/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotZebra[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/normal.gbapal");
+    const u32 gMonBackPic_MagikarpApricotZebra[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpApricotZebra[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpApricotZebra[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpApricotZebra[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_zebra/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpApricotZebra[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_zebra/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpApricotZebra[] = INCBIN_COMP("graphics/pokemon/magikarp/apricot_zebra/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpApricotZebra[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_zebra/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotZebraF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpApricotZebraF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_zebra/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotStripes[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/normal.gbapal");
+    const u32 gMonBackPic_MagikarpApricotStripes[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpApricotStripes[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpApricotStripes[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpApricotStripes[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_stripes/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpApricotStripes[] = INCBIN_U8("graphics/pokemon/magikarp/apricot_stripes/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpApricotStripes[] = INCBIN_COMP("graphics/pokemon/magikarp/apricot_stripes/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpApricotStripes[] = INCBIN_U16("graphics/pokemon/magikarp/apricot_stripes/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpApricotStripesF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpApricotStripesF[] = INCBIN_U32("graphics/pokemon/magikarp/apricot_stripes/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownTiger[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBrownTiger[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBrownTiger[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBrownTiger[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBrownTiger[] = INCBIN_U8("graphics/pokemon/magikarp/brown_tiger/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBrownTiger[] = INCBIN_U8("graphics/pokemon/magikarp/brown_tiger/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBrownTiger[] = INCBIN_COMP("graphics/pokemon/magikarp/brown_tiger/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBrownTiger[] = INCBIN_U16("graphics/pokemon/magikarp/brown_tiger/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownTigerF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBrownTigerF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_tiger/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownZebra[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBrownZebra[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBrownZebra[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBrownZebra[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBrownZebra[] = INCBIN_U8("graphics/pokemon/magikarp/brown_zebra/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBrownZebra[] = INCBIN_U8("graphics/pokemon/magikarp/brown_zebra/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBrownZebra[] = INCBIN_COMP("graphics/pokemon/magikarp/brown_zebra/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBrownZebra[] = INCBIN_U16("graphics/pokemon/magikarp/brown_zebra/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownZebraF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBrownZebraF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_zebra/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownStripes[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBrownStripes[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBrownStripes[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBrownStripes[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBrownStripes[] = INCBIN_U8("graphics/pokemon/magikarp/brown_stripes/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBrownStripes[] = INCBIN_U8("graphics/pokemon/magikarp/brown_stripes/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBrownStripes[] = INCBIN_COMP("graphics/pokemon/magikarp/brown_stripes/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBrownStripes[] = INCBIN_U16("graphics/pokemon/magikarp/brown_stripes/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBrownStripesF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBrownStripesF[] = INCBIN_U32("graphics/pokemon/magikarp/brown_stripes/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeForehead[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/normal.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeForehead[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpOrangeForehead[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeForehead[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpOrangeForehead[] = INCBIN_U8("graphics/pokemon/magikarp/orange_forehead/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpOrangeForehead[] = INCBIN_U8("graphics/pokemon/magikarp/orange_forehead/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpOrangeForehead[] = INCBIN_COMP("graphics/pokemon/magikarp/orange_forehead/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpOrangeForehead[] = INCBIN_U16("graphics/pokemon/magikarp/orange_forehead/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeForeheadF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpOrangeForeheadF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_forehead/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeMask[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/normal.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeMask[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpOrangeMask[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpOrangeMask[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpOrangeMask[] = INCBIN_U8("graphics/pokemon/magikarp/orange_mask/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpOrangeMask[] = INCBIN_U8("graphics/pokemon/magikarp/orange_mask/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpOrangeMask[] = INCBIN_COMP("graphics/pokemon/magikarp/orange_mask/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpOrangeMask[] = INCBIN_U16("graphics/pokemon/magikarp/orange_mask/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpOrangeMaskF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpOrangeMaskF[] = INCBIN_U32("graphics/pokemon/magikarp/orange_mask/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlackForehead[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBlackForehead[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBlackForehead[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBlackForehead[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBlackForehead[] = INCBIN_U8("graphics/pokemon/magikarp/black_forehead/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBlackForehead[] = INCBIN_U8("graphics/pokemon/magikarp/black_forehead/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBlackForehead[] = INCBIN_COMP("graphics/pokemon/magikarp/black_forehead/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBlackForehead[] = INCBIN_U16("graphics/pokemon/magikarp/black_forehead/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlackForeheadF[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBlackForeheadF[] = INCBIN_U32("graphics/pokemon/magikarp/black_forehead/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlackMask[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBlackMask[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBlackMask[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBlackMask[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBlackMask[] = INCBIN_U8("graphics/pokemon/magikarp/black_mask/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBlackMask[] = INCBIN_U8("graphics/pokemon/magikarp/black_mask/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBlackMask[] = INCBIN_COMP("graphics/pokemon/magikarp/black_mask/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBlackMask[] = INCBIN_U16("graphics/pokemon/magikarp/black_mask/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlackMaskF[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBlackMaskF[] = INCBIN_U32("graphics/pokemon/magikarp/black_mask/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpSaucyBlue[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/normal.gbapal");
+    const u32 gMonBackPic_MagikarpSaucyBlue[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpSaucyBlue[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpSaucyBlue[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpSaucyBlue[] = INCBIN_U8("graphics/pokemon/magikarp/saucy_blue/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpSaucyBlue[] = INCBIN_U8("graphics/pokemon/magikarp/saucy_blue/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpSaucyBlue[] = INCBIN_COMP("graphics/pokemon/magikarp/saucy_blue/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpSaucyBlue[] = INCBIN_U16("graphics/pokemon/magikarp/saucy_blue/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpSaucyBlueF[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpSaucyBlueF[] = INCBIN_U32("graphics/pokemon/magikarp/saucy_blue/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlueRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/normal.gbapal");
+    const u32 gMonBackPic_MagikarpBlueRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpBlueRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpBlueRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpBlueRaindrop[] = INCBIN_U8("graphics/pokemon/magikarp/blue_raindrop/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpBlueRaindrop[] = INCBIN_U8("graphics/pokemon/magikarp/blue_raindrop/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpBlueRaindrop[] = INCBIN_COMP("graphics/pokemon/magikarp/blue_raindrop/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpBlueRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/blue_raindrop/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpBlueRaindropF[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpBlueRaindropF[] = INCBIN_U32("graphics/pokemon/magikarp/blue_raindrop/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpVioletBlue[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/normal.gbapal");
+    const u32 gMonBackPic_MagikarpVioletBlue[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpVioletBlue[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpVioletBlue[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpVioletBlue[] = INCBIN_U8("graphics/pokemon/magikarp/violet_blue/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpVioletBlue[] = INCBIN_U8("graphics/pokemon/magikarp/violet_blue/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpVioletBlue[] = INCBIN_COMP("graphics/pokemon/magikarp/violet_blue/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpVioletBlue[] = INCBIN_U16("graphics/pokemon/magikarp/violet_blue/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpVioletBlueF[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpVioletBlueF[] = INCBIN_U32("graphics/pokemon/magikarp/violet_blue/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpVioletRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/anim_front.4bpp.smol");
+    const u16 gMonPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/normal.gbapal");
+    const u32 gMonBackPic_MagikarpVioletRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/back.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_MagikarpVioletRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/normal_gba.gbapal");
+    const u32 gMonBackPic_MagikarpVioletRaindrop[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_MagikarpVioletRaindrop[] = INCBIN_U8("graphics/pokemon/magikarp/violet_raindrop/icon.4bpp");
+#else
+    const u8 gMonIcon_MagikarpVioletRaindrop[] = INCBIN_U8("graphics/pokemon/magikarp/violet_raindrop/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_MagikarpVioletRaindrop[] = INCBIN_COMP("graphics/pokemon/magikarp/violet_raindrop/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_MagikarpVioletRaindrop[] = INCBIN_U16("graphics/pokemon/magikarp/violet_raindrop/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_MagikarpVioletRaindropF[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_MagikarpVioletRaindropF[] = INCBIN_U32("graphics/pokemon/magikarp/violet_raindrop/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosSkelly[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/normal.gbapal");
+    const u32 gMonBackPic_GyaradosSkelly[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosSkelly[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosSkelly[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosSkelly[] = INCBIN_U8("graphics/pokemon/gyarados/skelly/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosSkelly[] = INCBIN_U8("graphics/pokemon/gyarados/skelly/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosSkelly[] = INCBIN_COMP("graphics/pokemon/gyarados/skelly/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosSkelly[] = INCBIN_U16("graphics/pokemon/gyarados/skelly/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosSkellyF[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosSkellyF[] = INCBIN_U32("graphics/pokemon/gyarados/skelly/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/normal.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhite[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosCalicoOrangeWhite[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_white/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosCalicoOrangeWhite[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_white/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosCalicoOrangeWhite[] = INCBIN_COMP("graphics/pokemon/gyarados/calico_orange_white/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosCalicoOrangeWhite[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhiteF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhiteF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/normal.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_white_black/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_white_black/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_COMP("graphics/pokemon/gyarados/calico_orange_white_black/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosCalicoOrangeWhiteBlack[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_white_black/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeWhiteBlackF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosCalicoOrangeWhiteBlackF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_white_black/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/normal.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoWhiteOrange[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosCalicoWhiteOrange[] = INCBIN_U8("graphics/pokemon/gyarados/calico_white_orange/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosCalicoWhiteOrange[] = INCBIN_U8("graphics/pokemon/gyarados/calico_white_orange/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosCalicoWhiteOrange[] = INCBIN_COMP("graphics/pokemon/gyarados/calico_white_orange/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosCalicoWhiteOrange[] = INCBIN_U16("graphics/pokemon/gyarados/calico_white_orange/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoWhiteOrangeF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosCalicoWhiteOrangeF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_white_orange/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/normal.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosCalicoOrangeGold[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosCalicoOrangeGold[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_gold/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosCalicoOrangeGold[] = INCBIN_U8("graphics/pokemon/gyarados/calico_orange_gold/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosCalicoOrangeGold[] = INCBIN_COMP("graphics/pokemon/gyarados/calico_orange_gold/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosCalicoOrangeGold[] = INCBIN_U16("graphics/pokemon/gyarados/calico_orange_gold/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosCalicoOrangeGoldF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosCalicoOrangeGoldF[] = INCBIN_U32("graphics/pokemon/gyarados/calico_orange_gold/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/normal.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosOrangeTwoTone[] = INCBIN_U8("graphics/pokemon/gyarados/orange_two_tone/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosOrangeTwoTone[] = INCBIN_U8("graphics/pokemon/gyarados/orange_two_tone/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosOrangeTwoTone[] = INCBIN_COMP("graphics/pokemon/gyarados/orange_two_tone/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosOrangeTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/orange_two_tone/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeTwoToneF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosOrangeTwoToneF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_two_tone/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeOrca[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/normal.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeOrca[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosOrangeOrca[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeOrca[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosOrangeOrca[] = INCBIN_U8("graphics/pokemon/gyarados/orange_orca/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosOrangeOrca[] = INCBIN_U8("graphics/pokemon/gyarados/orange_orca/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosOrangeOrca[] = INCBIN_COMP("graphics/pokemon/gyarados/orange_orca/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosOrangeOrca[] = INCBIN_U16("graphics/pokemon/gyarados/orange_orca/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeOrcaF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosOrangeOrcaF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_orca/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeDapples[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/normal.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeDapples[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosOrangeDapples[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeDapples[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosOrangeDapples[] = INCBIN_U8("graphics/pokemon/gyarados/orange_dapples/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosOrangeDapples[] = INCBIN_U8("graphics/pokemon/gyarados/orange_dapples/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosOrangeDapples[] = INCBIN_COMP("graphics/pokemon/gyarados/orange_dapples/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosOrangeDapples[] = INCBIN_U16("graphics/pokemon/gyarados/orange_dapples/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeDapplesF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosOrangeDapplesF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_dapples/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPinkTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPinkTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPinkTwoTone[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPinkTwoTone[] = INCBIN_U8("graphics/pokemon/gyarados/pink_two_tone/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPinkTwoTone[] = INCBIN_U8("graphics/pokemon/gyarados/pink_two_tone/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPinkTwoTone[] = INCBIN_COMP("graphics/pokemon/gyarados/pink_two_tone/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPinkTwoTone[] = INCBIN_U16("graphics/pokemon/gyarados/pink_two_tone/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkTwoToneF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPinkTwoToneF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_two_tone/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkOrca[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPinkOrca[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPinkOrca[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPinkOrca[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPinkOrca[] = INCBIN_U8("graphics/pokemon/gyarados/pink_orca/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPinkOrca[] = INCBIN_U8("graphics/pokemon/gyarados/pink_orca/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPinkOrca[] = INCBIN_COMP("graphics/pokemon/gyarados/pink_orca/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPinkOrca[] = INCBIN_U16("graphics/pokemon/gyarados/pink_orca/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkOrcaF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPinkOrcaF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_orca/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkDapples[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPinkDapples[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPinkDapples[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPinkDapples[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPinkDapples[] = INCBIN_U8("graphics/pokemon/gyarados/pink_dapples/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPinkDapples[] = INCBIN_U8("graphics/pokemon/gyarados/pink_dapples/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPinkDapples[] = INCBIN_COMP("graphics/pokemon/gyarados/pink_dapples/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPinkDapples[] = INCBIN_U16("graphics/pokemon/gyarados/pink_dapples/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPinkDapplesF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPinkDapplesF[] = INCBIN_U32("graphics/pokemon/gyarados/pink_dapples/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/normal.gbapal");
+    const u32 gMonBackPic_GyaradosGrayBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosGrayBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosGrayBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosGrayBubbles[] = INCBIN_U8("graphics/pokemon/gyarados/gray_bubbles/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosGrayBubbles[] = INCBIN_U8("graphics/pokemon/gyarados/gray_bubbles/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosGrayBubbles[] = INCBIN_COMP("graphics/pokemon/gyarados/gray_bubbles/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosGrayBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/gray_bubbles/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayBubblesF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosGrayBubblesF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_bubbles/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/normal.gbapal");
+    const u32 gMonBackPic_GyaradosGrayDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosGrayDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosGrayDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosGrayDiamonds[] = INCBIN_U8("graphics/pokemon/gyarados/gray_diamonds/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosGrayDiamonds[] = INCBIN_U8("graphics/pokemon/gyarados/gray_diamonds/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosGrayDiamonds[] = INCBIN_COMP("graphics/pokemon/gyarados/gray_diamonds/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosGrayDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/gray_diamonds/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayDiamondsF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosGrayDiamondsF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_diamonds/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayPatches[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/normal.gbapal");
+    const u32 gMonBackPic_GyaradosGrayPatches[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosGrayPatches[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosGrayPatches[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosGrayPatches[] = INCBIN_U8("graphics/pokemon/gyarados/gray_patches/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosGrayPatches[] = INCBIN_U8("graphics/pokemon/gyarados/gray_patches/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosGrayPatches[] = INCBIN_COMP("graphics/pokemon/gyarados/gray_patches/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosGrayPatches[] = INCBIN_U16("graphics/pokemon/gyarados/gray_patches/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosGrayPatchesF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosGrayPatchesF[] = INCBIN_U32("graphics/pokemon/gyarados/gray_patches/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurpleBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPurpleBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPurpleBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPurpleBubbles[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPurpleBubbles[] = INCBIN_U8("graphics/pokemon/gyarados/purple_bubbles/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPurpleBubbles[] = INCBIN_U8("graphics/pokemon/gyarados/purple_bubbles/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPurpleBubbles[] = INCBIN_COMP("graphics/pokemon/gyarados/purple_bubbles/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPurpleBubbles[] = INCBIN_U16("graphics/pokemon/gyarados/purple_bubbles/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurpleBubblesF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPurpleBubblesF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_bubbles/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPurpleDiamonds[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPurpleDiamonds[] = INCBIN_U8("graphics/pokemon/gyarados/purple_diamonds/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPurpleDiamonds[] = INCBIN_U8("graphics/pokemon/gyarados/purple_diamonds/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPurpleDiamonds[] = INCBIN_COMP("graphics/pokemon/gyarados/purple_diamonds/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPurpleDiamonds[] = INCBIN_U16("graphics/pokemon/gyarados/purple_diamonds/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurpleDiamondsF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPurpleDiamondsF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_diamonds/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurplePatches[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/normal.gbapal");
+    const u32 gMonBackPic_GyaradosPurplePatches[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosPurplePatches[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosPurplePatches[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosPurplePatches[] = INCBIN_U8("graphics/pokemon/gyarados/purple_patches/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosPurplePatches[] = INCBIN_U8("graphics/pokemon/gyarados/purple_patches/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosPurplePatches[] = INCBIN_COMP("graphics/pokemon/gyarados/purple_patches/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosPurplePatches[] = INCBIN_U16("graphics/pokemon/gyarados/purple_patches/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosPurplePatchesF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosPurplePatchesF[] = INCBIN_U32("graphics/pokemon/gyarados/purple_patches/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotTiger[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/normal.gbapal");
+    const u32 gMonBackPic_GyaradosApricotTiger[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosApricotTiger[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosApricotTiger[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosApricotTiger[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_tiger/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosApricotTiger[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_tiger/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosApricotTiger[] = INCBIN_COMP("graphics/pokemon/gyarados/apricot_tiger/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosApricotTiger[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_tiger/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotTigerF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosApricotTigerF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_tiger/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotZebra[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/normal.gbapal");
+    const u32 gMonBackPic_GyaradosApricotZebra[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosApricotZebra[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosApricotZebra[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosApricotZebra[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_zebra/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosApricotZebra[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_zebra/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosApricotZebra[] = INCBIN_COMP("graphics/pokemon/gyarados/apricot_zebra/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosApricotZebra[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_zebra/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotZebraF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosApricotZebraF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_zebra/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotStripes[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/normal.gbapal");
+    const u32 gMonBackPic_GyaradosApricotStripes[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosApricotStripes[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosApricotStripes[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosApricotStripes[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_stripes/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosApricotStripes[] = INCBIN_U8("graphics/pokemon/gyarados/apricot_stripes/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosApricotStripes[] = INCBIN_COMP("graphics/pokemon/gyarados/apricot_stripes/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosApricotStripes[] = INCBIN_U16("graphics/pokemon/gyarados/apricot_stripes/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosApricotStripesF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosApricotStripesF[] = INCBIN_U32("graphics/pokemon/gyarados/apricot_stripes/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownTiger[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBrownTiger[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBrownTiger[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBrownTiger[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBrownTiger[] = INCBIN_U8("graphics/pokemon/gyarados/brown_tiger/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBrownTiger[] = INCBIN_U8("graphics/pokemon/gyarados/brown_tiger/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBrownTiger[] = INCBIN_COMP("graphics/pokemon/gyarados/brown_tiger/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBrownTiger[] = INCBIN_U16("graphics/pokemon/gyarados/brown_tiger/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownTigerF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBrownTigerF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_tiger/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownZebra[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBrownZebra[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBrownZebra[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBrownZebra[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBrownZebra[] = INCBIN_U8("graphics/pokemon/gyarados/brown_zebra/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBrownZebra[] = INCBIN_U8("graphics/pokemon/gyarados/brown_zebra/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBrownZebra[] = INCBIN_COMP("graphics/pokemon/gyarados/brown_zebra/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBrownZebra[] = INCBIN_U16("graphics/pokemon/gyarados/brown_zebra/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownZebraF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBrownZebraF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_zebra/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownStripes[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBrownStripes[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBrownStripes[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBrownStripes[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBrownStripes[] = INCBIN_U8("graphics/pokemon/gyarados/brown_stripes/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBrownStripes[] = INCBIN_U8("graphics/pokemon/gyarados/brown_stripes/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBrownStripes[] = INCBIN_COMP("graphics/pokemon/gyarados/brown_stripes/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBrownStripes[] = INCBIN_U16("graphics/pokemon/gyarados/brown_stripes/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBrownStripesF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBrownStripesF[] = INCBIN_U32("graphics/pokemon/gyarados/brown_stripes/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeForehead[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/normal.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeForehead[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosOrangeForehead[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeForehead[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosOrangeForehead[] = INCBIN_U8("graphics/pokemon/gyarados/orange_forehead/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosOrangeForehead[] = INCBIN_U8("graphics/pokemon/gyarados/orange_forehead/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosOrangeForehead[] = INCBIN_COMP("graphics/pokemon/gyarados/orange_forehead/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosOrangeForehead[] = INCBIN_U16("graphics/pokemon/gyarados/orange_forehead/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeForeheadF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosOrangeForeheadF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_forehead/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeMask[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/normal.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeMask[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosOrangeMask[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosOrangeMask[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosOrangeMask[] = INCBIN_U8("graphics/pokemon/gyarados/orange_mask/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosOrangeMask[] = INCBIN_U8("graphics/pokemon/gyarados/orange_mask/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosOrangeMask[] = INCBIN_COMP("graphics/pokemon/gyarados/orange_mask/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosOrangeMask[] = INCBIN_U16("graphics/pokemon/gyarados/orange_mask/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosOrangeMaskF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosOrangeMaskF[] = INCBIN_U32("graphics/pokemon/gyarados/orange_mask/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlackForehead[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBlackForehead[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBlackForehead[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBlackForehead[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBlackForehead[] = INCBIN_U8("graphics/pokemon/gyarados/black_forehead/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBlackForehead[] = INCBIN_U8("graphics/pokemon/gyarados/black_forehead/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBlackForehead[] = INCBIN_COMP("graphics/pokemon/gyarados/black_forehead/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBlackForehead[] = INCBIN_U16("graphics/pokemon/gyarados/black_forehead/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlackForeheadF[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBlackForeheadF[] = INCBIN_U32("graphics/pokemon/gyarados/black_forehead/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlackMask[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBlackMask[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBlackMask[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBlackMask[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBlackMask[] = INCBIN_U8("graphics/pokemon/gyarados/black_mask/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBlackMask[] = INCBIN_U8("graphics/pokemon/gyarados/black_mask/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBlackMask[] = INCBIN_COMP("graphics/pokemon/gyarados/black_mask/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBlackMask[] = INCBIN_U16("graphics/pokemon/gyarados/black_mask/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlackMaskF[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBlackMaskF[] = INCBIN_U32("graphics/pokemon/gyarados/black_mask/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosSaucyBlue[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/normal.gbapal");
+    const u32 gMonBackPic_GyaradosSaucyBlue[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosSaucyBlue[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosSaucyBlue[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosSaucyBlue[] = INCBIN_U8("graphics/pokemon/gyarados/saucy_blue/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosSaucyBlue[] = INCBIN_U8("graphics/pokemon/gyarados/saucy_blue/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosSaucyBlue[] = INCBIN_COMP("graphics/pokemon/gyarados/saucy_blue/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosSaucyBlue[] = INCBIN_U16("graphics/pokemon/gyarados/saucy_blue/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosSaucyBlueF[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosSaucyBlueF[] = INCBIN_U32("graphics/pokemon/gyarados/saucy_blue/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlueRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/normal.gbapal");
+    const u32 gMonBackPic_GyaradosBlueRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosBlueRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosBlueRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosBlueRaindrop[] = INCBIN_U8("graphics/pokemon/gyarados/blue_raindrop/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosBlueRaindrop[] = INCBIN_U8("graphics/pokemon/gyarados/blue_raindrop/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosBlueRaindrop[] = INCBIN_COMP("graphics/pokemon/gyarados/blue_raindrop/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosBlueRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/blue_raindrop/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosBlueRaindropF[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosBlueRaindropF[] = INCBIN_U32("graphics/pokemon/gyarados/blue_raindrop/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosVioletBlue[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/normal.gbapal");
+    const u32 gMonBackPic_GyaradosVioletBlue[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosVioletBlue[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosVioletBlue[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosVioletBlue[] = INCBIN_U8("graphics/pokemon/gyarados/violet_blue/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosVioletBlue[] = INCBIN_U8("graphics/pokemon/gyarados/violet_blue/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosVioletBlue[] = INCBIN_COMP("graphics/pokemon/gyarados/violet_blue/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosVioletBlue[] = INCBIN_U16("graphics/pokemon/gyarados/violet_blue/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosVioletBlueF[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosVioletBlueF[] = INCBIN_U32("graphics/pokemon/gyarados/violet_blue/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
+#if !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosVioletRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/anim_front.4bpp.smol");
+    const u16 gMonPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/normal.gbapal");
+    const u32 gMonBackPic_GyaradosVioletRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/back.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/shiny.gbapal");
+#else
+    const u32 gMonFrontPic_GyaradosVioletRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/anim_front_gba.4bpp.smol");
+    const u16 gMonPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/normal_gba.gbapal");
+    const u32 gMonBackPic_GyaradosVioletRaindrop[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/back_gba.4bpp.smol");
+    const u16 gMonShinyPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/shiny_gba.gbapal");
+#endif //P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_SPECIES_ICONS
+    const u8 gMonIcon_GyaradosVioletRaindrop[] = INCBIN_U8("graphics/pokemon/gyarados/violet_raindrop/icon.4bpp");
+#else
+    const u8 gMonIcon_GyaradosVioletRaindrop[] = INCBIN_U8("graphics/pokemon/gyarados/violet_raindrop/icon_gba.4bpp");
+#endif //P_GBA_STYLE_SPECIES_ICONS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GyaradosVioletRaindrop[] = INCBIN_COMP("graphics/pokemon/gyarados/violet_raindrop/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GyaradosVioletRaindrop[] = INCBIN_U16("graphics/pokemon/gyarados/violet_raindrop/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+    const u32 gMonFrontPic_GyaradosVioletRaindropF[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/anim_frontf.4bpp.smol");
+    const u32 gMonBackPic_GyaradosVioletRaindropF[] = INCBIN_U32("graphics/pokemon/gyarados/violet_raindrop/backf.4bpp.smol");
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+
 
 #if P_FAMILY_LAPRAS
 #if !P_GBA_STYLE_SPECIES_GFX

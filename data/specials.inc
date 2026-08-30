@@ -567,3 +567,5 @@ gSpecials::
 	def_special SetAbility
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
+	def_special Special_PlaySnake
+	def_special Special_PlayFlappyBird

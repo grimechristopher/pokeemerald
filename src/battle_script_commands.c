@@ -69,6 +69,7 @@
 #include "data/battle_move_effects.h"
 #include "test/battle.h"
 #include "follower_npc.h"
+#include "ranger_capture.h"
 #include "load_save.h"
 #include "test/test_runner_battle.h"
 
@@ -10789,11 +10790,8 @@ static void Cmd_forcerandomswitch(void)
     }
     else
     {
-        // In normal wild doubles, Roar will always fail if the user's level is less than the target's.
-        if (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
-            gBattlescriptCurrInstr = BattleScript_RoarSuccessEndBattle;
-        else
-            gBattlescriptCurrInstr = cmd->failInstr;
+        // In normal wild doubles, Roar will always succeed since all Pokemon are level 50
+        gBattlescriptCurrInstr = BattleScript_RoarSuccessEndBattle;
     }
 }
 
@@ -13544,6 +13542,45 @@ static void Cmd_handleballthrow(void)
         u32 ballId = ItemIdToBallId(gLastUsedItem);
 
         gBallToDisplay = gLastThrownBall = gLastUsedItem;
+#if B_RANGER_CAPTURE
+        if (gLastUsedItem == ITEM_CAPTURE_STYLER)
+        {
+            if (gRangerCaptureState == RANGER_CAPTURE_IDLE)
+            {
+                // First call: launch minigame and pause battle processing
+                gRangerCapture_ReturnCallback = gMain.callback2;
+                gRangerCaptureState = RANGER_CAPTURE_RUNNING;
+                SetMainCallback2(RangerCapture_Init);
+                // Do NOT advance gBattlescriptCurrInstr - will be called again on return
+            }
+            else
+            {
+                // Second call: minigame finished, handle result
+                u32 pokeballId = BALL_POKE;
+                if (gRangerCaptureState == RANGER_CAPTURE_SUCCESS)
+                {
+                    BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER,
+                                                    BALL_3_SHAKES_SUCCESS);
+                    MarkBattlerForControllerExec(gBattlerAttacker);
+                    TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+                    struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
+                    SetMonData(caughtMon, MON_DATA_POKEBALL, &pokeballId);
+                    gBattleCommunication[MULTISTRING_CHOOSER] =
+                        (CalculatePlayerPartyCount() == PARTY_SIZE) ? 0 : 1;
+                }
+                else
+                {
+                    BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, 0);
+                    MarkBattlerForControllerExec(gBattlerAttacker);
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                    gBattlescriptCurrInstr = BattleScript_ShakeBallThrow;
+                }
+                gRangerCaptureState = RANGER_CAPTURE_IDLE;
+            }
+            return;
+        }
+#endif // B_RANGER_CAPTURE
         if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         else

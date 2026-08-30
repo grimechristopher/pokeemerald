@@ -1287,3 +1287,80 @@ const u8 gText_Rename[] = _("RENAME");
 const u8 gText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CannotSendMonToBoxActive[] = _("Cannot send an active battler\nto the box.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't,\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Blackjack[] = _("BLACKJACK");
+const u8 gText_HiddenCard[] = _("??");
+const u8 gText_Ace[] = _("A");
+const u8 gText_Jack[] = _("J");
+const u8 gText_Queen[] = _("Q");
+const u8 gText_King[] = _("K");
+const u8 gText_Bust[] = _("BUST!");
+const u8 gText_YouWin[] = _("YOU WIN!");
+const u8 gText_YouLose[] = _("YOU LOSE!");
+const u8 gText_Push[] = _("PUSH!");
+const u8 gText_PressA[] = _("Press A");
+const u8 gText_Dealer[] = _("DEALER");
+const u8 gText_Hit[] = _("HIT");
+const u8 gText_Stand[] = _("STAND");
+const u8 gText_Quit[] = _("QUIT");
+const u8 gText_Value[] = _("VAL:");
+const u8 gText_BlackJack[] = _("BLACKJACK!");
+const u8 gText_NoBetting[] = _("Your current\nbet is ¥0.");
+const u8 gText_NoMoney[] = _("You do not have\nenough COINS.");
+const u8 gText_Betting[] = _("Current bet:");
+
+// Voltorb Flip
+const u8 gText_VoltorbFlip[] = _("VOLTORB FLIP");
+const u8 gText_Voltorb[] = _("VOLTORB");
+const u8 gText_Score[] = _("SCORE:");
+const u8 gText_X1[] = _("x1");
+const u8 gText_X2[] = _("x2");
+const u8 gText_X3[] = _("x3");
+const u8 gText_Marked[] = _("!");
+const u8 gText_Hidden[] = _("?");
+const u8 gText_GameOver[] = _("GAME OVER");
+const u8 gText_FinalScore[] = _("FINAL SCORE:");
+
+// Gacha
+const u8 gText_Gacha[] = _("GACHA");
+const u8 gText_GachaInstructions[] = _("Pull a prize capsule!");
+const u8 gText_CoinsPerPlay[] = _(" Coins per play");
+const u8 gText_AToPlay[] = _("A: Play");
+const u8 gText_BToQuit[] = _("B: Quit");
+const u8 gText_FromGacha[] = _("{STR_VAR_1} from Gacha!");
+const u8 gText_Common[] = _("COMMON");
+const u8 gText_Rare[] = _("RARE");
+const u8 gText_SuperRare[] = _("SUPER RARE");
+const u8 gText_Prize[] = _(" PRIZE!");
+
+// Pachinko
+const u8 gText_Pachinko[] = _("PACHINKO");
+const u8 gText_Balls[] = _("BALLS: ");
+const u8 gText_CoinsWon[] = _("COINS: ");
+const u8 gText_AToLaunch[] = _("A: Launch Ball");
+const u8 gText_TotalCoins[] = _("TOTAL: ");
+
+// Block Stacker
+const u8 gText_BlockStacker[] = _("BLOCK STACKER");
+const u8 gText_Lines[] = _("LINES: ");
+const u8 gText_DPadMove[] = _("D-Pad: Move");
+const u8 gText_ARotate[] = _("A: Rotate");
+const u8 gText_DownDrop[] = _("Down: Drop");
+
+// Pinball
+const u8 gText_Pinball[] = _("PINBALL");
+const u8 gText_HoldALaunch[] = _("Hold A to launch");
+const u8 gText_LeftFlipper[] = _("Left/L: L Flipper");
+const u8 gText_RightFlipper[] = _("Right/R: R Flipper");
+
+// Derby
+const u8 gText_Derby[] = _("DERBY");
+const u8 gText_SelectRacer[] = _("Select a racer to bet on:");
+const u8 gText_Odds[] = _("Odds: ");
+const u8 gText_Period[] = _(".");
+const u8 gText_X[] = _("x");
+const u8 gText_Bet[] = _("BET: ");
+const u8 gText_UpDownSelect[] = _("Up/Down: Select  L/R: Bet");
+const u8 gText_Racing[] = _("RACING!");
+const u8 gText_Block[] = _("=");
+const u8 gText_Winner[] = _("WINNER: ");
+const u8 gText_Payout[] = _("PAYOUT: ");

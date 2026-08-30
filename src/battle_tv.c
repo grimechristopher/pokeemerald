@@ -1341,7 +1341,7 @@ static bool8 ShouldCalculateDamage(u16 move, s32 *dmg, u16 *powerOverride)
         }
         else if (move == MOVE_PSYWAVE)
         {
-            *dmg = gBattleMons[gBattlerAttacker].level;
+            *dmg = 50;
             *dmg /= 2;
             return FALSE;
         }

@@ -87,18 +87,16 @@ void AdjustFriendshipOnBattleFaint(u8 battler)
         opposingBattlerId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         opposingBattlerId2 = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 
-        if (gBattleMons[opposingBattlerId2].level > gBattleMons[opposingBattlerId].level)
-            opposingBattlerId = opposingBattlerId2;
+        // Since all Pokemon are level 50, just pick the first opposing battler
+        opposingBattlerId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
     }
     else
     {
         opposingBattlerId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
     }
 
-    if (gBattleMons[opposingBattlerId].level - gBattleMons[battler].level > 29)
-        AdjustFriendship(GetBattlerMon(battler), FRIENDSHIP_EVENT_FAINT_LARGE);
-    else
-        AdjustFriendship(GetBattlerMon(battler), FRIENDSHIP_EVENT_FAINT_SMALL);
+    // Since all Pokemon are level 50, level difference is always 0 (use small friendship loss)
+    AdjustFriendship(GetBattlerMon(battler), FRIENDSHIP_EVENT_FAINT_SMALL);
 }
 
 void SwitchPartyOrderInGameMulti(u8 battler, u8 arg1)

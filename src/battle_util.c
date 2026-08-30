@@ -8080,7 +8080,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
 // base damage formula before adding any modifiers
 static inline s32 CalculateBaseDamage(u32 power, u32 userFinalAttack, u32 level, u32 targetFinalDefense)
 {
-    return power * userFinalAttack * (2 * level / 5 + 2) / targetFinalDefense / 50 + 2;
+    return power * userFinalAttack * (2 * 50 / 5 + 2) / targetFinalDefense / 50 + 2;
 }
 
 static inline uq4_12_t GetTargetDamageModifier(struct DamageContext *ctx)
@@ -8446,7 +8446,7 @@ static inline s32 DoMoveDamageCalcVars(struct DamageContext *ctx)
     userFinalAttack = CalcAttackStat(ctx);
     targetFinalDefense = CalcDefenseStat(ctx);
 
-    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, gBattleMons[ctx->battlerAtk].level, targetFinalDefense);
+    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, 50, targetFinalDefense);
     DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(ctx->battlerAtk));
     DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(ctx));
@@ -8494,11 +8494,11 @@ s32 DoFixedDamageMoveCalc(struct DamageContext *ctx)
     switch (GetMoveEffect(ctx->move))
     {
     case EFFECT_LEVEL_DAMAGE:
-        dmg = gBattleMons[ctx->battlerAtk].level;
+        dmg = 50;
         break;
     case EFFECT_PSYWAVE:
         randDamage = B_PSYWAVE_DMG >= GEN_5 ? (Random() % 101) : ((Random() % 11) * 10);
-        dmg = gBattleMons[ctx->battlerAtk].level * (randDamage + 50) / 100;
+        dmg = 50 * (randDamage + 50) / 100;
         break;
     case EFFECT_FIXED_HP_DAMAGE:
         dmg = GetMoveFixedHPDamage(ctx->move);
@@ -8556,7 +8556,7 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageContext *ctx)
 
     struct Pokemon *party = GetBattlerParty(battlerAtk);
     struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
-    u32 partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
+    u32 partyMonLevel = 50;
     u32 partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
     gBattleMovePower = GetMovePower(move);
 
@@ -8566,7 +8566,7 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageContext *ctx)
         userFinalAttack = GetMonData(partyMon, MON_DATA_SPATK, NULL);
 
     targetFinalDefense = CalcDefenseStat(ctx);
-    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, partyMonLevel, targetFinalDefense);
+    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, 50, targetFinalDefense);
 
     DAMAGE_APPLY_MODIFIER(GetCriticalModifier(ctx->isCrit));
 
@@ -10040,7 +10040,7 @@ static void SetRandomMultiHitCounter()
 
 void CopyMonLevelAndBaseStatsToBattleMon(u32 battler, struct Pokemon *mon)
 {
-    gBattleMons[battler].level = GetMonData(mon, MON_DATA_LEVEL);
+    gBattleMons[battler].level = 50;
     gBattleMons[battler].hp = GetMonData(mon, MON_DATA_HP);
     gBattleMons[battler].maxHP = GetMonData(mon, MON_DATA_MAX_HP);
     gBattleMons[battler].attack = GetMonData(mon, MON_DATA_ATK);
@@ -10352,7 +10352,7 @@ void SetShellSideArmCategory(void)
             if (targetDefStat == 0)
                 targetDefStat = 1;
 
-            physical = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * power * attackerAtkStat) / targetDefStat) / 50);
+            physical = ((((2 * 50 / 5 + 2) * power * attackerAtkStat) / targetDefStat) / 50);
 
             targetSpDefStat = gBattleMons[battlerDef].spDefense;
             statStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
@@ -10361,7 +10361,7 @@ void SetShellSideArmCategory(void)
             if (targetSpDefStat == 0)
                 targetSpDefStat = 1;
 
-            special = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * power * attackerSpAtkStat) / targetSpDefStat) / 50);
+            special = ((((2 * 50 / 5 + 2) * power * attackerSpAtkStat) / targetSpDefStat) / 50);
 
             if ((physical > special) || (physical == special && RandomPercentage(RNG_SHELL_SIDE_ARM, 50)))
                 gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] = DAMAGE_CATEGORY_PHYSICAL;

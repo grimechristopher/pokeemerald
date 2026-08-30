@@ -17,6 +17,7 @@
 #include "field_screen_effect.h"
 #include "field_specials.h"
 #include "field_weather.h"
+#include "game_corner_common.h"
 #include "graphics.h"
 #include "international_string_util.h"
 #include "item.h"
@@ -4380,4 +4381,80 @@ void SetAbility(void)
 {
     u32 ability = gSpecialVar_Result;
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ABILITY_NUM, &ability);
+}
+
+// ========================================
+// Game Corner Minigames
+// ========================================
+
+void Special_PlaySnake(void)
+{
+    if (!B_GAMECORNER_SNAKE)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_SNAKE);
+}
+
+void Special_PlayFlappyBird(void)
+{
+    if (!B_GAMECORNER_FLAPPYBIRD)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_FLAPPYBIRD);
+}
+
+void Special_PlayBlackjack(void)
+{
+    if (!B_GAMECORNER_BLACKJACK)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_BLACKJACK);
+}
+
+void Special_PlayVoltorbFlip(void)
+{
+    if (!B_GAMECORNER_VOLTORB_FLIP)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_VOLTORB_FLIP);
+}
+
+void Special_PlayGacha(void)
+{
+    if (!B_GAMECORNER_GACHA)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_GACHA);
+}
+
+void Special_PlayPachinko(void)
+{
+    if (!B_GAMECORNER_PACHINKO)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_PACHINKO);
+}
+
+void Special_PlayBlockStacker(void)
+{
+    if (!B_GAMECORNER_BLOCK_STACKER)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_BLOCK_STACKER);
+}
+
+void Special_PlayPinball(void)
+{
+    if (!B_GAMECORNER_PINBALL)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_PINBALL);
+}
+
+void Special_PlayDerby(void)
+{
+    if (!B_GAMECORNER_DERBY)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_DERBY);
 }

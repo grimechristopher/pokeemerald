@@ -263,11 +263,21 @@ LittlerootTown_BrendansHouse_2F_EventScript_CheckRivalsPC::
 	end
 
 PlayersHouse_2F_EventScript_Notebook::
-	msgbox PlayersHouse_2F_Text_Notebook, MSGBOX_SIGN
+	msgbox PlayersHouse_2F_Text_Notebook, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PlayersHouse_2F_EventScript_PlayFlappyBird
+	end
+
+PlayersHouse_2F_EventScript_PlayFlappyBird::
+	special Special_PlayFlappyBird
 	end
 
 PlayersHouse_2F_EventScript_GameCube::
-	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
+	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PlayersHouse_2F_EventScript_PlaySnake
+	end
+
+PlayersHouse_2F_EventScript_PlaySnake::
+	special Special_PlaySnake
 	end
 
 PlayersHouse_2F_Text_ClockIsStopped:
@@ -299,4 +309,5 @@ Common_Text_LookCloserAtMap:
 PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
+	.string "serve as the Controller.\p"
+	.string "Play SNAKE minigame?$"

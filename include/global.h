@@ -23,6 +23,7 @@
 #include "constants/items.h"
 #include "config/save.h"
 #include "config/text.h"
+#include "config/game_corner.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");

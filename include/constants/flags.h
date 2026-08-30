@@ -43,9 +43,9 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
+#define FLAG_INSURANCE       0x20 // Blackjack insurance flag
+#define FLAG_BLACKJACK       0x21 // Blackjack game state flag
+#define FLAG_RESET_BJ        0x22 // Blackjack reset flag
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
@@ -59,6 +59,18 @@
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+
+// Game Corner Minigame Unlock Flags
+#define FLAG_UNLOCKED_GAMECORNER_SNAKE          0x020  // Snake minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_FLAPPYBIRD     0x021  // Flappy Bird minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_BLACKJACK      0x022  // Blackjack minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_VOLTORB_FLIP   0x023  // Voltorb Flip minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_GACHA          0x024  // Gacha minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_PACHINKO       0x025  // Pachinko minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_BLOCK_STACKER  0x026  // Block Stacker minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_PINBALL        0x027  // Pinball minigame unlocked
+#define FLAG_UNLOCKED_GAMECORNER_DERBY          0x028  // Derby minigame unlocked
+#define FLAG_VISITED_MOSSDEEP_GAME_CORNER       0x029  // Visited Mossdeep Game Corner (for first-time tutorial)
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag

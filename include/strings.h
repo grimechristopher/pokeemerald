@@ -2415,4 +2415,85 @@ extern const u8 gText_CannotSendMonToBoxHM[];
 extern const u8 gText_CannotSendMonToBoxActive[];
 extern const u8 gText_CannotSendMonToBoxPartner[];
 
+// Blackjack
+extern const u8 gText_Blackjack[];
+extern const u8 gText_Dealer[];
+extern const u8 gText_Player[];
+extern const u8 gText_Hit[];
+extern const u8 gText_Stand[];
+extern const u8 gText_Quit[];
+extern const u8 gText_Value[];
+extern const u8 gText_BlackJack[];
+extern const u8 gText_NoBetting[];
+extern const u8 gText_NoMoney[];
+extern const u8 gText_Betting[];
+extern const u8 gText_HiddenCard[];
+extern const u8 gText_Ace[];
+extern const u8 gText_Jack[];
+extern const u8 gText_Queen[];
+extern const u8 gText_King[];
+extern const u8 gText_Bust[];
+extern const u8 gText_YouWin[];
+extern const u8 gText_YouLose[];
+extern const u8 gText_Push[];
+extern const u8 gText_PressA[];
+
+// Voltorb Flip
+extern const u8 gText_VoltorbFlip[];
+extern const u8 gText_Voltorb[];
+extern const u8 gText_Score[];
+extern const u8 gText_X1[];
+extern const u8 gText_X2[];
+extern const u8 gText_X3[];
+extern const u8 gText_Marked[];
+extern const u8 gText_Hidden[];
+extern const u8 gText_GameOver[];
+extern const u8 gText_FinalScore[];
+
+// Gacha
+extern const u8 gText_Gacha[];
+extern const u8 gText_GachaInstructions[];
+extern const u8 gText_CoinsPerPlay[];
+extern const u8 gText_AToPlay[];
+extern const u8 gText_BToQuit[];
+extern const u8 gText_FromGacha[];
+extern const u8 gText_Common[];
+extern const u8 gText_Rare[];
+extern const u8 gText_SuperRare[];
+extern const u8 gText_Prize[];
+
+// Pachinko
+extern const u8 gText_Pachinko[];
+extern const u8 gText_Balls[];
+extern const u8 gText_CoinsWon[];
+extern const u8 gText_AToLaunch[];
+extern const u8 gText_TotalCoins[];
+
+// Block Stacker
+extern const u8 gText_BlockStacker[];
+extern const u8 gText_Lines[];
+extern const u8 gText_DPadMove[];
+extern const u8 gText_ARotate[];
+extern const u8 gText_DownDrop[];
+
+// Pinball
+extern const u8 gText_Pinball[];
+extern const u8 gText_HoldALaunch[];
+extern const u8 gText_LeftFlipper[];
+extern const u8 gText_RightFlipper[];
+
+// Derby
+extern const u8 gText_Derby[];
+extern const u8 gText_SelectRacer[];
+extern const u8 gText_RightArrow[];
+extern const u8 gText_Odds[];
+extern const u8 gText_Period[];
+extern const u8 gText_X[];
+extern const u8 gText_Bet[];
+extern const u8 gText_UpDownSelect[];
+extern const u8 gText_Racing[];
+extern const u8 gText_Block[];
+extern const u8 gText_Winner[];
+extern const u8 gText_Payout[];
+
 #endif // GUARD_STRINGS_H
