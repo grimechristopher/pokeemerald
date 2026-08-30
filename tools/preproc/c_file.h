@@ -25,12 +25,14 @@
 #include <cstdint>
 #include <string>
 #include <memory>
+#include <map>
+#include <vector>
 #include "preproc.h"
 
 class CFile
 {
 public:
-    CFile(const char * filenameCStr, bool isStdin);
+    CFile(const char * filenameCStr, bool isStdin, bool capitalizeCappable);
     CFile(CFile&& other);
     CFile(const CFile&) = delete;
     ~CFile();
@@ -43,6 +45,9 @@ private:
     long m_lineNum;
     std::string m_filename;
     bool m_isStdin;
+    bool m_capitalizeCappable;
+    std::map<std::vector<unsigned char>, std::uint64_t> m_compoundStrings;
+    std::string m_output;
 
     bool ConsumeHorizontalWhitespace();
     bool ConsumeNewline();

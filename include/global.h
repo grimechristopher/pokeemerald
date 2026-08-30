@@ -22,6 +22,7 @@
 #include "constants/trainer_hill.h"
 #include "constants/items.h"
 #include "config/save.h"
+#include "config/text.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");

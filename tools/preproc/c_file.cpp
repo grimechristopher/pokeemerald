@@ -32,7 +32,7 @@
 #include "string_parser.h"
 #include "io.h"
 
-CFile::CFile(const char * filenameCStr, bool isStdin)
+CFile::CFile(const char * filenameCStr, bool isStdin, bool capitalizeCappable)
 {
     if (isStdin)
         m_filename = std::string{"<stdin>/"}.append(filenameCStr);
@@ -44,6 +44,7 @@ CFile::CFile(const char * filenameCStr, bool isStdin)
     m_pos = 0;
     m_lineNum = 1;
     m_isStdin = isStdin;
+    m_capitalizeCappable = capitalizeCappable;
 }
 
 CFile::CFile(CFile&& other) : m_filename(std::move(other.m_filename))
@@ -53,6 +54,7 @@ CFile::CFile(CFile&& other) : m_filename(std::move(other.m_filename))
     m_size = other.m_size;
     m_lineNum = other.m_lineNum;
     m_isStdin = other.m_isStdin;
+    m_capitalizeCappable = other.m_capitalizeCappable;
 
     other.m_buffer = NULL;
 }
@@ -189,8 +191,8 @@ void CFile::TryConvertString()
         if (m_buffer[m_pos] == '"')
         {
             unsigned char s[kMaxStringLength];
-            int length;
-            StringParser stringParser(m_buffer, m_size);
+            int length = 0;
+            StringParser stringParser(m_buffer, m_size, m_capitalizeCappable);
 
             try
             {
