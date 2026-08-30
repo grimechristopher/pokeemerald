@@ -39,6 +39,7 @@ type Server struct {
 	regionSpecies map[string][]SpeciesInfo // "Kanto", "Johto", "Sinnoh", etc. - species of origin, see LoadRegionalDexSpecies
 	regionOrder   []string                 // display order for the sidebar/index
 	routes        []Route
+	mapRegions    map[string]string // MAP_ constant -> region name, see LoadMapRegions
 }
 
 // Regions (besides Hoenn, handled separately above) worth surfacing in the
@@ -57,6 +58,7 @@ func main() {
 	jsonPath := filepath.Join(*repo, "src", "data", "wild_encounters.json")
 	speciesPath := filepath.Join(*repo, "include", "constants", "species.h")
 	pokedexPath := filepath.Join(*repo, "include", "constants", "pokedex.h")
+	mapsDir := filepath.Join(*repo, "data", "maps")
 
 	we, err := LoadWildEncounters(jsonPath)
 	if err != nil {
@@ -87,8 +89,13 @@ func main() {
 		regionOrder = append(regionOrder, name)
 	}
 
-	log.Printf("loaded %d wild_encounter_groups, %d species (%d in the Hoenn dex; %s)",
-		len(we.WildEncounterGroups), len(species), len(hoennSpecies), regionCountsLog(regionSpecies, regionOrder))
+	mapRegions, err := LoadMapRegions(mapsDir)
+	if err != nil {
+		log.Fatalf("loading %s: %v", mapsDir, err)
+	}
+
+	log.Printf("loaded %d wild_encounter_groups, %d species (%d in the Hoenn dex; %s), %d maps' regions",
+		len(we.WildEncounterGroups), len(species), len(hoennSpecies), regionCountsLog(regionSpecies, regionOrder), len(mapRegions))
 
 	s := &Server{
 		jsonPath:      jsonPath,
@@ -97,6 +104,7 @@ func main() {
 		hoennSpecies:  hoennSpecies,
 		regionSpecies: regionSpecies,
 		regionOrder:   regionOrder,
+		mapRegions:    mapRegions,
 	}
 	s.routes = BuildRoutes(we)
 
@@ -144,6 +152,7 @@ type GroupSummary struct {
 type RouteSummary struct {
 	GroupIdx int
 	Map      string
+	Region   string
 	Display  string
 }
 
@@ -167,11 +176,22 @@ func (s *Server) groupSummaries() []GroupSummary {
 			seen[rt.GroupIdx] = gs
 			order = append(order, rt.GroupIdx)
 		}
-		gs.Routes = append(gs.Routes, RouteSummary{GroupIdx: rt.GroupIdx, Map: rt.Map, Display: RouteDisplayName(rt.Map)})
+		region := RegionOfMap(rt.Map, s.mapRegions)
+		gs.Routes = append(gs.Routes, RouteSummary{GroupIdx: rt.GroupIdx, Map: rt.Map, Region: region, Display: RouteDisplayName(rt.Map, region)})
 	}
 	sort.Ints(order)
 	for _, gi := range order {
-		out = append(out, *seen[gi])
+		g := *seen[gi]
+		// Cluster by region (matching the region prefix now in Display), then
+		// alphabetically within a region - so the sidebar reads as tidy
+		// per-region blocks instead of every region's routes interleaved.
+		sort.SliceStable(g.Routes, func(i, j int) bool {
+			if g.Routes[i].Region != g.Routes[j].Region {
+				return g.Routes[i].Region < g.Routes[j].Region
+			}
+			return g.Routes[i].Display < g.Routes[j].Display
+		})
+		out = append(out, g)
 	}
 	return out
 }
@@ -250,7 +270,7 @@ func (s *Server) buildRoutePage(groupIdx int, mapName string, message string) (*
 	page := &RoutePage{
 		GroupIdx:   groupIdx,
 		Map:        mapName,
-		Display:    RouteDisplayName(mapName),
+		Display:    RouteDisplayName(mapName, RegionOfMap(mapName, s.mapRegions)),
 		AllSpecies: s.species,
 		Groups:     s.groupSummaries(),
 		Message:    message,

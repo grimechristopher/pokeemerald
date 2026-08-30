@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strconv"
@@ -295,12 +296,88 @@ func timeSuffix(baseLabel, mapName string) string {
 	return ""
 }
 
-// RouteDisplayName turns MAP_ROUTE102 into "Route102", MAP_METEOR_FALLS_1F_1R
-// into "Meteor Falls 1F 1R", etc. - purely cosmetic for the sidebar.
-func RouteDisplayName(mapConst string) string {
+// LoadMapRegions scans every data/maps/*/map.json for its "id" (the real
+// MAP_ constant - not always a simple transform of the folder name; e.g.
+// data/maps/Route1_Frlg/map.json's id is plainly "MAP_ROUTE1", no _FRLG,
+// so this can't be derived by string-munging a map_groups.json group
+// array the way it first looked like it could) and pairs it with a
+// thematic region guessed from the *folder name's* suffix: _Frlg -> Kanto,
+// _Johto -> Johto, _Sinnoh -> Sinnoh, anything else -> Hoenn. Note this
+// "region" is unrelated to the "region" key inside map.json itself, which
+// is really just an emerald/firered build-target selector (see
+// tools/mapjson/mapjson.cpp) and always reads REGION_HOENN or
+// REGION_KANTO regardless of a map's actual in-game region.
+func LoadMapRegions(mapsDir string) (map[string]string, error) {
+	entries, err := os.ReadDir(mapsDir)
+	if err != nil {
+		return nil, err
+	}
+	regions := map[string]string{}
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+		folder := entry.Name()
+		mapJSONPath := filepath.Join(mapsDir, folder, "map.json")
+		data, err := os.ReadFile(mapJSONPath)
+		if err != nil {
+			continue // not every data/maps/ entry is a map (e.g. stray files); skip silently
+		}
+		var doc struct {
+			ID string `json:"id"`
+		}
+		if err := json.Unmarshal(data, &doc); err != nil || doc.ID == "" {
+			continue
+		}
+		region := "Hoenn"
+		switch {
+		case strings.HasSuffix(folder, "_Frlg"):
+			region = "Kanto"
+		case strings.HasSuffix(folder, "_Johto"):
+			region = "Johto"
+		case strings.HasSuffix(folder, "_Sinnoh"):
+			region = "Sinnoh"
+		}
+		regions[doc.ID] = region
+	}
+	return regions, nil
+}
+
+// RegionOfMap looks up a map's region, defaulting to "Hoenn" for anything
+// not found (e.g. the synthetic "map" values used by Battle Pyramid/Pike
+// encounter groups, which aren't real registered maps).
+func RegionOfMap(mapConst string, regions map[string]string) string {
+	if r, ok := regions[mapConst]; ok {
+		return r
+	}
+	return "Hoenn"
+}
+
+var mapRegionSuffixes = []string{"_FRLG", "_JOHTO", "_SINNOH"}
+
+// RouteDisplayName turns MAP_ROUTE102 into "Hoenn: Route102",
+// MAP_ROUTE26_JOHTO into "Johto: Route26", MAP_METEOR_FALLS_1F_1R into
+// "Hoenn: Meteor Falls 1F 1R", etc. - purely cosmetic for the sidebar. The
+// region prefix exists so routes stay identifiable at a glance once
+// several regions' worth of maps are all mixed into one list (Hoenn's
+// Route101 and Johto's Route26 alone are dozens apart alphabetically but
+// otherwise identical in name).
+func RouteDisplayName(mapConst string, region string) string {
 	rest := strings.TrimPrefix(mapConst, "MAP_")
-	rest = strings.ReplaceAll(rest, "_", " ")
-	return rest
+	for _, suffix := range mapRegionSuffixes {
+		if strings.HasSuffix(rest, suffix) {
+			rest = strings.TrimSuffix(rest, suffix)
+			break
+		}
+	}
+	words := strings.Split(rest, "_")
+	for i, w := range words {
+		if w == "" {
+			continue
+		}
+		words[i] = strings.ToUpper(w[:1]) + strings.ToLower(w[1:])
+	}
+	return region + ": " + strings.Join(words, " ")
 }
 
 // ---- Hoenn dex scoping ---------------------------------------------------
