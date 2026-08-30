@@ -56,7 +56,6 @@ func main() {
 
 	jsonPath := filepath.Join(*repo, "src", "data", "wild_encounters.json")
 	speciesPath := filepath.Join(*repo, "include", "constants", "species.h")
-	pokemonCPath := filepath.Join(*repo, "src", "pokemon.c")
 	pokedexPath := filepath.Join(*repo, "include", "constants", "pokedex.h")
 
 	we, err := LoadWildEncounters(jsonPath)
@@ -67,9 +66,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("loading %s: %v", speciesPath, err)
 	}
-	hoennDex, err := LoadHoennDexSpecies(pokemonCPath)
+	hoennDex, err := LoadHoennDexSpecies(pokedexPath)
 	if err != nil {
-		log.Fatalf("loading %s: %v", pokemonCPath, err)
+		log.Fatalf("loading %s: %v", pokedexPath, err)
 	}
 	hoennSpecies := FilterToHoenn(species, hoennDex)
 

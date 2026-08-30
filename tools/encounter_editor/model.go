@@ -140,14 +140,13 @@ func SaveWildEncounters(path string, we *WildEncounters) error {
 
 // ---- species list ------------------------------------------------------
 
-var speciesDefineRe = regexp.MustCompile(`^#define\s+(SPECIES_[A-Z0-9_]+)\s+(\d+)\s*$`)
-
 // species we never want to offer/count - not real catchable species.
 var excludedSpeciesNames = map[string]bool{
-	"SPECIES_NONE":        true,
-	"SPECIES_EGG":         true,
-	"SPECIES_SHINY_TAG":   true,
-	"SPECIES_OLD_UNOWN_B": true, // legacy alias present in some forks; harmless if absent
+	"SPECIES_NONE":         true,
+	"SPECIES_EGG":          true,
+	"SPECIES_SHINY_TAG":    true,
+	"SPECIES_CUSTOM_START": true, // marker, not a real species - see include/constants/species.h
+	"SPECIES_CUSTOM_END":   true,
 }
 
 type SpeciesInfo struct {
@@ -155,25 +154,72 @@ type SpeciesInfo struct {
 	DisplayName string // Foo
 }
 
-func LoadSpeciesList(constantsPath string) ([]SpeciesInfo, error) {
+// species.h is `enum __attribute__((packed)) Species { SPECIES_NONE = 0,
+// SPECIES_BULBASAUR = 1, ..., SPECIES_CASTFORM = SPECIES_CASTFORM_NORMAL,
+// ..., SPECIES_MAGIKARP_SKELLY, ... }` - most entries have an explicit
+// `= value` (either a plain integer or another SPECIES_ name - an alias,
+// e.g. the default-form species pointing at its _NORMAL constant), but a
+// custom species tail (ours, and SPECIES_CUSTOM_END) is plain `NAME,` with
+// no `=` at all, taking the standard C enum auto-increment (previous value
+// + 1). An alias always references an earlier entry in the same enum (a
+// forward reference wouldn't compile), so a single left-to-right pass
+// resolves everything - no need for a second alias-resolution pass.
+var speciesEnumEntryRe = regexp.MustCompile(`^\s*(SPECIES_[A-Z0-9_]+)\s*(?:=\s*([A-Za-z0-9_]+)\s*)?,?\s*$`)
+
+// parseSpeciesEnum returns every SPECIES_ constant's resolved integer value,
+// in file order (order matters for LoadSpeciesList's fallback display sort
+// being stable, and matches how the enum itself is laid out region by
+// region).
+func parseSpeciesEnum(constantsPath string) (values map[string]int, order []string, err error) {
 	raw, err := os.ReadFile(constantsPath)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	values = map[string]int{}
+	next := 0
+	for _, line := range strings.Split(string(raw), "\n") {
+		m := speciesEnumEntryRe.FindStringSubmatch(strings.TrimRight(line, "\r"))
+		if m == nil {
+			continue
+		}
+		name, val := m[1], m[2]
+		if _, seen := values[name]; seen {
+			continue // keep the first definition if a name somehow repeats
+		}
+
+		var resolved int
+		switch {
+		case val == "":
+			resolved = next // bare `NAME,` - C enum auto-increment
+		default:
+			if n, err := strconv.Atoi(val); err == nil {
+				resolved = n
+			} else if aliased, ok := values[val]; ok {
+				resolved = aliased
+			} else {
+				return nil, nil, fmt.Errorf("species.h: %s aliases undefined %s (must be declared earlier in the enum)", name, val)
+			}
+		}
+
+		values[name] = resolved
+		order = append(order, name)
+		next = resolved + 1
+	}
+	return values, order, nil
+}
+
+func LoadSpeciesList(constantsPath string) ([]SpeciesInfo, error) {
+	values, order, err := parseSpeciesEnum(constantsPath)
 	if err != nil {
 		return nil, err
 	}
 	var list []SpeciesInfo
-	for _, line := range strings.Split(string(raw), "\n") {
-		line = strings.TrimRight(line, "\r")
-		m := speciesDefineRe.FindStringSubmatch(line)
-		if m == nil {
-			continue
-		}
-		name := m[1]
+	for _, name := range order {
 		if excludedSpeciesNames[name] {
 			continue
 		}
-		if _, err := strconv.Atoi(m[2]); err != nil {
-			continue
-		}
+		_ = values[name] // resolved but unneeded here beyond validating it parsed
 		list = append(list, SpeciesInfo{
 			Const:       name,
 			DisplayName: displayNameFor(name),
@@ -187,21 +233,8 @@ func LoadSpeciesList(constantsPath string) ([]SpeciesInfo, error) {
 // of display-sorted - needed by resolveSpeciesConst to pick the
 // lowest-numbered form of a multi-form species.
 func loadSpeciesNumbers(constantsPath string) (map[string]int, error) {
-	raw, err := os.ReadFile(constantsPath)
-	if err != nil {
-		return nil, err
-	}
-	out := map[string]int{}
-	for _, line := range strings.Split(string(raw), "\n") {
-		m := speciesDefineRe.FindStringSubmatch(strings.TrimRight(line, "\r"))
-		if m == nil {
-			continue
-		}
-		if n, err := strconv.Atoi(m[2]); err == nil {
-			out[m[1]] = n
-		}
-	}
-	return out, nil
+	values, _, err := parseSpeciesEnum(constantsPath)
+	return values, err
 }
 
 func displayNameFor(constName string) string {
@@ -272,35 +305,52 @@ func RouteDisplayName(mapConst string) string {
 
 // ---- Hoenn dex scoping ---------------------------------------------------
 //
-// src/pokemon.c defines sHoennToNationalOrder[HOENN_DEX_COUNT-1], built via
-// entries shaped `HOENN_TO_NATIONAL(NAME)` where NAME is the same token used
-// in both HOENN_DEX_##NAME and NATIONAL_DEX_##NAME - and, not coincidentally,
-// in SPECIES_##NAME too. So the Hoenn dex roster can be read straight off
-// that array's argument list without needing to cross-reference national dex
-// numbers at all.
-var hoennToNationalRe = regexp.MustCompile(`HOENN_TO_NATIONAL\(([A-Z0-9_]+)\)`)
+// include/constants/pokedex.h defines FOREACH_SPECIES_IN_HOENN_DEX_ORDER(F),
+// an X-macro of `F(NAME)` entries (some wrapped in `HOENN_DEX_IF(config, ...)`
+// for config-gated cross-gen evolutions like Obstagoon/Galarian). NAME is the
+// same token used for SPECIES_##NAME, so the Hoenn dex roster can be read
+// straight off the macro body's F(...) arguments.
+//
+// This used to parse a differently-shaped sHoennToNationalOrder array
+// directly out of src/pokemon.c (built from raw HOENN_TO_NATIONAL(NAME)
+// calls); upstream refactored that array to build from this macro instead
+// (src/pokemon.c:134 is now just
+// `FOREACH_SPECIES_IN_HOENN_DEX_ORDER(HOENN_TO_NATIONAL)`), so this reads
+// pokedex.h now. HOENN_DEX_IF's gating configs (P_GALARIAN_FORMS,
+// P_GEN_4_CROSS_EVOS, ...) are all TRUE in this fork's config, matching the
+// prior behavior of just taking every entry regardless of the #if it was
+// wrapped in - so this doesn't bother evaluating the condition, same as
+// before.
+var hoennDexEntryRe = regexp.MustCompile(`\bF\(([A-Z0-9_]+)\)`)
 
 // LoadHoennDexSpecies returns the set of SPECIES_ constants that are in the
 // Hoenn Pokedex (gen 3's ~200-ish local dex, not the full national roster),
-// parsed directly out of sHoennToNationalOrder in src/pokemon.c.
-func LoadHoennDexSpecies(pokemonCPath string) (map[string]bool, error) {
-	raw, err := os.ReadFile(pokemonCPath)
+// parsed directly out of FOREACH_SPECIES_IN_HOENN_DEX_ORDER in
+// include/constants/pokedex.h.
+func LoadHoennDexSpecies(pokedexHPath string) (map[string]bool, error) {
+	raw, err := os.ReadFile(pokedexHPath)
 	if err != nil {
 		return nil, err
 	}
 	text := string(raw)
-	start := strings.Index(text, "sHoennToNationalOrder")
+	start := strings.Index(text, "FOREACH_SPECIES_IN_HOENN_DEX_ORDER(F)")
 	if start == -1 {
-		return nil, fmt.Errorf("sHoennToNationalOrder not found in %s", pokemonCPath)
+		return nil, fmt.Errorf("FOREACH_SPECIES_IN_HOENN_DEX_ORDER(F) not found in %s", pokedexHPath)
 	}
-	end := strings.Index(text[start:], "\n};")
-	if end == -1 {
-		return nil, fmt.Errorf("sHoennToNationalOrder: no closing }; found in %s", pokemonCPath)
+	// The macro body is a backslash-continued run of lines; it ends at the
+	// first line that doesn't end in a line-continuing backslash.
+	lines := strings.Split(text[start:], "\n")
+	var blockLines []string
+	for _, line := range lines {
+		blockLines = append(blockLines, line)
+		if !strings.HasSuffix(strings.TrimRight(line, " \t\r"), "\\") {
+			break
+		}
 	}
-	block := text[start : start+end]
-	matches := hoennToNationalRe.FindAllStringSubmatch(block, -1)
+	block := strings.Join(blockLines, "\n")
+	matches := hoennDexEntryRe.FindAllStringSubmatch(block, -1)
 	if len(matches) == 0 {
-		return nil, fmt.Errorf("sHoennToNationalOrder: no HOENN_TO_NATIONAL(...) entries found")
+		return nil, fmt.Errorf("FOREACH_SPECIES_IN_HOENN_DEX_ORDER: no F(...) entries found")
 	}
 	set := make(map[string]bool, len(matches))
 	for _, m := range matches {
