@@ -71195,6 +71195,1660 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_ROUTE1",
+          "base_label": "gKantoRoute1",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 2,
+                "max_level": 4,
+                "species": "SPECIES_NIDORAN_M"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE2",
+          "base_label": "gKantoRoute2",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_WEEDLE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "base_label": "gKantoRoute3",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_JIGGLYPUFF"
+              },
+              {
+                "min_level": 3,
+                "max_level": 6,
+                "species": "SPECIES_MANKEY"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE4",
+          "base_label": "gKantoRoute4",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_EKANS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE5",
+          "base_label": "gKantoRoute5",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_MANKEY"
+              },
+              {
+                "min_level": 6,
+                "max_level": 9,
+                "species": "SPECIES_JIGGLYPUFF"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "base_label": "gKantoRoute6",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_MANKEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_GRIMER"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE7",
+          "base_label": "gKantoRoute7",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MANKEY"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MEOWTH"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE8",
+          "base_label": "gKantoRoute8",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_GROWLITHE"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MANKEY"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE9",
+          "base_label": "gKantoRoute9",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SANDSHREW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_RATTATA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE10",
+          "base_label": "gKantoRoute10",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_MACHOP"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "base_label": "gKantoRoute11",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_DROWZEE"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_DROWZEE"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_DROWZEE"
+              },
+              {
+                "min_level": 11,
+                "max_level": 13,
+                "species": "SPECIES_RATTATA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE12",
+          "base_label": "gKantoRoute12",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_BELLSPROUT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_WEEPINBELL"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE13",
+          "base_label": "gKantoRoute13",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_WEEPINBELL"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE14",
+          "base_label": "gKantoRoute14",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_ODDISH"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE15",
+          "base_label": "gKantoRoute15",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 19,
+                "species": "SPECIES_DITTO"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE16",
+          "base_label": "gKantoRoute16",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 14,
+                "max_level": 17,
+                "species": "SPECIES_RATICATE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE17",
+          "base_label": "gKantoRoute17",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_SPEAROW"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE18",
+          "base_label": "gKantoRoute18",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_SPEAROW"
+              },
+              {
+                "min_level": 18,
+                "max_level": 21,
+                "species": "SPECIES_FARFETCHD"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "base_label": "gKantoRoute22",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_RATTATA"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_MANKEY"
+              },
+              {
+                "min_level": 3,
+                "max_level": 5,
+                "species": "SPECIES_SPEAROW"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE23",
+          "base_label": "gKantoRoute23",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_M"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_NIDORAN_F"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_FEAROW"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_FEAROW"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MANKEY"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_POLIWAG"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "base_label": "gKantoRoute24",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ABRA"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_BELLSPROUT"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "base_label": "gKantoRoute25",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_PIDGEY"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 8,
+                "max_level": 11,
+                "species": "SPECIES_ABRA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE19",
+          "base_label": "gKantoRoute19",
+          "water_mons": {
+            "encounter_rate": 60,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_SHELLDER"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE20",
+          "base_label": "gKantoRoute20",
+          "water_mons": {
+            "encounter_rate": 60,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_SHELLDER"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE21_NORTH",
+          "base_label": "gKantoRoute21North",
+          "water_mons": {
+            "encounter_rate": 60,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_GOLDEEN"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE21_SOUTH",
+          "base_label": "gKantoRoute21South",
+          "water_mons": {
+            "encounter_rate": 60,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_TENTACOOL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 35,
+                "species": "SPECIES_GOLDEEN"
+              }
+            ]
+          }
         }
       ]
     },
