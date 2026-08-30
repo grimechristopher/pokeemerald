@@ -57,3 +57,6 @@ tools/compresSmol/compresSmolTilemap
 *.fastSmol
 *.smolTM
 __pycache__
+
+# Claude Code session state (local settings, linked worktrees) - never project content
+/.claude/
