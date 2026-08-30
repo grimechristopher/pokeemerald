@@ -228,31 +228,12 @@ struct PokemonSubstruct3
     u32 modernFatefulEncounter:1;
 };
 
-// Number of bytes in the largest Pokémon substruct.
-// They are assumed to be the same size, and will be padded to
-// the largest size by the union.
-// By default they are all 12 bytes.
-#define NUM_SUBSTRUCT_BYTES (max(sizeof(struct PokemonSubstruct0),     \
-                             max(sizeof(struct PokemonSubstruct1),     \
-                             max(sizeof(struct PokemonSubstruct2),     \
-                                 sizeof(struct PokemonSubstruct3)))))
-
-enum SubstructType
-{
-    SUBSTRUCT_TYPE_0,
-    SUBSTRUCT_TYPE_1,
-    SUBSTRUCT_TYPE_2,
-    SUBSTRUCT_TYPE_3,
-};
-
-union PokemonSubstruct
-{
-    struct PokemonSubstruct0 type0;
-    struct PokemonSubstruct1 type1;
-    struct PokemonSubstruct2 type2;
-    struct PokemonSubstruct3 type3;
-    u16 raw[NUM_SUBSTRUCT_BYTES / 2]; // /2 because it's u16, not u8
-};
+// Combined byte size of the four substructs, at their own natural sizes.
+// No shuffling/encryption means each substruct no longer needs to be
+// interchangeable with the others, so unlike stock Emerald they are NOT
+// padded to match the largest one - substruct1 packs to 8 bytes here, not 12.
+#define SECURE_REGION_BYTES (sizeof(struct PokemonSubstruct0) + sizeof(struct PokemonSubstruct1) + \
+                              sizeof(struct PokemonSubstruct2) + sizeof(struct PokemonSubstruct3))
 
 struct BoxPokemon
 {
@@ -275,12 +256,24 @@ struct BoxPokemon
     u16 shinyModifier:1;
     u16 unused_1E:1;
 
+    // No shuffling: substruct order is fixed, not permuted by personality/OT ID.
+    // No encryption: not XOR'd against personality^otId. See save.h / README for why -
+    // this is an emulator-only build with no real-hardware or vanilla-save compatibility
+    // to protect, so the anti-cheat-device obfuscation this bought circa 2004 buys nothing here.
     union
     {
-        u32 raw[(NUM_SUBSTRUCT_BYTES * 4) / 4]; // *4 because there are 4 substructs, /4 because it's u32, not u8
-        union PokemonSubstruct substructs[4];
+        u32 raw[SECURE_REGION_BYTES / 4];
+        struct
+        {
+            struct PokemonSubstruct0 substruct0;
+            struct PokemonSubstruct1 substruct1;
+            struct PokemonSubstruct2 substruct2;
+            struct PokemonSubstruct3 substruct3;
+        } named;
     } secure;
 };
+
+STATIC_ASSERT(SECURE_REGION_BYTES % 4 == 0, BoxPokemonSecureRegionWordAligned);
 
 struct Pokemon
 {

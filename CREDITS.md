@@ -116,3 +116,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - [Data Files](https://www.pokecommunity.com/showthread.php?t=417909)
 - [Complete FireRed Upgrade](https://github.com/Skeli789/Complete-Fire-Red-Upgrade)
 - [pokeemerald](https://github.com/pret/pokeemerald/)
+- [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion) - base this fork's `BoxPokemon` struct (Tera type, Dynamax, Hyper Training, evolution trackers, etc.) is built on
+- [Simple Modifications Directory - BoxPokemon encryption removal](https://www.pokecommunity.com/threads/simple-modifications-directory.416647/page-3#post-10131863) - reference for stripping substruct shuffle/encryption
+- [pret/pokeemerald wiki - Remove the backup save file](https://github.com/pret/pokeemerald/wiki/Remove-the-backup-save-file) - reference for dropping the redundant second save slot

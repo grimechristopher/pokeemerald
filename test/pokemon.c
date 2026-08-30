@@ -7,6 +7,45 @@
 #include "constants/characters.h"
 #include "constants/move_relearner.h"
 
+// Encryption/shuffle removed: BoxPokemon no longer scrambles its "secure" region
+// based on personality/otId, so two mons with identical logical field values must
+// produce byte-identical raw storage regardless of personality or OT ID.
+TEST("BoxPokemon raw layout is independent of personality and OT ID")
+{
+    struct Pokemon monA, monB;
+
+    CreateMon(&monA, SPECIES_WOBBUFFET, 50, 0, TRUE, 0x11111111, OT_ID_PRESET, 0x22222222);
+    CreateMon(&monB, SPECIES_WOBBUFFET, 50, 0, TRUE, 0x99999999, OT_ID_PRESET, 0x88888888);
+
+    u32 exp = 12345;
+    u32 friendship = 42;
+    u32 heldItem = ITEM_ORAN_BERRY;
+    u32 hpEv = 11, atkEv = 22;
+    u32 hpIv = 7, spdefIv = 3;
+    u32 pokerus = 5;
+    u32 metLevel = 20;
+    u32 coolRibbon = 2;
+    u32 move1 = MOVE_TACKLE, move2 = MOVE_SCRATCH;
+
+    for (struct Pokemon *mon = &monA; mon <= &monB; mon++)
+    {
+        SetMonData(mon, MON_DATA_EXP, &exp);
+        SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+        SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+        SetMonData(mon, MON_DATA_HP_EV, &hpEv);
+        SetMonData(mon, MON_DATA_ATK_EV, &atkEv);
+        SetMonData(mon, MON_DATA_HP_IV, &hpIv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &spdefIv);
+        SetMonData(mon, MON_DATA_POKERUS, &pokerus);
+        SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
+        SetMonData(mon, MON_DATA_COOL_RIBBON, &coolRibbon);
+        SetMonMoveSlot(mon, move1, 0);
+        SetMonMoveSlot(mon, move2, 1);
+    }
+
+    EXPECT_EQ(memcmp(monA.box.secure.raw, monB.box.secure.raw, sizeof(monA.box.secure.raw)), 0);
+}
+
 TEST("Nature independent from Hidden Nature")
 {
     u32 i, j, nature = 0, hiddenNature = 0;
@@ -499,34 +538,72 @@ TEST("CalculateMonStats")
 
 }
 
-TEST("BoxPokemon encryption works")
+// Was "BoxPokemon encryption works": originally decoded a hand-crafted raw blob
+// that was pre-encrypted and pre-shuffled for the old personality-permuted format.
+// That format no longer exists (substructs are fixed-position, unencrypted - see
+// the "raw layout is independent of personality" test above), so the fixture's
+// bytes are meaningless now. Same field coverage, rebuilt via the plain API so it
+// exercises the real Set/Get round-trip instead of a frozen binary snapshot.
+TEST("BoxPokemon data round-trips through every field")
 {
-    u32 raw[20] =
-    {
-        990384375,
-        2948624514,
-        3907508686,
-        14410461,
-        35316705,
-        3907508686,
-        64742109,
-        718729,
-        3102307966,
-        2160206402,
-        49956971,
-        2495766612,
-        1424318580,
-        273408756,
-        2371630199,
-        2708871082,
-        3059937332,
-        2529190026,
-        2290634828,
-        2870614922
-    };
-
     struct Pokemon mon;
-    BoxMonToMon((struct BoxPokemon *)&raw, &mon);
+    u32 val;
+
+    CreateMonWithNature(&mon, SPECIES_TORCHIC, 20, 0, NATURE_HARDY);
+
+    val = ITEM_ORAN_BERRY;      SetMonData(&mon, MON_DATA_HELD_ITEM, &val);
+    val = 3;                    SetMonData(&mon, MON_DATA_MARKINGS, &val);
+    val = NATURE_ADAMANT;       SetMonData(&mon, MON_DATA_HIDDEN_NATURE, &val);
+    val = 10;                   SetMonData(&mon, MON_DATA_HP_LOST, &val);
+    SetMonMoveSlot(&mon, MOVE_TACKLE, 0);
+    SetMonMoveSlot(&mon, MOVE_SCRATCH, 1);
+    SetMonMoveSlot(&mon, MOVE_POUND, 2);
+    SetMonMoveSlot(&mon, MOVE_GROWL, 3);
+    val = 1;                    SetMonData(&mon, MON_DATA_PP1, &val);
+    val = 2;                    SetMonData(&mon, MON_DATA_PP2, &val);
+    val = 3;                    SetMonData(&mon, MON_DATA_PP3, &val);
+    val = 4;                    SetMonData(&mon, MON_DATA_PP4, &val);
+    val = 255;                  SetMonData(&mon, MON_DATA_PP_BONUSES, &val);
+    val = 10;                   SetMonData(&mon, MON_DATA_COOL, &val);
+    val = 20;                   SetMonData(&mon, MON_DATA_BEAUTY, &val);
+    val = 30;                   SetMonData(&mon, MON_DATA_CUTE, &val);
+    val = 40;                   SetMonData(&mon, MON_DATA_SMART, &val);
+    val = 50;                   SetMonData(&mon, MON_DATA_TOUGH, &val);
+    val = 150;                  SetMonData(&mon, MON_DATA_SHEEN, &val);
+    val = 12345;                SetMonData(&mon, MON_DATA_EXP, &val);
+    val = 20;                   SetMonData(&mon, MON_DATA_MET_LEVEL, &val);
+    val = 11;                   SetMonData(&mon, MON_DATA_HP_EV, &val);
+    val = 22;                   SetMonData(&mon, MON_DATA_ATK_EV, &val);
+    val = 33;                   SetMonData(&mon, MON_DATA_DEF_EV, &val);
+    val = 44;                   SetMonData(&mon, MON_DATA_SPEED_EV, &val);
+    val = 55;                   SetMonData(&mon, MON_DATA_SPATK_EV, &val);
+    val = 66;                   SetMonData(&mon, MON_DATA_SPDEF_EV, &val);
+    val = 123;                  SetMonData(&mon, MON_DATA_FRIENDSHIP, &val);
+    val = 2;                    SetMonData(&mon, MON_DATA_POKERUS, &val);
+    val = BALL_FRIEND;          SetMonData(&mon, MON_DATA_POKEBALL, &val);
+    val = 31;                   SetMonData(&mon, MON_DATA_HP_IV, &val);
+    val = 30;                   SetMonData(&mon, MON_DATA_ATK_IV, &val);
+    val = 29;                   SetMonData(&mon, MON_DATA_DEF_IV, &val);
+    val = 28;                   SetMonData(&mon, MON_DATA_SPEED_IV, &val);
+    val = 27;                   SetMonData(&mon, MON_DATA_SPATK_IV, &val);
+    val = 26;                   SetMonData(&mon, MON_DATA_SPDEF_IV, &val);
+    val = 1;                    SetMonData(&mon, MON_DATA_CUTE_RIBBON, &val);
+    val = 1;                    SetMonData(&mon, MON_DATA_TOUGH_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_CHAMPION_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_VICTORY_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_EFFORT_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_LAND_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_COUNTRY_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_EARTH_RIBBON, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_HP, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_ATK, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_DEF, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_SPEED, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_SPATK, &val);
+    val = TRUE;                 SetMonData(&mon, MON_DATA_HYPER_TRAINED_SPDEF, &val);
+    val = 3;                    SetMonData(&mon, MON_DATA_DYNAMAX_LEVEL, &val);
+    val = 0;                    SetMonData(&mon, MON_DATA_OT_GENDER, &val);
+    SetMonData(&mon, MON_DATA_NICKNAME, COMPOUND_STRING("Testing mon"));
 
     EXPECT_EQ(GetMonData(&mon, MON_DATA_SANITY_IS_BAD_EGG), 0);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_TORCHIC);
