@@ -1,8 +1,7 @@
-#ifndef GUARD_GAME_CORNER_GACHA_H
-#define GUARD_GAME_CORNER_GACHA_H
+#ifndef GUARD_BLACKJACK_H
+#define GUARD_BLACKJACK_H
 
-void Gacha_Init(void);
-void Gacha_Main(void);
-void Gacha_Exit(void);
+void StartGacha(void);
+static void GachaMainCallback(void);
 
-#endif // GUARD_GAME_CORNER_GACHA_H
+#endif // GUARD_BLACKJACK_H

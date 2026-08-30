@@ -1303,6 +1303,10 @@ const u8 gText_Hit[] = _("HIT");
 const u8 gText_Stand[] = _("STAND");
 const u8 gText_Quit[] = _("QUIT");
 const u8 gText_Value[] = _("VAL:");
+const u8 gText_BlackJack[] = _("BLACKJACK!");
+const u8 gText_NoBetting[] = _("Your current\nbet is ¥0.");
+const u8 gText_NoMoney[] = _("You do not have\nenough COINS.");
+const u8 gText_Betting[] = _("Current bet:");
 
 // Voltorb Flip
 const u8 gText_VoltorbFlip[] = _("VOLTORB FLIP");
@@ -1322,6 +1326,7 @@ const u8 gText_GachaInstructions[] = _("Pull a prize capsule!");
 const u8 gText_CoinsPerPlay[] = _(" Coins per play");
 const u8 gText_AToPlay[] = _("A: Play");
 const u8 gText_BToQuit[] = _("B: Quit");
+const u8 gText_FromGacha[] = _("{STR_VAR_1} from Gacha!");
 const u8 gText_Common[] = _("COMMON");
 const u8 gText_Rare[] = _("RARE");
 const u8 gText_SuperRare[] = _("SUPER RARE");

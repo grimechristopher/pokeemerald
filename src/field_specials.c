@@ -4402,3 +4402,59 @@ void Special_PlayFlappyBird(void)
 
     GameCorner_InitMinigame(MINIGAME_FLAPPYBIRD);
 }
+
+void Special_PlayBlackjack(void)
+{
+    if (!B_GAMECORNER_BLACKJACK)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_BLACKJACK);
+}
+
+void Special_PlayVoltorbFlip(void)
+{
+    if (!B_GAMECORNER_VOLTORB_FLIP)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_VOLTORB_FLIP);
+}
+
+void Special_PlayGacha(void)
+{
+    if (!B_GAMECORNER_GACHA)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_GACHA);
+}
+
+void Special_PlayPachinko(void)
+{
+    if (!B_GAMECORNER_PACHINKO)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_PACHINKO);
+}
+
+void Special_PlayBlockStacker(void)
+{
+    if (!B_GAMECORNER_BLOCK_STACKER)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_BLOCK_STACKER);
+}
+
+void Special_PlayPinball(void)
+{
+    if (!B_GAMECORNER_PINBALL)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_PINBALL);
+}
+
+void Special_PlayDerby(void)
+{
+    if (!B_GAMECORNER_DERBY)
+        return;
+
+    GameCorner_InitMinigame(MINIGAME_DERBY);
+}

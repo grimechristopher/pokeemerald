@@ -1,8 +1,12 @@
-#ifndef GUARD_GAME_CORNER_BLACKJACK_H
-#define GUARD_GAME_CORNER_BLACKJACK_H
+#ifndef GUARD_BLACKJACK_H
+#define GUARD_BLACKJACK_H
 
-void Blackjack_Init(void);
-void Blackjack_Main(void);
-void Blackjack_Exit(void);
+void StartBlackJack(void);
+static void BJMainCallback(void);
+void ResetAllPicSprites(void);
+void MainCB2_ReturnToField(void);
+void ResetAllBgsCoordinatesAndBgCntRegs(void);
+static void LoadCasinoSpriteGfx(void);
+static void InitCasinoSprites(void);
 
-#endif // GUARD_GAME_CORNER_BLACKJACK_H
+#endif // GUARD_BLACKJACK_H

@@ -1,8 +1,6 @@
-#ifndef GUARD_GAME_CORNER_VOLTORB_FLIP_H
-#define GUARD_GAME_CORNER_VOLTORB_FLIP_H
+#ifndef GUARD_ROGUE_VOLTORB_FLIP_H
+#define GUARD_ROGUE_VOLTORB_FLIP_H
 
-void VoltorbFlip_Init(void);
-void VoltorbFlip_Main(void);
-void VoltorbFlip_Exit(void);
+void CB2_ShowVoltorbFlip(void);
 
-#endif // GUARD_GAME_CORNER_VOLTORB_FLIP_H
+#endif // GUARD_DIPLOMA_H
