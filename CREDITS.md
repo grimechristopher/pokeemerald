@@ -116,3 +116,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - [Data Files](https://www.pokecommunity.com/showthread.php?t=417909)
 - [Complete FireRed Upgrade](https://github.com/Skeli789/Complete-Fire-Red-Upgrade)
 - [pokeemerald](https://github.com/pret/pokeemerald/)
+- [heyopc/pokeemerald-gamecorner-expansion](https://github.com/heyopc/pokeemerald-gamecorner-expansion) - original source this fork's Game Corner (Blackjack, Voltorb Flip, Gacha, Pachinko/Plinko, Block Stacker, Pinball, Derby, Snake, Flappy Bird) was ported and adapted from, by heyopc, huderlem, Pokeabbie, and Viperio
