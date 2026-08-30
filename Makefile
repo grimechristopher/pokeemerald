@@ -546,6 +546,16 @@ $(ALL_LEARNABLES_JSON): $(wildcard $(LEARNSET_HELPERS_DATA_DIR)/*.json) | $(LEAR
 $(DATA_SRC_SUBDIR)/pokemon/teachable_learnsets.h: $(TEACHABLE_DEPS)
 	python3 $(LEARNSET_HELPERS_DIR)/make_teachables.py $<
 
+MINING_PNGS := $(shell find graphics/mining_minigame/items/ -type f -name '*.png') \
+               $(shell find graphics/mining_minigame/stones/ -type f -name '*.png')
+
+MINING_4BPPS := $(MINING_PNGS:%.png=%.4bpp)
+
+MINING_DEPS := $(MINING_4BPPS) tools/mining_minigame/table.json
+
+$(DATA_SRC_SUBDIR)/mining_minigame.h: $(MINING_DEPS)
+	python3 $(TOOLS_DIR)/mining_minigame/analyze_sprites.py
+
 # Linker script
 LD_SCRIPT := ld_script_modern.ld
 
