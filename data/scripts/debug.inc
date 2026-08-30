@@ -318,6 +318,40 @@ Debug_EventScript_SlidingPuzzle::
 	fadescreen FADE_TO_BLACK
 	special DoSlidingPuzzle
 	waitstate
+
+@ Overwrites the lead party mon's first move slot with Headbutt, so it can
+@ immediately be used to test-headbutt trees (MB_HEADBUTT_TREE tiles - the
+@ general tileset's forest canopy, so basically any route). Test data
+@ currently only exists on Route101/102/104.
+Debug_EventScript_TeachLeadHeadbutt::
+	setmonmove 0, 0, MOVE_HEADBUTT
+	msgbox Debug_Text_TaughtHeadbutt, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_Text_TaughtHeadbutt:
+	.string "Taught your lead Pokémon HEADBUTT\n"
+	.string "in move slot 1.\p"
+	.string "Walk up to a tree and press A to\n"
+	.string "try it (Route 101/102/104 have\l"
+	.string "test data for now).$"
+
+@ There's no in-game NPC that hands out the DexNav yet - this is the debug
+@ stand-in until one exists. Grants FLAG_SYS_DEXNAV_GET so MENU_ACTION_DEXNAV
+@ shows up in the start menu (see BuildNormalStartMenu in start_menu.c).
+Debug_EventScript_GetDexNav::
+	setflag FLAG_SYS_DEXNAV_GET
+	msgbox Debug_Text_GotDexNav, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_Text_GotDexNav:
+	.string "You got the DEXNAV!\p"
+	.string "Check START menu. Walk through\n"
+	.string "grass/water/etc. and it'll roll a\l"
+	.string "chance to reveal a hidden mon you\l"
+	.string "can search for and preview before\l"
+	.string "battling.$"
 	release
 	end
 
