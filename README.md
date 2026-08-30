@@ -6,6 +6,16 @@
 
 **`pokeemerald-expansion`** is a GBA ROM hack base that equips developers with a comprehensive toolkit for creating Pokémon ROM hacks. **`pokeemerald-expansion`** is built on top of [pret's `pokeemerald`](https://github.com/pret/pokeemerald) decompilation project. **It is not a playable Pokémon game on its own.** 
 
+# ⚠️ This Fork's Save-Format Deviations
+
+This fork ([`grimechristopher/pokeemerald`](https://github.com/grimechristopher/pokeemerald), branch `expanded/base`) targets an emulator-only, single-player build and trades away a few things upstream `pokeemerald-expansion` keeps for hardware/vanilla-save compatibility:
+
+- **No `BoxPokemon` encryption or substruct shuffling.** Stock Emerald XORs the "secure" region of each Pokémon against `personality ^ otId` and permutes the four substructs into one of 24 orders keyed off `personality % 24` — obfuscation meant to make save-editing on real hardware/flash carts harder. With no real-hardware or vanilla-save compatibility to protect, that cost bought nothing here, so it's gone: `BoxPokemon.secure` is now a fixed, named struct (`substruct0`..`substruct3`) at constant offsets, stored unencrypted, and substructs are no longer padded to a common size.
+- **No backup save slot.** Stock Emerald keeps two full copies of the save and alternates writes between them so a corrupted write can fall back to the other copy. This build keeps one, reclaiming ~248 KB of flash.
+- **72 PC boxes** (up from 14), backed by an expanded 17-sector `SaveBlock1`.
+
+None of this is compatible with real Game Boy Advance hardware, save-editing tools built for vanilla saves, or vanilla `pokeemerald-expansion` saves — it's tuned specifically for this project's emulator-only target. If you need any of the above, use upstream `pokeemerald-expansion` instead.
+
 # [Features](FEATURES.md)
 
 **`pokeemerald-expansion`** offers hundreds of features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
