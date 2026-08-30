@@ -1560,6 +1560,16 @@ bool8 IsPlayerFacingSurfableFishableWater(void)
         return FALSE;
 }
 
+bool8 IsPlayerFacingHeadbuttTree(void)
+{
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    s16 x = playerObjEvent->currentCoords.x;
+    s16 y = playerObjEvent->currentCoords.y;
+
+    MoveCoords(playerObjEvent->facingDirection, &x, &y);
+    return MetatileBehavior_IsHeadbuttTree(MapGridGetMetatileBehaviorAt(x, y));
+}
+
 void ClearPlayerAvatarInfo(void)
 {
     memset(&gPlayerAvatar, 0, sizeof(struct PlayerAvatar));

@@ -275,6 +275,26 @@ u32 ChooseWildMonIndex_Rocks(void)
     return wildMonIndex;
 }
 
+// HEADBUTT_WILD_COUNT
+u32 ChooseWildMonIndex_Headbutt(void)
+{
+    u32 wildMonIndex = 0;
+    u8 rand = Random() % ENCOUNTER_CHANCE_HEADBUTT_MONS_TOTAL;
+
+    if (rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_0)
+        wildMonIndex = 0;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_0 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_1)
+        wildMonIndex = 1;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_1 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_2)
+        wildMonIndex = 2;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_2 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_SLOT_3)
+        wildMonIndex = 3;
+    else
+        wildMonIndex = 4;
+
+    return wildMonIndex;
+}
+
 // FISH_WILD_COUNT
 static u32 ChooseWildMonIndex_Fishing(u8 rod)
 {
@@ -435,6 +455,9 @@ enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area
     case WILD_AREA_HIDDEN:
         wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].hiddenMonsInfo;
         break;
+    case WILD_AREA_HEADBUTT:
+        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].headbuttMonsInfo;
+        break;
     }
 
     if (wildMonInfo == NULL && !OW_TIME_OF_DAY_DISABLE_FALLBACK)
@@ -559,6 +582,9 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         break;
     case WILD_AREA_ROCKS:
         wildMonIndex = ChooseWildMonIndex_Rocks();
+        break;
+    case WILD_AREA_HEADBUTT:
+        wildMonIndex = ChooseWildMonIndex_Headbutt();
         break;
     default:
     case WILD_AREA_FISHING:
@@ -870,6 +896,51 @@ void RockSmashWildEncounter(void)
     }
 }
 
+// Called by EventScript_Headbutt (data/scripts/field_move_scripts.inc) after the
+// field move pose finishes. Unlike Rock Smash there's no object to consume - the
+// tree can be headbutted again immediately, so this never has permanent side effects.
+void HeadbuttWildEncounter(void)
+{
+    u32 headerId = GetCurrentMapWildMonHeaderId();
+    enum TimeOfDay timeOfDay;
+
+    if (headerId != HEADER_NONE)
+    {
+        timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_HEADBUTT);
+
+        const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].headbuttMonsInfo;
+
+        if (wildPokemonInfo == NULL)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (WildEncounterCheck(wildPokemonInfo->encounterRate, TRUE) == TRUE
+         && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_HEADBUTT, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+        {
+            if (TryDoDoubleWildBattle())
+            {
+                struct Pokemon mon1 = gEnemyParty[0];
+                TryGenerateWildMon(wildPokemonInfo, WILD_AREA_HEADBUTT, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE);
+                gEnemyParty[1] = mon1;
+                BattleSetup_StartDoubleWildBattle();
+                gSpecialVar_Result = TRUE;
+            }
+            else {
+                BattleSetup_StartWildBattle();
+                gSpecialVar_Result = TRUE;
+            }
+        }
+        else
+        {
+            gSpecialVar_Result = FALSE;
+        }
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
 bool8 SweetScentWildEncounter(void)
 {
     s16 x, y;
@@ -1159,6 +1230,9 @@ static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, u16
         break;
     case WILD_AREA_ROCKS:
         numMon = ROCK_WILD_COUNT;
+        break;
+    case WILD_AREA_HEADBUTT:
+        numMon = HEADBUTT_WILD_COUNT;
         break;
     default:
     case WILD_AREA_FISHING:

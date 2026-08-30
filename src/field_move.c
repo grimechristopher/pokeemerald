@@ -85,6 +85,12 @@ static bool32 IsFieldMoveUnlocked_SweetScent(void)
     return TRUE;
 }
 
+static bool32 IsFieldMoveUnlocked_Headbutt(void)
+{
+    // No badge requirement, same as GSC/HGSS - any mon that knows Headbutt can use it.
+    return TRUE;
+}
+
 #if OW_DEFOG_FIELD_MOVE == TRUE
 static bool32 IsFieldMoveUnlocked_Defog(void)
 {
@@ -223,4 +229,12 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
     },
 #endif
+
+    [FIELD_MOVE_HEADBUTT] =
+    {
+        .fieldMoveFunc = SetUpFieldMove_Headbutt,
+        .isUnlockedFunc = IsFieldMoveUnlocked_Headbutt,
+        .moveID = MOVE_HEADBUTT,
+        .partyMsgID = PARTY_MSG_CANT_USE_HERE,
+    },
 };

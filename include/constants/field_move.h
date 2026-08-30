@@ -24,6 +24,7 @@ enum FieldMove
 #if OW_DEFOG_FIELD_MOVE == TRUE
     FIELD_MOVE_DEFOG,
 #endif
+    FIELD_MOVE_HEADBUTT,
     FIELD_MOVES_COUNT
 };
 

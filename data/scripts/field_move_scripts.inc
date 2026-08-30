@@ -474,3 +474,49 @@ Text_MonUsedRockClimb:
 Text_CantRockClimb:
     .string "The cliff is steep.\n"
     .string "A Pokémon may be able to climb it.$"
+
+@ Use headbutt from party menu
+EventScript_UseHeadbutt::
+	lockall
+	goto EventScript_HeadbuttCommon
+
+@ Interact with a headbuttable tree
+EventScript_Headbutt::
+	lockall
+	checkfieldmove FIELD_MOVE_HEADBUTT, TRUE
+	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantHeadbutt
+	setfieldeffectargument 0, VAR_RESULT
+	bufferpartymonnick STR_VAR_1, VAR_RESULT
+	buffermovename STR_VAR_2, MOVE_HEADBUTT
+	msgbox Text_WantToHeadbutt, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EventScript_CancelHeadbutt
+	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
+	closemessage
+EventScript_HeadbuttCommon:
+	dofieldeffect FLDEFF_USE_HEADBUTT
+	waitstate
+	special HeadbuttWildEncounter
+	goto_if_eq VAR_RESULT, FALSE, EventScript_EndHeadbutt
+	waitstate
+EventScript_EndHeadbutt::
+	releaseall
+	end
+
+EventScript_CantHeadbutt::
+	msgbox Text_CantHeadbutt, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_CancelHeadbutt::
+	closemessage
+	releaseall
+	end
+
+Text_WantToHeadbutt:
+	.string "This tree looks like it could have\n"
+	.string "wild Pokémon in its branches.\p"
+	.string "Would you like to use [Headbutt]?$"
+
+Text_CantHeadbutt:
+	.string "This tree looks like it could have\n"
+	.string "wild [Pokémon] in its branches.$"

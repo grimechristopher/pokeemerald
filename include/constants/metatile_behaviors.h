@@ -242,6 +242,7 @@ enum {
     MB_DOWN_RIGHT_STAIR_WARP,
     MB_DOWN_LEFT_STAIR_WARP,
     MB_ROCK_CLIMB,
+    MB_HEADBUTT_TREE, // Any ambient tree the player can face and Headbutt for a wild encounter - see FLDEFF_USE_HEADBUTT
     NUM_METATILE_BEHAVIORS
 };
 
