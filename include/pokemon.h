@@ -231,7 +231,10 @@ struct PokemonSubstruct3
 // Combined byte size of the four substructs, at their own natural sizes.
 // No shuffling/encryption means each substruct no longer needs to be
 // interchangeable with the others, so unlike stock Emerald they are NOT
-// padded to match the largest one - substruct1 packs to 8 bytes here, not 12.
+// padded to match the largest one. As of this writing all four still
+// happen to pack to 12 bytes anyway (80 bytes total, unchanged from the
+// union), but a future substruct that shrinks - or a new, smaller one -
+// no longer drags the others up to match it.
 #define SECURE_REGION_BYTES (sizeof(struct PokemonSubstruct0) + sizeof(struct PokemonSubstruct1) + \
                               sizeof(struct PokemonSubstruct2) + sizeof(struct PokemonSubstruct3))
 
