@@ -28,18 +28,18 @@ static void CopyFromSaveBlock3(u32, struct SaveSector *);
 /*
  * Sector Layout:
  *
- * Sectors 0 - 13:      Save Slot 1
- * Sectors 14 - 27:     Save Slot 2
- * Sectors 28 - 29:     Hall of Fame
- * Sector 30:           Trainer Hill
- * Sector 31:           Recorded Battle
+ * Sectors 0 - 61:      The single save slot (SaveBlock2, SaveBlock1, PC storage)
+ * Sectors 62 - 63:     Hall of Fame
+ * Sector 64:           Trainer Hill
+ * Sector 65:           Recorded Battle
  *
- * There are two save slots for saving the player's game data. We alternate between
- * them each time the game is saved, so that if the current save slot is corrupt,
- * we can load the previous one. We also rotate the sectors in each save slot
- * so that the same data is not always being written to the same sector. This
- * might be done to reduce wear on the flash memory, but I'm not sure, since all
- * 14 sectors get written anyway.
+ * There is only one save slot for the player's game data - the redundant backup
+ * copy stock Emerald keeps (to fall back on if the primary is found corrupt on
+ * load) has been removed to reclaim flash space for PC storage/SaveBlock1. This
+ * means a write interrupted mid-flash (power loss, bad shutdown) has nothing to
+ * fall back to. We still rotate the sectors within the slot on every save
+ * (gLastWrittenSector) to spread wear across flash cells, since all 62 sectors
+ * get rewritten on every save anyway.
  *
  * See SECTOR_ID_* constants in save.h
  */
@@ -554,18 +554,20 @@ static u8 CopySaveSlotData(u16 sectorId, struct SaveSectorLocation *locations)
     return SAVE_STATUS_OK;
 }
 
+// There is only one save slot (see the sector layout comment above), so unlike
+// stock Emerald this doesn't need to compare two slots' counters to find the
+// newer one. If the single slot isn't fully valid, there's no second copy to
+// fall back on, so a partially-valid slot is treated as CORRUPT rather than
+// ERROR (which upstream reserves for "the other slot should be used instead").
 static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
 {
     u16 i;
     u16 checksum;
-    u32 saveSlot1Counter = 0;
-    u32 saveSlot2Counter = 0;
-    u64 validSectorFlags = 0;  // Changed to u64 for 49-sector support
+    u32 saveCounter = 0;
+    u64 validSectorFlags = 0;  // 64-bit for 62-sector support
     bool8 signatureValid = FALSE;
-    u8 saveSlot1Status;
-    u8 saveSlot2Status;
+    u8 saveStatus;
 
-    // Check save slot 1
     for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
     {
         ReadFlashSector(i, gReadWriteSector);
@@ -575,108 +577,38 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
             checksum = CalculateChecksum(gReadWriteSector->data, locations[gReadWriteSector->id].size);
             if (gReadWriteSector->checksum == checksum)
             {
-                saveSlot1Counter = gReadWriteSector->counter;
-                validSectorFlags |= 1ULL << gReadWriteSector->id;  // 64-bit shift for 49 sectors
+                saveCounter = gReadWriteSector->counter;
+                validSectorFlags |= 1ULL << gReadWriteSector->id;  // 64-bit shift for 62 sectors
             }
         }
     }
 
-    if (signatureValid)
+    if (!signatureValid)
     {
-        if (validSectorFlags == (1ULL << NUM_SECTORS_PER_SLOT) - 1)  // 64-bit shift for 49 sectors
-            saveSlot1Status = SAVE_STATUS_OK;
-        else
-            saveSlot1Status = SAVE_STATUS_ERROR;
+        // No sectors have the correct signature, treat it as empty (fresh flash)
+        saveStatus = SAVE_STATUS_EMPTY;
+    }
+    else if (validSectorFlags == (1ULL << NUM_SECTORS_PER_SLOT) - 1)  // 64-bit shift for 62 sectors
+    {
+        saveStatus = SAVE_STATUS_OK;
     }
     else
     {
-        // No sectors in slot 1 have the correct signature, treat it as empty
-        saveSlot1Status = SAVE_STATUS_EMPTY;
+        // Some sectors are valid but not all - there's no backup slot to recover from
+        saveStatus = SAVE_STATUS_CORRUPT;
     }
 
-    validSectorFlags = 0;
-    signatureValid = FALSE;
-
-    // Check save slot 2
-    for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
+    if (saveStatus == SAVE_STATUS_OK)
     {
-        ReadFlashSector(i + NUM_SECTORS_PER_SLOT, gReadWriteSector);
-        if (gReadWriteSector->signature == SECTOR_SIGNATURE)
-        {
-            signatureValid = TRUE;
-            checksum = CalculateChecksum(gReadWriteSector->data, locations[gReadWriteSector->id].size);
-            if (gReadWriteSector->checksum == checksum)
-            {
-                saveSlot2Counter = gReadWriteSector->counter;
-                validSectorFlags |= 1ULL << gReadWriteSector->id;  // 64-bit shift for 49 sectors
-            }
-        }
-    }
-
-    if (signatureValid)
-    {
-        if (validSectorFlags == (1ULL << NUM_SECTORS_PER_SLOT) - 1)  // 64-bit shift for 49 sectors
-            saveSlot2Status = SAVE_STATUS_OK;
-        else
-            saveSlot2Status = SAVE_STATUS_ERROR;
+        gSaveCounter = saveCounter;
     }
     else
-    {
-        // No sectors in slot 2 have the correct signature, treat it as empty.
-        saveSlot2Status = SAVE_STATUS_EMPTY;
-    }
-
-    if (saveSlot1Status == SAVE_STATUS_OK && saveSlot2Status == SAVE_STATUS_OK)
-    {
-        if ((saveSlot1Counter == -1 && saveSlot2Counter ==  0)
-         || (saveSlot1Counter ==  0 && saveSlot2Counter == -1))
-        {
-            if ((unsigned)(saveSlot1Counter + 1) < (unsigned)(saveSlot2Counter + 1))
-                gSaveCounter = saveSlot2Counter;
-            else
-                gSaveCounter = saveSlot1Counter;
-        }
-        else
-        {
-            if (saveSlot1Counter < saveSlot2Counter)
-                gSaveCounter = saveSlot2Counter;
-            else
-                gSaveCounter = saveSlot1Counter;
-        }
-        return SAVE_STATUS_OK;
-    }
-
-    // One or both save slots are not OK
-
-    if (saveSlot1Status == SAVE_STATUS_OK)
-    {
-        gSaveCounter = saveSlot1Counter;
-        if (saveSlot2Status == SAVE_STATUS_ERROR)
-            return SAVE_STATUS_ERROR; // Slot 2 errored
-        return SAVE_STATUS_OK; // Slot 1 is OK, slot 2 is empty
-    }
-
-    if (saveSlot2Status == SAVE_STATUS_OK)
-    {
-        gSaveCounter = saveSlot2Counter;
-        if (saveSlot1Status == SAVE_STATUS_ERROR)
-            return SAVE_STATUS_ERROR; // Slot 1 errored
-        return SAVE_STATUS_OK; // Slot 2 is OK, slot 1 is empty
-    }
-
-    // Neither slot is OK, check if both are empty
-    if (saveSlot1Status == SAVE_STATUS_EMPTY
-     && saveSlot2Status == SAVE_STATUS_EMPTY)
     {
         gSaveCounter = 0;
         gLastWrittenSector = 0;
-        return SAVE_STATUS_EMPTY;
     }
 
-    // Both slots errored
-    gSaveCounter = 0;
-    gLastWrittenSector = 0;
-    return SAVE_STATUS_CORRUPT;
+    return saveStatus;
 }
 
 static u8 TryLoadSaveSector(u8 sectorId, u8 *data, u16 size)

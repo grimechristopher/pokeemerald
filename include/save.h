@@ -9,7 +9,10 @@
 #define SECTOR_FOOTER_SIZE 12
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SAVE_BLOCK_3_CHUNK_SIZE + SECTOR_FOOTER_SIZE)
 
-#define NUM_SAVE_SLOTS 2
+// No redundant backup copy: only one physical save slot exists. A write that's
+// interrupted mid-flash has no second copy to fall back to (see README) - this
+// trades the stock corruption safety net for ~248 KB of reclaimed flash space.
+#define NUM_SAVE_SLOTS 1
 
 // If the sector's signature field is not this value then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x8012025
@@ -21,13 +24,12 @@
 #define SECTOR_ID_SAVEBLOCK1_END      17   // 17 sectors = 67 KB for multi-region data
 #define SECTOR_ID_PKMN_STORAGE_START  18
 #define SECTOR_ID_PKMN_STORAGE_END   61    // 44 sectors for 72 boxes (~174 KB)
-#define NUM_SECTORS_PER_SLOT         62    // 1 + 17 + 44 sectors
-// Save Slot 1: 0-61;  Save Slot 2: 62-123
-#define SECTOR_ID_HOF_1             124
-#define SECTOR_ID_HOF_2             125
-#define SECTOR_ID_TRAINER_HILL      126
-#define SECTOR_ID_RECORDED_BATTLE   127
-#define SECTORS_COUNT               128    // Uses all 512 KB flash (128 sectors)
+#define NUM_SECTORS_PER_SLOT         62    // 1 + 17 + 44 sectors; the only save slot
+#define SECTOR_ID_HOF_1              62
+#define SECTOR_ID_HOF_2              63
+#define SECTOR_ID_TRAINER_HILL       64
+#define SECTOR_ID_RECORDED_BATTLE    65
+#define SECTORS_COUNT                66    // 62 save + 4 special sectors (62 sectors/~248 KB reclaimed from the dropped backup slot)
 
 #define NUM_HOF_SECTORS 2
 
