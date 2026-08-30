@@ -16,6 +16,14 @@ This fork ([`grimechristopher/pokeemerald`](https://github.com/grimechristopher/
 
 None of this is compatible with real Game Boy Advance hardware, save-editing tools built for vanilla saves, or vanilla `pokeemerald-expansion` saves — it's tuned specifically for this project's emulator-only target. If you need any of the above, use upstream `pokeemerald-expansion` instead.
 
+# 🌗 This Fork's Time & Atmosphere Settings
+
+Unlike the save-format changes above, these are just non-default values for config toggles that already exist upstream — nothing save-breaking, and easy to flip back in `include/config/overworld.h` if you don't want them.
+
+- **Non-real-time clock (`OW_USE_FAKE_RTC`).** The in-game clock runs on a simulated `SiiRtcInfo` kept in the save file (`gSaveBlock3Ptr->fakeRTC`) instead of tracking real hardware/host time. At `OW_ALTERED_TIME_RATIO`'s default (`GEN_9`), it advances 20 in-game seconds per real second — a full day/night cycle in about **72 real minutes**, the same pacing Scarlet/Violet ships with.
+- **Time-of-day wild encounters (`OW_TIME_OF_DAY_ENCOUNTERS`).** Every existing encounter table was duplicated across all four periods (Morning/Day/Evening/Night) via the expansion's own migration script, so nothing goes quiet at night — they're just identical for now. Differentiating what actually appears when is a design decision for later, not something baked in here.
+- **DNS window lighting on vanilla Hoenn maps.** The Dynamic Overworld Palette engine (`OW_ENABLE_DNS`) ships on by default upstream, but no maps used it out of the box. This fork restores upstream's own prior light-blending work (`.pla` files, alternate night palettes, lamp/candle/sign sprites) across Dewford, Ever Grande, Lavaridge, Lilycove, Mauville, Mossdeep, Pacifidlog, Petalburg, Route 102, Rustboro, Slateport, Sootopolis, and Verdanturf — it had been added upstream and then explicitly reverted; this fork un-reverts it.
+
 # [Features](FEATURES.md)
 
 **`pokeemerald-expansion`** offers hundreds of features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
