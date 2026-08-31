@@ -17,8 +17,12 @@ TEST("BoxPokemon raw layout is independent of personality and OT ID")
 {
     struct Pokemon monA, monB;
 
-    CreateMon(&monA, SPECIES_WOBBUFFET, 50, 0, TRUE, 0x11111111, OT_ID_PRESET, 0x22222222);
-    CreateMon(&monB, SPECIES_WOBBUFFET, 50, 0, TRUE, 0x99999999, OT_ID_PRESET, 0x88888888);
+    // Plain CreateMon rolls random IVs per call, which would make monA/monB differ
+    // in raw bytes for a reason unrelated to personality/OT ID and defeat the point
+    // of this test - fix IVs at a shared baseline so only the explicit SetMonData
+    // calls below (identical for both mons) can produce a difference.
+    CreateMonWithIVs(&monA, SPECIES_WOBBUFFET, 50, 0x11111111, OTID_STRUCT_PRESET(0x22222222), 0);
+    CreateMonWithIVs(&monB, SPECIES_WOBBUFFET, 50, 0x99999999, OTID_STRUCT_PRESET(0x88888888), 0);
 
     u32 exp = 12345;
     u32 friendship = 42;
@@ -629,8 +633,9 @@ TEST("BoxPokemon data round-trips through every field")
 {
     struct Pokemon mon;
     u32 val;
+    u32 personality = GetMonPersonality(SPECIES_TORCHIC, MON_GENDER_RANDOM, NATURE_HARDY, RANDOM_UNOWN_LETTER);
 
-    CreateMonWithNature(&mon, SPECIES_TORCHIC, 20, 0, NATURE_HARDY);
+    CreateMon(&mon, SPECIES_TORCHIC, 20, personality, OTID_STRUCT_PLAYER_ID);
 
     val = ITEM_ORAN_BERRY;      SetMonData(&mon, MON_DATA_HELD_ITEM, &val);
     val = 3;                    SetMonData(&mon, MON_DATA_MARKINGS, &val);
