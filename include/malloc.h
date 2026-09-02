@@ -17,19 +17,20 @@ struct MemBlock
     // Whether this block is currently allocated.
     u16 allocated:1;
 
-    u16 unused_00:4;
+    u16 unused_00:3;
 
-    // High 11 bits of location pointer.
-    u16 locationHi:11;
+    // High 12 bits of location pointer.
+    u16 locationHi:12;
 
     // Magic number used for error checking. Should equal MALLOC_SYSTEM_ID.
     u16 magic;
 
-    // Size of the block (not including this header struct).
-    u32 size:18;
+    // Size of the block (not including this header struct). 19 bits caps a
+    // single block (so also HEAP_SIZE, its one initial free block) at 512 KB.
+    u32 size:19;
 
-    // Low 14 bits of location pointer.
-    u32 locationLo:14;
+    // Low 13 bits of location pointer.
+    u32 locationLo:13;
 
     // Previous block pointer. Equals sHeapStart if this is the first block.
     struct MemBlock *prev;
@@ -41,7 +42,10 @@ struct MemBlock
     u8 data[0];
 };
 
-#define HEAP_SIZE 0x40000  // Increased to 256 KB for 72-box storage (was 0x1C300 = 112 KB)
+// Increased to 256 KB for 72-box storage (was 0x1C300 = 112 KB).
+// NOTE: must stay under 512 KB - MemBlock.size is a bitfield that can't represent a bigger
+// single (e.g. first, all-free) block; going over silently truncates and corrupts the heap.
+#define HEAP_SIZE 0x40000
 extern u8 gHeap[HEAP_SIZE];
 
 #if TESTING || !defined(NDEBUG)
