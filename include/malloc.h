@@ -42,10 +42,12 @@ struct MemBlock
     u8 data[0];
 };
 
-// Increased to 256 KB for 72-box storage (was 0x1C300 = 112 KB).
+// Increased to 320 KB (was 0x40000 = 256 KB, before that 0x1C300 = 112 KB) - large enough
+// to hold MoveSaveBlocks_ResetHeap()'s simultaneous scratch copies of SaveBlock2 + SaveBlock1
+// + PokemonStorage (302,168 bytes at 128-byte BoxPokemon / 72-box storage), with ~25 KB spare.
 // NOTE: must stay under 512 KB - MemBlock.size is a bitfield that can't represent a bigger
 // single (e.g. first, all-free) block; going over silently truncates and corrupts the heap.
-#define HEAP_SIZE 0x40000
+#define HEAP_SIZE 0x50000
 extern u8 gHeap[HEAP_SIZE];
 
 #if TESTING || !defined(NDEBUG)
