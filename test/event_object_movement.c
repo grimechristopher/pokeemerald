@@ -70,3 +70,12 @@ TEST("LoadSheetGraphicsInfo reallocates non-sheet sprites when frame size change
 
     DestroySprite(sprite);
 }
+
+TEST("IsMetatileDirectionallyImpassable returns FALSE for diagonal directions instead of reading out of bounds")
+{
+    struct ObjectEvent objectEvent = {0};
+    EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_NORTHEAST), FALSE);
+    EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_NORTHWEST), FALSE);
+    EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_SOUTHEAST), FALSE);
+    EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_SOUTHWEST), FALSE);
+}

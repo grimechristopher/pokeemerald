@@ -6602,6 +6602,11 @@ static bool8 IsCoordOutsideObjectEventMovementRange(struct ObjectEvent *objectEv
 
 bool8 IsMetatileDirectionallyImpassable(struct ObjectEvent *objectEvent, s16 x, s16 y, enum Direction direction)
 {
+    // Directionally-blocked metatile behaviors (one-way ledges, currents) are a cardinal-only
+    // concept - a diagonal move is validated per cardinal component by the caller instead.
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+        return FALSE;
+
     if (gOppositeDirectionBlockedMetatileFuncs[direction - 1](objectEvent->currentMetatileBehavior)
         || gDirectionBlockedMetatileFuncs[direction - 1](MapGridGetMetatileBehaviorAt(x, y)))
         return TRUE;
