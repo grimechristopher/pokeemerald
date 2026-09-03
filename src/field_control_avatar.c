@@ -139,7 +139,7 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (OW_DIAGONAL_MOVEMENT >= GEN_6)
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6 && (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT))
     {
         enum Direction vertical = DIR_NONE;
         enum Direction horizontal = DIR_NONE;

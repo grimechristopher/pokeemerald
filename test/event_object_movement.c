@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_object_movement.h"
+#include "field_control_avatar.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
 #include "sprite.h"
@@ -381,4 +382,28 @@ TEST("GetLedgeJumpDirection does not trigger a ledge jump for diagonal direction
     EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_NORTHWEST), DIR_NONE);
     EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_SOUTHEAST), DIR_NONE);
     EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_SOUTHWEST), DIR_NONE);
+}
+
+TEST("FieldGetPlayerInput does not combine diagonal input while surfing")
+{
+    struct FieldInput input = {0};
+    u8 savedFlags = gPlayerAvatar.flags;
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_SURFING;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTH);
+
+    gPlayerAvatar.flags = savedFlags;
+}
+
+TEST("FieldGetPlayerInput combines diagonal input while on foot")
+{
+    struct FieldInput input = {0};
+    u8 savedFlags = gPlayerAvatar.flags;
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_ON_FOOT;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
+
+    gPlayerAvatar.flags = savedFlags;
 }
