@@ -4,7 +4,7 @@
 
 **Goal:** Grow `struct BoxPokemon` from 80 to 128 bytes (Scale, a wider `metLocation`, Shadow Pokémon data, an inline ribbon/mark catalog, a minigame-enrollment flag, and reserved headroom), widen `VARS_COUNT` from 256 to 2,048, and resize the save's PC-storage sector budget to match — all verified against the project's real 512 KB flash target.
 
-**Architecture:** Every new per-mon field lives inline in `BoxPokemon` so it survives the existing trade protocol (`Trade_Memcpy(..., sizeof(struct Pokemon))`) automatically, with zero changes to `src/trade.c`. Nothing is removed from the struct and no existing field changes its stored meaning except `metLocation` (widened) and `unused_0B` (renamed to a real flag, still 1 bit, same position) — so every currently-shipped save-reading code path keeps compiling and behaving the same for fields this plan doesn't touch.
+**Architecture:** Every new per-mon field lives inline in `BoxPokemon` so it survives the existing trade protocol (`Trade_Memcpy(..., sizeof(struct Pokemon))`) automatically. Nothing is removed from the struct and no existing field changes its stored meaning except `metLocation` (widened) and `unused_0B` (renamed to a real flag, still 1 bit, same position) — so every currently-shipped save-reading code path keeps compiling and behaving the same for fields this plan doesn't touch. **Correction (2026-09-02):** this originally claimed zero changes to `src/trade.c`, which didn't hold - the grown `struct Pokemon` (296 B for a party pair, up from 200 B) overflowed `trade.c`'s fixed 256-byte `gBlockSendBuffer`, requiring `BLOCK_BUFFER_SIZE` to grow to 320 B and a new `BLOCK_REQ_SIZE_296`. See the Task 9 blockers below.
 
 **Tech Stack:** C (arm-none-eabi-gcc via devkitARM), the project's `TEST()` / `EXPECT_EQ` unit-test DSL (`test/pokemon.c`), `make check`.
 
@@ -15,13 +15,39 @@
 
 ---
 
-## Progress (updated 2026-09-02)
+## Progress (updated 2026-09-02, second pass)
 
-Tasks 0-10 are committed. Task 11 (full verification) is blocked on `mgba-rom-test-hydra`
-hanging indefinitely in this environment (confirmed: killed after 15+ min with worker CPU
-time flatlined, not just slow) - struct-size guards were instead verified via throwaway
-compile-time `_Static_assert` probes (no emulator needed), not the real `TEST()` runner.
-Flag this gap rather than treating the static-assert checks as equivalent to a real test pass.
+Tasks 0-10 are committed. **Task 11 (full verification) is now done for real** - the
+`mgba-rom-test-hydra` hang below turned out to be a genuine, separate bug (the checked-in
+`tools/mgba/mgba-rom-test` was a stale build still masking EWRAM to the stock 256 KB, which
+started silently corrupting the heap once this project's real EWRAM usage crossed that
+line - unrelated to anything in this plan, root-caused and fixed separately). With a
+working test binary, a full unscoped `make check` (not just this plan's own scoped test
+list) now runs clean: 5560 tests, 4820 passed, 0 crashes/heap corruption, 124 pre-existing
+failures unrelated to this plan (damage-formula test data, battle-message text, AI-behavior
+flakiness - all present before Task 1 started).
+
+That full run also caught one real, pre-existing bug this plan's scoped Task 11 list would
+have caught too, had it ever actually run: **`SetBoxMonData`'s `MON_DATA_NICKNAME` case
+unconditionally read `data[10]`/`data[11]` into `nickname11`/`nickname12` (the secure-region
+11th/12th nickname characters) even when the caller's source string was shorter** - so
+`CreateBoxMon`'s uninitialized stack-local `speciesName` buffer leaked garbage bytes into
+every newly-created mon's persisted data whenever the species name was under 11 characters
+(the overwhelming majority of species). Predates this plan (the nickname11/12 bit-packing
+scheme is pre-existing Gen4-nickname-length infrastructure, not something this plan
+touched) - just never caught before because the real test runner couldn't run. Fixed in
+`src/pokemon.c` by respecting the `EOS` terminator instead of blindly reading past it.
+
+Below is the original (now historical) note about why Task 11 looked blocked - kept for
+the record, since the diagnosis in it (compile-time static asserts standing in for the real
+test runner) was correct as far as it went; it just didn't yet know the real runner itself
+was broken:
+
+> Task 11 (full verification) is blocked on `mgba-rom-test-hydra`
+> hanging indefinitely in this environment (confirmed: killed after 15+ min with worker CPU
+> time flatlined, not just slow) - struct-size guards were instead verified via throwaway
+> compile-time `_Static_assert` probes (no emulator needed), not the real `TEST()` runner.
+> Flag this gap rather than treating the static-assert checks as equivalent to a real test pass.
 
 Two blockers came up building Task 9 that neither this plan nor its "zero changes to
 src/trade.c" architecture claim anticipated, both fixed and committed separately from
@@ -47,9 +73,8 @@ Also notable: Task 10's `BoxPokemon` size estimate (121 bytes pre-task, needing 
 already exactly 128 bytes after Task 9, with zero slack. No `reserved` field was added;
 `STATIC_ASSERT(sizeof(struct BoxPokemon) == 128, ...)` locks the real layout instead.
 
-Not yet done: Task 11's remaining scoped `TEST()` runs (blocked on the hydra hang above),
-and this plan's own architecture-doc paragraph claiming zero `trade.c` changes should be
-corrected to match what actually shipped.
+Both previously-open items are now done: Task 11's full verification ran clean (see above),
+and the architecture-doc paragraph has been corrected to match what actually shipped.
 
 ---
 

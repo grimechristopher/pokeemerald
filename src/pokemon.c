@@ -2577,14 +2577,27 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
             s32 i;
             struct PokemonSubstruct0 *substruct0 = GetSubstruct0(boxMon);
+            bool32 sawEos = FALSE;
             for (i = 0; i < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH); i++)
-                boxMon->nickname[i] = data[i];
-            if (field != MON_DATA_NICKNAME10)
             {
-                if (POKEMON_NAME_LENGTH >= 11)
-                    substruct0->nickname11 = data[10];
-                if (POKEMON_NAME_LENGTH >= 12)
+                boxMon->nickname[i] = data[i];
+                if (data[i] == EOS)
+                    sawEos = TRUE;
+            }
+            // Only read past the primary 10-byte nickname buffer when the caller's
+            // source string actually reaches that far (no EOS seen yet) - `data` is
+            // not guaranteed to be zero-padded past its terminator, so blindly
+            // reading data[10]/data[11] here used to copy whatever uninitialized
+            // bytes happened to follow a short caller-provided buffer (e.g.
+            // CreateBoxMon's stack-local speciesName) into the persisted secure
+            // region.
+            if (field != MON_DATA_NICKNAME10 && !sawEos && POKEMON_NAME_LENGTH >= 11 && data[10] != EOS)
+            {
+                substruct0->nickname11 = data[10];
+                if (POKEMON_NAME_LENGTH >= 12 && data[11] != EOS)
                     substruct0->nickname12 = data[11];
+                else
+                    substruct0->nickname12 = EOS;
             }
             else
             {
