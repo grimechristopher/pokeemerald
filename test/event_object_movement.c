@@ -40,7 +40,35 @@ static const struct ObjectEventGraphicsInfo sGraphicsInfo32x32 = {
     .images = sImages32x32,
 };
 
+static const struct ObjectEventGraphicsInfo sGraphicsInfo32x32WithDiagonals = {
+    .tileTag = TAG_NONE,
+    .size = sizeof(sFrame32x32),
+    .oam = &sOam32x32,
+    .images = sImages32x32,
+    .hasDiagonalFrames = TRUE,
+};
+
 extern u16 LoadSheetGraphicsInfo(const struct ObjectEventGraphicsInfo *info, u16 uuid, struct Sprite *sprite);
+
+TEST("GetFaceDirectionAnimNumForGraphicsInfo falls back to the East/West substitution when hasDiagonalFrames is unset")
+{
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32, DIR_NORTHEAST), ANIM_STD_FACE_EAST);
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32, DIR_NORTHWEST), ANIM_STD_FACE_WEST);
+}
+
+TEST("GetFaceDirectionAnimNumForGraphicsInfo uses the real diagonal anim when hasDiagonalFrames is set")
+{
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32WithDiagonals, DIR_NORTHEAST), ANIM_STD_FACE_NORTHEAST);
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32WithDiagonals, DIR_NORTHWEST), ANIM_STD_FACE_NORTHWEST);
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32WithDiagonals, DIR_SOUTHEAST), ANIM_STD_FACE_SOUTHEAST);
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32WithDiagonals, DIR_SOUTHWEST), ANIM_STD_FACE_SOUTHWEST);
+}
+
+TEST("GetFaceDirectionAnimNumForGraphicsInfo is unaffected for cardinal directions either way")
+{
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32, DIR_NORTH), ANIM_STD_FACE_NORTH);
+    EXPECT_EQ(GetFaceDirectionAnimNumForGraphicsInfo(&sGraphicsInfo32x32WithDiagonals, DIR_NORTH), ANIM_STD_FACE_NORTH);
+}
 
 TEST("LoadSheetGraphicsInfo reallocates non-sheet sprites when frame size changes")
 {

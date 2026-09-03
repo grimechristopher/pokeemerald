@@ -330,6 +330,7 @@ struct ObjectEventGraphicsInfo
     /*0x18*/ const union AnimCmd *const *anims;
     /*0x1C*/ const struct SpriteFrameImage *images;
     /*0x20*/ const union AffineAnimCmd *const *affineAnims;
+    bool8 hasDiagonalFrames; // If TRUE, `anims` includes real diagonal-facing frames after the 4 cardinal ones instead of falling back to the East/West substitution.
 };
 
 enum {

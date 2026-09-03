@@ -793,6 +793,29 @@ static const u8 sFaceDirectionAnimNums[] = {
     [DIR_NORTHWEST] = ANIM_STD_FACE_WEST,
     [DIR_NORTHEAST] = ANIM_STD_FACE_EAST,
 };
+
+u8 GetFaceDirectionAnimNumForGraphicsInfo(const struct ObjectEventGraphicsInfo *graphicsInfo, enum Direction direction)
+{
+    if (graphicsInfo->hasDiagonalFrames)
+    {
+        switch (direction)
+        {
+        case DIR_NORTHEAST:
+            return ANIM_STD_FACE_NORTHEAST;
+        case DIR_NORTHWEST:
+            return ANIM_STD_FACE_NORTHWEST;
+        case DIR_SOUTHEAST:
+            return ANIM_STD_FACE_SOUTHEAST;
+        case DIR_SOUTHWEST:
+            return ANIM_STD_FACE_SOUTHWEST;
+        default:
+            break;
+        }
+    }
+
+    return sFaceDirectionAnimNums[direction];
+}
+
 static const u8 sMoveDirectionAnimNums[] = {
     [DIR_NONE] = ANIM_STD_GO_SOUTH,
     [DIR_SOUTH] = ANIM_STD_GO_SOUTH,
