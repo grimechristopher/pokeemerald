@@ -205,3 +205,24 @@ TEST("ResolveStairsMoveDirection passes cardinal input through unchanged")
     EXPECT_EQ(ResolveStairsMoveDirection(DIR_WEST), DIR_WEST);
     EXPECT_EQ(ResolveStairsMoveDirection(DIR_NONE), DIR_NONE);
 }
+
+TEST("A diagonal MoveCoords step moves both axes by exactly one tile")
+{
+    s16 x = 5, y = 5;
+    MoveCoords(DIR_NORTHEAST, &x, &y);
+    EXPECT_EQ(x, 6);
+    EXPECT_EQ(y, 4);
+
+    x = 5; y = 5;
+    MoveCoords(DIR_SOUTHWEST, &x, &y);
+    EXPECT_EQ(x, 4);
+    EXPECT_EQ(y, 6);
+}
+
+TEST("GetFaceDirectionMovementAction resolves every diagonal direction to a valid movement action")
+{
+    EXPECT(GetFaceDirectionMovementAction(DIR_NORTHEAST) != MOVEMENT_ACTION_NONE);
+    EXPECT(GetFaceDirectionMovementAction(DIR_NORTHWEST) != MOVEMENT_ACTION_NONE);
+    EXPECT(GetFaceDirectionMovementAction(DIR_SOUTHEAST) != MOVEMENT_ACTION_NONE);
+    EXPECT(GetFaceDirectionMovementAction(DIR_SOUTHWEST) != MOVEMENT_ACTION_NONE);
+}
