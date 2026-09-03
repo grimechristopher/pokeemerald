@@ -206,6 +206,7 @@ u8 GetObjectEventIdByPosition(u16 x, u16 y, u8 elevation);
 void SetTrainerMovementType(struct ObjectEvent *objectEvent, u8 movementType);
 u8 GetCollisionInDirection(struct ObjectEvent *, enum Direction);
 bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction);
+bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *, enum Direction);
 enum Direction GetDiagonalMoveDirection(enum Direction vertical, enum Direction horizontal);
 enum Direction ResolveStairsMoveDirection(enum Direction direction);
 u8 GetTrainerFacingDirectionMovementType(enum Direction direction);

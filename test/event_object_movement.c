@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_object_movement.h"
+#include "field_player_avatar.h"
 #include "fieldmap.h"
 #include "sprite.h"
 #include "test/test.h"
@@ -200,6 +201,48 @@ TEST("CanObjectEventMoveInDirection blocks a diagonal move onto a blocked destin
     PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
     BlockTestMapTile(TEST_MAP_ORIGIN + 1, TEST_MAP_ORIGIN - 1); // the actual NE destination tile
     EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), FALSE);
+}
+
+TEST("IsDiagonalMoveBlockedByCorner returns FALSE for a cardinal direction")
+{
+    struct ObjectEvent objectEvent = {0};
+    objectEvent.currentCoords.x = 10;
+    objectEvent.currentCoords.y = 10;
+    EXPECT_EQ(IsDiagonalMoveBlockedByCorner(&objectEvent, DIR_NORTH), FALSE);
+}
+
+// CheckForPlayerAvatarCollision is the player's own collision path - a separate function
+// from CanObjectEventMoveInDirection (used by NPC wander). These integration-level tests
+// drive it directly, against the player's own gObjectEvents entry (gPlayerAvatar.objectEventId),
+// to confirm the no-corner-cutting rule is actually wired up there and not just unit-tested
+// in isolation via IsDiagonalMoveBlockedByCorner/CanObjectEventMoveInDirection above.
+TEST("CheckForPlayerAvatarCollision blocks corner-cutting on the player's own diagonal move when both flanks are blocked")
+{
+    u8 savedObjectEventId = gPlayerAvatar.objectEventId;
+
+    SetUpTestMap();
+    PlaceTestObjectEvent(&gObjectEvents[0], TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    gPlayerAvatar.objectEventId = 0;
+    BlockTestMapTile(TEST_MAP_ORIGIN, TEST_MAP_ORIGIN - 1); // north flank blocked
+    BlockTestMapTile(TEST_MAP_ORIGIN + 1, TEST_MAP_ORIGIN); // east flank blocked
+
+    EXPECT_EQ(CheckForPlayerAvatarCollision(DIR_NORTHEAST), COLLISION_IMPASSABLE);
+
+    gPlayerAvatar.objectEventId = savedObjectEventId;
+}
+
+TEST("CheckForPlayerAvatarCollision allows the player's diagonal move when at least one flank is open")
+{
+    u8 savedObjectEventId = gPlayerAvatar.objectEventId;
+
+    SetUpTestMap();
+    PlaceTestObjectEvent(&gObjectEvents[0], TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    gPlayerAvatar.objectEventId = 0;
+    BlockTestMapTile(TEST_MAP_ORIGIN, TEST_MAP_ORIGIN - 1); // north flank blocked, east flank still open
+
+    EXPECT_EQ(CheckForPlayerAvatarCollision(DIR_NORTHEAST), COLLISION_NONE);
+
+    gPlayerAvatar.objectEventId = savedObjectEventId;
 }
 
 TEST("GetDiagonalMoveDirection combines a held vertical and horizontal direction into a diagonal")

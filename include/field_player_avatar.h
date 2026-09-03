@@ -31,6 +31,9 @@ void PlayerSetAnimId(u8 movementActionId, enum CopyMovement copyableMovement);
 bool8 IsPlayerCollidingWithFarawayIslandMew(enum Direction direction);
 void PlayerOnBikeCollideWithFarawayIslandMew(enum Direction direction);
 enum Collision CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16 x, s16 y, enum Direction direction, u8 metatileBehavior);
+// Exposed (non-static) so tests can exercise the player's own collision path directly,
+// including the no-corner-cutting check it shares with CanObjectEventMoveInDirection.
+enum Collision CheckForPlayerAvatarCollision(enum Direction direction);
 u8 PlayerGetElevation(void);
 void SetPlayerAvatarTransitionFlags(u16 transitionFlags);
 void CancelPlayerForcedMovement(void);

@@ -101,7 +101,6 @@ static u8 CheckMovementInputNotOnBike(enum Direction);
 static void PlayerNotOnBikeNotMoving(enum Direction, u16);
 static void PlayerNotOnBikeTurningInPlace(enum Direction, u16);
 static void PlayerNotOnBikeMoving(enum Direction, u16);
-static enum Collision CheckForPlayerAvatarCollision(enum Direction);
 static enum Collision CheckForPlayerAvatarStaticCollision(enum Direction);
 static enum Collision CheckForObjectEventStaticCollision(struct ObjectEvent *, s16, s16, enum Direction, u8);
 static bool8 CanStopSurfing(s16, s16, enum Direction);
@@ -946,7 +945,7 @@ static void PlayerNotOnBikeMoving(enum Direction direction, u16 heldKeys)
     }
 }
 
-static enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
+enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
 {
     s16 x, y;
     struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
@@ -955,6 +954,9 @@ static enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
     y = playerObjEvent->currentCoords.y;
     if (IsDirectionalStairWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
         return COLLISION_STAIR_WARP;
+
+    if (IsDiagonalMoveBlockedByCorner(playerObjEvent, direction))
+        return COLLISION_IMPASSABLE;
 
     MoveCoords(direction, &x, &y);
     return CheckForObjectEventCollision(playerObjEvent, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));

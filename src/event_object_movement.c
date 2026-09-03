@@ -6489,19 +6489,28 @@ u8 GetCollisionInDirection(struct ObjectEvent *objectEvent, enum Direction direc
     return GetCollisionAtCoords(objectEvent, x, y, direction);
 }
 
-bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+// No corner-cutting: for a diagonal move, at least one of the two flanking cardinal
+// tiles must be passable, or the move is rejected even if the diagonal destination
+// tile itself is open. Shared by the player's own collision path
+// (CheckForPlayerAvatarCollision, src/field_player_avatar.c) and the NPC-wander path
+// (CanObjectEventMoveInDirection below) so the rule can't drift apart between them.
+bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *objectEvent, enum Direction direction)
 {
     enum Direction vertical, horizontal;
 
     if (direction < CARDINAL_DIRECTION_COUNT)
-        return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+        return FALSE;
 
     vertical = (direction == DIR_NORTHEAST || direction == DIR_NORTHWEST) ? DIR_NORTH : DIR_SOUTH;
     horizontal = (direction == DIR_NORTHEAST || direction == DIR_SOUTHEAST) ? DIR_EAST : DIR_WEST;
 
-    // No corner-cutting: at least one of the two flanking cardinal tiles must be passable.
-    if (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
-     && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE)
+    return (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
+         && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE);
+}
+
+bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    if (IsDiagonalMoveBlockedByCorner(objectEvent, direction))
         return FALSE;
 
     return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
