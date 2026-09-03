@@ -241,3 +241,19 @@ TEST("gStandardDirectionsWithDiagonals has exactly the 4 cardinal and 4 diagonal
         seen[direction] = TRUE;
     }
 }
+
+TEST("GetFollowerStepDirection returns a diagonal direction when both axes differ by one tile")
+{
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 6, 4), DIR_NORTHEAST);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 4, 4), DIR_NORTHWEST);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 6, 6), DIR_SOUTHEAST);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 4, 6), DIR_SOUTHWEST);
+}
+
+TEST("GetFollowerStepDirection falls back to a cardinal direction when only one axis differs")
+{
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 5, 4), DIR_NORTH);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 5, 6), DIR_SOUTH);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 4, 5), DIR_WEST);
+    EXPECT_EQ(GetFollowerStepDirection(5, 5, 6, 5), DIR_EAST);
+}

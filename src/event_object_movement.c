@@ -5908,7 +5908,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     }
 
     // Follow player
-    direction = GetDirectionToFace(x, y, targetX, targetY);
+    direction = GetFollowerStepDirection(x, y, targetX, targetY);
     // During a script, if player sidesteps or backsteps,
     // mirror player's direction instead
     if (ArePlayerFieldControlsLocked() &&
@@ -6350,6 +6350,28 @@ enum Direction GetDirectionToFace(s16 x, s16 y, s16 targetX, s16 targetY)
         return DIR_NORTH;
 
     return DIR_SOUTH;
+}
+
+// Like GetDirectionToFace, but resolves a diagonal direction when the target differs in
+// both axes - used only for the follower's step toward the player's previous tile, which
+// can now be diagonally offset. GetDirectionToFace itself stays cardinal-only since it's
+// also script-exposed (GetDirectionToFaceScript) for unrelated "face toward" behavior.
+enum Direction GetFollowerStepDirection(s16 x, s16 y, s16 targetX, s16 targetY)
+{
+    enum Direction vertical = DIR_NONE;
+    enum Direction horizontal = DIR_NONE;
+
+    if (y > targetY)
+        vertical = DIR_NORTH;
+    else if (y < targetY)
+        vertical = DIR_SOUTH;
+
+    if (x > targetX)
+        horizontal = DIR_WEST;
+    else if (x < targetX)
+        horizontal = DIR_EAST;
+
+    return GetDiagonalMoveDirection(vertical, horizontal);
 }
 
 // Uses the above, but script accessible, and uses localIds

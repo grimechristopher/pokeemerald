@@ -157,6 +157,7 @@ void UpdateFollowingPokemon(void);
 void RemoveFollowingPokemon(void);
 struct ObjectEvent *GetFollowerObject(void);
 enum Direction GetDirectionToFace(s16, s16, s16, s16);
+enum Direction GetFollowerStepDirection(s16 x, s16 y, s16 targetX, s16 targetY);
 void UpdateLightSprite(struct Sprite *);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
 u8 CreateObjectGraphicsSpriteWithTag(u16 graphicsId, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u16 paletteTag);
