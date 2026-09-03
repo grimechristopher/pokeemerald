@@ -3,6 +3,8 @@
 The binaries in this folder are built from `mGBA`, an emulator for running Game Boy Advance games. The source code is available here: <https://github.com/mgba-emu/mgba>.
 The source code for these specific builds is available from:
 
- - Windows: <https://github.com/mgba-emu/mgba/tree/7ee2be6c96222dca12a9a579b747fe5ff1829def>
- - Linux: <https://github.com/mgba-emu/mgba/tree/dbffb46c4e7d2e7a2cbed7c3488cece4c2176d4c>
- - Mac: <https://github.com/mgba-emu/mgba/tree/daf01b03d5316dac966acd4b05318a225cab12f5>
+ - Windows: <https://github.com/mgba-emu/mgba/tree/7ee2be6c96222dca12a9a579b747fe5ff1829def> — **stale, still stock 256 KB EWRAM (see note below)**
+ - Linux: built from this project's `mgba-expanded` fork (commit `f5c6cf842344295e939c1e74edaa4b985f1fd491`), a fork of the original pinned commit `dbffb46c4e7d2e7a2cbed7c3488cece4c2176d4c` with EWRAM expanded from 256 KB to 1 MB to match this project's actual 1 MB EWRAM (see `include/gba/defines.h` and `ld_script_test.ld`/`ld_script_modern.ld`). Built headless-only (`-DBUILD_HEADLESS=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DUSE_LIBZIP=OFF -DUSE_MINIZIP=OFF -DUSE_SQLITE3=OFF -DUSE_EPOXY=OFF -DENABLE_SCRIPTING=OFF -DUSE_FREETYPE=OFF -DUSE_PNG=OFF -DUSE_EDITLINE=OFF -DBUILD_GL=OFF -DBUILD_GLES2=OFF -DBUILD_GLES3=OFF`) to keep its dependency footprint close to the original.
+ - Mac: <https://github.com/mgba-emu/mgba/tree/daf01b03d5316dac966acd4b05318a225cab12f5> — **stale, still stock 256 KB EWRAM (see note below)**
+
+**Why the Linux binary was rebuilt (2026-09-02):** the stock builds only back EWRAM with 256 KB and mask every EWRAM access to that size. Once this project's total EWRAM footprint (heap + globals) grew past 256 KB, the stock test binary began silently wrapping any write past that boundary back onto the low 256 KB — corrupting `gHeap` and producing seemingly-random heap-corruption crashes in `make check` that had nothing to do with the code under test. See `docs/superpowers/plans/2026-08-30-boxpokemon-expansion.md` and the malloc/window/scanline-effect investigation in project history for the full trace. **The Windows and Mac binaries have the same latent bug and need the equivalent rebuild** from `mgba-expanded` before they can be trusted for `make check` on this project once EWRAM usage crosses 256 KB.
