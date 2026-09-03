@@ -1026,6 +1026,10 @@ const u8 gWalkSlowMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_SLOW_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_SLOW_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_SLOW_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkNormalMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_NORMAL_DOWN,
@@ -1033,6 +1037,10 @@ const u8 gWalkNormalMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_NORMAL_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_NORMAL_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_NORMAL_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkFastMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FAST_DOWN,
@@ -1040,6 +1048,10 @@ const u8 gWalkFastMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FAST_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_FAST_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_FAST_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gRideWaterCurrentMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN,
@@ -1054,6 +1066,12 @@ const u8 gWalkFasterMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FASTER_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_FASTER_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_FASTER_RIGHT,
+    // No WALK_FASTER-specific diagonal frames exist yet; fall back to the closest
+    // available diagonal animation (WALK_FAST) rather than leaving this unhandled.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gSlideMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_SLIDE_DOWN,
@@ -1068,6 +1086,12 @@ const u8 gPlayerRunMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_PLAYER_RUN_UP,
     [DIR_WEST] = MOVEMENT_ACTION_PLAYER_RUN_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_PLAYER_RUN_RIGHT,
+    // No PLAYER_RUN-specific diagonal frames exist yet; fall back to the closest
+    // available diagonal animation (WALK_FAST) rather than leaving this unhandled.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gJump2MovementActions[] = {
     MOVEMENT_ACTION_JUMP_2_DOWN,
@@ -7006,7 +7030,7 @@ u8 name(u32 idx)\
     u8 animIds[sizeof(table)];\
     direction = idx;\
     memcpy(animIds, (table), sizeof(table));\
-    if (direction > sizeof(table)) direction = 0;\
+    if (direction >= sizeof(table)) direction = 0;\
     return animIds[direction];\
 }
 
@@ -10056,10 +10080,11 @@ enum Direction GetLedgeJumpDirection(s16 x, s16 y, enum Direction direction)
     u8 behavior;
     enum Direction index = direction;
 
-    if (index == DIR_NONE)
+    // Ledges are only jumpable from a cardinal approach - a diagonal approach is treated as
+    // any other blocked move (see the design spec's "Ledges" section), not folded onto a
+    // cardinal jump direction, which used to jump the wrong way and desync position.
+    if (index == DIR_NONE || index >= CARDINAL_DIRECTION_COUNT)
         return DIR_NONE;
-    else if (index > DIR_EAST)
-        index -= DIR_EAST;
 
     index--;
     behavior = MapGridGetMetatileBehaviorAt(x, y);

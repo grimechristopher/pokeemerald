@@ -257,3 +257,57 @@ TEST("GetFollowerStepDirection falls back to a cardinal direction when only one 
     EXPECT_EQ(GetFollowerStepDirection(5, 5, 4, 5), DIR_WEST);
     EXPECT_EQ(GetFollowerStepDirection(5, 5, 6, 5), DIR_EAST);
 }
+
+TEST("GetWalkNormalMovementAction resolves every diagonal direction to a distinct, valid action")
+{
+    EXPECT_EQ(GetWalkNormalMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetWalkNormalMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetWalkNormalMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetWalkNormalMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_LEFT);
+}
+
+TEST("GetWalkFastMovementAction resolves every diagonal direction to a distinct, valid action")
+{
+    EXPECT_EQ(GetWalkFastMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetWalkFastMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetWalkFastMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetWalkFastMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT);
+}
+
+TEST("GetWalkSlowMovementAction resolves every diagonal direction to a distinct, valid action")
+{
+    EXPECT_EQ(GetWalkSlowMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetWalkSlowMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetWalkSlowMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetWalkSlowMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_LEFT);
+}
+
+TEST("GetWalkFasterMovementAction falls back to the WALK_FAST diagonal action")
+{
+    EXPECT_EQ(GetWalkFasterMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);
+}
+
+TEST("GetPlayerRunMovementAction falls back to the WALK_FAST diagonal action")
+{
+    EXPECT_EQ(GetPlayerRunMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);
+}
+
+TEST("A dirn_to_anim table with no diagonal entries falls back safely instead of reading out of bounds")
+{
+    // gJump2MovementActions is deliberately NOT extended with diagonal entries (ledges are
+    // out of scope for diagonal movement) - confirm the macro's bounds check makes this safe
+    // rather than reading past the array, for every diagonal direction including the
+    // DIR_SOUTHWEST edge case that used to pass the old off-by-one `>` check.
+    EXPECT_EQ(GetJump2MovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_JUMP_2_DOWN);
+    EXPECT_EQ(GetJump2MovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_JUMP_2_DOWN);
+    EXPECT_EQ(GetJump2MovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_JUMP_2_DOWN);
+    EXPECT_EQ(GetJump2MovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_JUMP_2_DOWN);
+}
+
+TEST("GetLedgeJumpDirection does not trigger a ledge jump for diagonal directions")
+{
+    EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_NORTHEAST), DIR_NONE);
+    EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_NORTHWEST), DIR_NONE);
+    EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_SOUTHEAST), DIR_NONE);
+    EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_SOUTHWEST), DIR_NONE);
+}
