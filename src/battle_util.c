@@ -7279,7 +7279,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
 // base damage formula before adding any modifiers
 static inline s32 CalculateBaseDamage(u32 power, u32 userFinalAttack, u32 level, u32 targetFinalDefense)
 {
-    return power * userFinalAttack * (2 * 50 / 5 + 2) / targetFinalDefense / 50 + 2;
+    return power * userFinalAttack * (2 * level / 5 + 2) / targetFinalDefense / 50 + 2;
 }
 
 static inline uq4_12_t GetTargetDamageModifier(struct DamageContext *ctx)
@@ -7653,7 +7653,7 @@ static inline s32 DoMoveDamageCalcVars(struct DamageContext *ctx)
     userFinalAttack = CalcAttackStat(ctx);
     targetFinalDefense = CalcDefenseStat(ctx);
 
-    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, 50, targetFinalDefense);
+    dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, gBattleMons[ctx->battlerAtk].level, targetFinalDefense);
     DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(ctx->battlerAtk));
     DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(ctx));
@@ -9419,7 +9419,7 @@ u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
 
 void CopyMonLevelAndBaseStatsToBattleMon(enum BattlerId battler, struct Pokemon *mon)
 {
-    gBattleMons[battler].level = 50;
+    gBattleMons[battler].level = GetMonData(mon, MON_DATA_LEVEL);
     gBattleMons[battler].hp = GetMonData(mon, MON_DATA_HP);
     gBattleMons[battler].maxHP = GetMonData(mon, MON_DATA_MAX_HP);
     gBattleMons[battler].attack = GetMonData(mon, MON_DATA_ATK);
