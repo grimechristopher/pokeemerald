@@ -188,3 +188,20 @@ TEST("GetDiagonalMoveDirection falls back to whichever single axis is held")
     EXPECT_EQ(GetDiagonalMoveDirection(DIR_NONE, DIR_EAST), DIR_EAST);
     EXPECT_EQ(GetDiagonalMoveDirection(DIR_NONE, DIR_NONE), DIR_NONE);
 }
+
+TEST("ResolveStairsMoveDirection prefers the horizontal component of a diagonal input")
+{
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_NORTHEAST), DIR_EAST);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_NORTHWEST), DIR_WEST);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_SOUTHEAST), DIR_EAST);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_SOUTHWEST), DIR_WEST);
+}
+
+TEST("ResolveStairsMoveDirection passes cardinal input through unchanged")
+{
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_NORTH), DIR_NORTH);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_SOUTH), DIR_SOUTH);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_EAST), DIR_EAST);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_WEST), DIR_WEST);
+    EXPECT_EQ(ResolveStairsMoveDirection(DIR_NONE), DIR_NONE);
+}

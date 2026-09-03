@@ -6718,6 +6718,26 @@ enum Direction GetDiagonalMoveDirection(enum Direction vertical, enum Direction 
     return horizontal;
 }
 
+// Sideways stairs are driven entirely by cardinal input (GetLeftSideStairsDirection/
+// GetRightSideStairsDirection translate a plain West/East press into the correct diagonal
+// walk). A genuinely diagonal input needs to be decomposed back into a single cardinal
+// component before it reaches that existing, unmodified logic - horizontal preferred,
+// since stairs are fundamentally a left/right-driven mechanic.
+enum Direction ResolveStairsMoveDirection(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        return DIR_EAST;
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        return DIR_WEST;
+    default:
+        return direction;
+    }
+}
+
 static void UNUSED MoveCoordsInMapCoordIncrement(enum Direction direction, s16 *x, s16 *y)
 {
     *x += sDirectionToVectors[direction].x << 4;

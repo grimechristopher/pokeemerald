@@ -711,8 +711,18 @@ static void PlaySpinSound(void)
     PlaySE(SE_M_RAZOR_WIND2);
 }
 
+static bool8 IsOnSidewaysStairsTile(u8 metatileBehavior)
+{
+    return MetatileBehavior_IsSidewaysStairsLeftSideAny(metatileBehavior)
+        || MetatileBehavior_IsSidewaysStairsRightSideAny(metatileBehavior);
+}
+
 static void MovePlayerNotOnBike(enum Direction direction, u16 heldKeys)
 {
+    if (direction >= CARDINAL_DIRECTION_COUNT
+     && IsOnSidewaysStairsTile(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
+        direction = ResolveStairsMoveDirection(direction);
+
     sPlayerNotOnBikeFuncs[CheckMovementInputNotOnBike(direction)](direction, heldKeys);
 }
 
