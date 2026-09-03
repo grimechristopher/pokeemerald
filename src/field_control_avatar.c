@@ -139,14 +139,34 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (heldKeys & DPAD_UP)
-        input->dpadDirection = DIR_NORTH;
-    else if (heldKeys & DPAD_DOWN)
-        input->dpadDirection = DIR_SOUTH;
-    else if (heldKeys & DPAD_LEFT)
-        input->dpadDirection = DIR_WEST;
-    else if (heldKeys & DPAD_RIGHT)
-        input->dpadDirection = DIR_EAST;
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6)
+    {
+        enum Direction vertical = DIR_NONE;
+        enum Direction horizontal = DIR_NONE;
+
+        if (heldKeys & DPAD_UP)
+            vertical = DIR_NORTH;
+        else if (heldKeys & DPAD_DOWN)
+            vertical = DIR_SOUTH;
+
+        if (heldKeys & DPAD_LEFT)
+            horizontal = DIR_WEST;
+        else if (heldKeys & DPAD_RIGHT)
+            horizontal = DIR_EAST;
+
+        input->dpadDirection = GetDiagonalMoveDirection(vertical, horizontal);
+    }
+    else
+    {
+        if (heldKeys & DPAD_UP)
+            input->dpadDirection = DIR_NORTH;
+        else if (heldKeys & DPAD_DOWN)
+            input->dpadDirection = DIR_SOUTH;
+        else if (heldKeys & DPAD_LEFT)
+            input->dpadDirection = DIR_WEST;
+        else if (heldKeys & DPAD_RIGHT)
+            input->dpadDirection = DIR_EAST;
+    }
 
     if (DEBUG_OVERWORLD_MENU && !DEBUG_OVERWORLD_IN_MENU)
     {

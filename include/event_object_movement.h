@@ -203,6 +203,7 @@ u8 GetObjectEventIdByPosition(u16 x, u16 y, u8 elevation);
 void SetTrainerMovementType(struct ObjectEvent *objectEvent, u8 movementType);
 u8 GetCollisionInDirection(struct ObjectEvent *, enum Direction);
 bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction);
+enum Direction GetDiagonalMoveDirection(enum Direction vertical, enum Direction horizontal);
 u8 GetTrainerFacingDirectionMovementType(enum Direction direction);
 const u8 *GetObjectEventScriptPointerByObjectEventId(u8 objectEventId);
 u8 GetCollisionFlagsAtCoords(struct ObjectEvent *objectEvent, s16 x, s16 y, enum Direction direction);

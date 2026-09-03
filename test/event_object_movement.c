@@ -173,3 +173,18 @@ TEST("CanObjectEventMoveInDirection blocks a diagonal move onto a blocked destin
     BlockTestMapTile(TEST_MAP_ORIGIN + 1, TEST_MAP_ORIGIN - 1); // the actual NE destination tile
     EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), FALSE);
 }
+
+TEST("GetDiagonalMoveDirection combines a held vertical and horizontal direction into a diagonal")
+{
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_NORTH, DIR_EAST), DIR_NORTHEAST);
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_NORTH, DIR_WEST), DIR_NORTHWEST);
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_SOUTH, DIR_EAST), DIR_SOUTHEAST);
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_SOUTH, DIR_WEST), DIR_SOUTHWEST);
+}
+
+TEST("GetDiagonalMoveDirection falls back to whichever single axis is held")
+{
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_NORTH, DIR_NONE), DIR_NORTH);
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_NONE, DIR_EAST), DIR_EAST);
+    EXPECT_EQ(GetDiagonalMoveDirection(DIR_NONE, DIR_NONE), DIR_NONE);
+}

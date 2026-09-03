@@ -6703,6 +6703,21 @@ void MoveCoords(enum Direction direction, s16 *x, s16 *y)
     *y += sDirectionToVectors[direction].y;
 }
 
+enum Direction GetDiagonalMoveDirection(enum Direction vertical, enum Direction horizontal)
+{
+    if (vertical == DIR_NORTH && horizontal == DIR_WEST)
+        return DIR_NORTHWEST;
+    if (vertical == DIR_NORTH && horizontal == DIR_EAST)
+        return DIR_NORTHEAST;
+    if (vertical == DIR_SOUTH && horizontal == DIR_WEST)
+        return DIR_SOUTHWEST;
+    if (vertical == DIR_SOUTH && horizontal == DIR_EAST)
+        return DIR_SOUTHEAST;
+    if (vertical != DIR_NONE)
+        return vertical;
+    return horizontal;
+}
+
 static void UNUSED MoveCoordsInMapCoordIncrement(enum Direction direction, s16 *x, s16 *y)
 {
     *x += sDirectionToVectors[direction].x << 4;
