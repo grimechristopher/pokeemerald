@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_object_movement.h"
+#include "fieldmap.h"
 #include "sprite.h"
 #include "test/test.h"
 
@@ -78,4 +79,97 @@ TEST("IsMetatileDirectionallyImpassable returns FALSE for diagonal directions in
     EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_NORTHWEST), FALSE);
     EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_SOUTHEAST), FALSE);
     EXPECT_EQ(IsMetatileDirectionallyImpassable(&objectEvent, 0, 0, DIR_SOUTHWEST), FALSE);
+}
+
+static void PlaceTestObjectEvent(struct ObjectEvent *objectEvent, s16 x, s16 y)
+{
+    memset(objectEvent, 0, sizeof(*objectEvent));
+    objectEvent->currentCoords.x = x;
+    objectEvent->currentCoords.y = y;
+    objectEvent->previousCoords.x = x;
+    objectEvent->previousCoords.y = y;
+    objectEvent->currentElevation = ELEVATION_DEFAULT;
+}
+
+// GetMapBorderIdAt (src/fieldmap.c) treats any coordinate within MAP_OFFSET (7) tiles of the
+// grid edge as a border/connection check, returning CONNECTION_INVALID (blocking every move)
+// unless sMapConnectionFlags says otherwise - which is unset in a bare test context. The grid
+// has to be big enough that the whole test area sits strictly inside that margin: valid
+// interior coordinates are 7 <= x < (width - 8) and 7 <= y < (height - 7). A 21x21 grid with
+// the object event at (10, 10) gives a comfortable interior neighborhood (valid x: 7-12,
+// valid y: 7-13) for every direction this task's tests move in.
+#define TEST_MAP_SIZE 21
+#define TEST_MAP_ORIGIN 10
+static u16 sTestMapGrid[TEST_MAP_SIZE * TEST_MAP_SIZE];
+
+static void SetUpTestMap(void)
+{
+    s32 i;
+    for (i = 0; i < ARRAY_COUNT(sTestMapGrid); i++)
+        sTestMapGrid[i] = PACK_ELEVATION(ELEVATION_DEFAULT);
+    gBackupMapLayout.width = TEST_MAP_SIZE;
+    gBackupMapLayout.height = TEST_MAP_SIZE;
+    gBackupMapLayout.map = sTestMapGrid;
+    // DoesObjectCollideWithObjectAt scans the global gObjectEvents[] array - clear it so a
+    // stale .active entry left over from an unrelated earlier test can't cause a spurious
+    // collision at one of this test's coordinates.
+    memset(gObjectEvents, 0, sizeof(gObjectEvents));
+}
+
+static void BlockTestMapTile(s16 x, s16 y)
+{
+    sTestMapGrid[x + gBackupMapLayout.width * y] = PACK_ELEVATION(ELEVATION_DEFAULT) | MAPGRID_IMPASSABLE;
+}
+
+TEST("CanObjectEventMoveInDirection allows a plain cardinal move onto an open tile")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTH), TRUE);
+}
+
+TEST("CanObjectEventMoveInDirection blocks a plain cardinal move onto a blocked tile")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    BlockTestMapTile(TEST_MAP_ORIGIN, TEST_MAP_ORIGIN - 1); // directly north
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTH), FALSE);
+}
+
+TEST("CanObjectEventMoveInDirection allows a diagonal move when both flanks are open")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), TRUE);
+}
+
+TEST("CanObjectEventMoveInDirection allows a diagonal move when exactly one flank is open")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    BlockTestMapTile(TEST_MAP_ORIGIN, TEST_MAP_ORIGIN - 1); // north flank blocked
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), TRUE); // east flank still open
+}
+
+TEST("CanObjectEventMoveInDirection blocks corner-cutting when both flanks are blocked")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    BlockTestMapTile(TEST_MAP_ORIGIN, TEST_MAP_ORIGIN - 1); // north flank blocked
+    BlockTestMapTile(TEST_MAP_ORIGIN + 1, TEST_MAP_ORIGIN); // east flank blocked
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), FALSE);
+}
+
+TEST("CanObjectEventMoveInDirection blocks a diagonal move onto a blocked destination even with both flanks open")
+{
+    struct ObjectEvent objectEvent;
+    SetUpTestMap();
+    PlaceTestObjectEvent(&objectEvent, TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    BlockTestMapTile(TEST_MAP_ORIGIN + 1, TEST_MAP_ORIGIN - 1); // the actual NE destination tile
+    EXPECT_EQ(CanObjectEventMoveInDirection(&objectEvent, DIR_NORTHEAST), FALSE);
 }

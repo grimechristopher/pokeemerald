@@ -6414,6 +6414,24 @@ u8 GetCollisionInDirection(struct ObjectEvent *objectEvent, enum Direction direc
     return GetCollisionAtCoords(objectEvent, x, y, direction);
 }
 
+bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction vertical, horizontal;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+
+    vertical = (direction == DIR_NORTHEAST || direction == DIR_NORTHWEST) ? DIR_NORTH : DIR_SOUTH;
+    horizontal = (direction == DIR_NORTHEAST || direction == DIR_SOUTHEAST) ? DIR_EAST : DIR_WEST;
+
+    // No corner-cutting: at least one of the two flanking cardinal tiles must be passable.
+    if (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
+     && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE)
+        return FALSE;
+
+    return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+}
+
 enum Collision GetSidewaysStairsCollision(struct ObjectEvent *objectEvent, enum Direction dir, u8 currentBehavior, u8 nextBehavior, enum Collision collision)
 {
     if ((dir == DIR_SOUTH || dir == DIR_NORTH) && collision != COLLISION_NONE)
