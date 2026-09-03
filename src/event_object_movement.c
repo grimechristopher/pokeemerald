@@ -3930,10 +3930,16 @@ bool8 MovementType_Wander_Step3(struct ObjectEvent *objectEvent, struct Sprite *
 
 bool8 MovementType_WanderAround_Step4(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    enum Direction chosenDirection = gStandardDirections[Random() & 3];
+    enum Direction chosenDirection;
+
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6)
+        chosenDirection = gStandardDirectionsWithDiagonals[Random() % ARRAY_COUNT(gStandardDirectionsWithDiagonals)];
+    else
+        chosenDirection = gStandardDirections[Random() & 3];
+
     SetObjectEventDirection(objectEvent, chosenDirection);
     sprite->sTypeFuncId = 5;
-    if (GetCollisionInDirection(objectEvent, chosenDirection))
+    if (!CanObjectEventMoveInDirection(objectEvent, chosenDirection))
         sprite->sTypeFuncId = 1;
 
     return TRUE;

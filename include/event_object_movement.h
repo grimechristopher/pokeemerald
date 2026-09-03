@@ -127,6 +127,7 @@ extern const struct SpritePalette gSpritePalette_GeneralFieldEffect0;
 extern const struct SpritePalette gSpritePalette_GeneralFieldEffect1;
 
 extern const enum Direction gStandardDirections[];
+extern const enum Direction gStandardDirectionsWithDiagonals[8];
 
 void ClearObjectEvent(struct ObjectEvent *objectEvent);
 void ResetObjectEvents(void);

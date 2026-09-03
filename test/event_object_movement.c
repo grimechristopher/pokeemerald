@@ -226,3 +226,18 @@ TEST("GetFaceDirectionMovementAction resolves every diagonal direction to a vali
     EXPECT(GetFaceDirectionMovementAction(DIR_SOUTHEAST) != MOVEMENT_ACTION_NONE);
     EXPECT(GetFaceDirectionMovementAction(DIR_SOUTHWEST) != MOVEMENT_ACTION_NONE);
 }
+
+TEST("gStandardDirectionsWithDiagonals has exactly the 4 cardinal and 4 diagonal directions")
+{
+    s32 i;
+    bool8 seen[CARDINAL_DIRECTION_COUNT + 4] = {0};
+
+    EXPECT_EQ(ARRAY_COUNT(gStandardDirectionsWithDiagonals), 8);
+    for (i = 0; i < ARRAY_COUNT(gStandardDirectionsWithDiagonals); i++)
+    {
+        enum Direction direction = gStandardDirectionsWithDiagonals[i];
+        EXPECT(direction >= DIR_SOUTH && direction <= DIR_NORTHEAST);
+        EXPECT(!seen[direction]);
+        seen[direction] = TRUE;
+    }
+}

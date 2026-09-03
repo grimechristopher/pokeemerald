@@ -19,6 +19,7 @@ u8 (*const gMovementTypeFuncs_WanderAroundSlower[])(struct ObjectEvent *, struct
 };
 
 const enum Direction gStandardDirections[] = {DIR_SOUTH, DIR_NORTH, DIR_WEST, DIR_EAST};
+const enum Direction gStandardDirectionsWithDiagonals[] = {DIR_SOUTH, DIR_NORTH, DIR_WEST, DIR_EAST, DIR_SOUTHWEST, DIR_SOUTHEAST, DIR_NORTHWEST, DIR_NORTHEAST};
 
 enum Direction (*const gGetVectorDirectionFuncs[])(s16, s16, s16, s16) = {
     GetVectorDirection,
