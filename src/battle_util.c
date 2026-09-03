@@ -7701,7 +7701,7 @@ s32 DoFixedDamageMoveCalc(struct DamageContext *ctx)
     switch (GetMoveEffect(ctx->move))
     {
     case EFFECT_LEVEL_DAMAGE:
-        dmg = 50;
+        dmg = gBattleMons[ctx->battlerAtk].level;
         break;
     case EFFECT_PSYWAVE:
         if (B_PSYWAVE_DMG >= GEN_5)
