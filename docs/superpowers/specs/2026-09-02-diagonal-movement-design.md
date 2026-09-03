@@ -17,6 +17,7 @@ So this is substantially a matter of generalizing what already works for stairs 
 - Diagonal ledge-hopping. Jump ledges keep working exactly as today (cardinal-only trigger); a diagonal approach to a ledge is treated as any other blocked move.
 - Per-map opt-out. One global config flag, no map-level override.
 - Autotile/terrain-tile changes. Diagonal walking doesn't require new terrain art - the sprite just moves across existing tiles regardless of which of the 8 directions it came from.
+- Inventing a genuinely new "diagonal stairs" mechanic. Sideways stairs (see below) keep working through their existing, unmodified logic; diagonal input is decomposed back to a single cardinal component before it ever reaches that code.
 
 ---
 
@@ -52,6 +53,18 @@ Both the player-input path and the NPC-wander path (below) call this same functi
 
 The random-direction table used by wander-type movement behaviors (e.g. `MOVEMENT_TYPE_WANDER_AROUND`) extends from picking among 4 directions to picking among 8 when `OW_DIAGONAL_MOVEMENT` is on, validating the chosen direction through the same `CanObjectEventMoveInDirection` used by the player. When the config is off, behavior is unchanged.
 
+### Sideways stairs interaction
+
+Confirmed these are two independent mechanisms today: stairs are driven entirely by `GetCollisionAtCoords` checking the player's raw cardinal `dir` against explicit `DIR_EAST`/`DIR_WEST`/`DIR_NORTH`/`DIR_SOUTH` equality, then translating it into a diagonal `directionOverwrite` via `GetLeftSideStairsDirection`/`GetRightSideStairsDirection`. A genuinely diagonal `dir` value matches none of those equality checks, so it would fall straight through to `GetVanillaCollision`/our new `CanObjectEventMoveInDirection` instead - two diagonal systems that were never designed to meet.
+
+Resolution: when the player is on or moving onto a sideways-stairs tile and the resolved input is diagonal, decompose it into its horizontal and vertical components before it reaches the stairs logic at all, and feed the **horizontal component first** (stairs are fundamentally a left/right-driven mechanic per `GetLeftSideStairsDirection`/`GetRightSideStairsDirection`'s explicit West/East-only switch cases). If the horizontal component isn't actually held, or the existing stairs checks reject it, fall back to the vertical component. `GetCollisionAtCoords` and the stairs translation functions themselves are not modified at all - this is purely a pre-processing decomposition step ahead of that existing, untouched code.
+
+### Follower interaction
+
+`FollowablePlayerMovement_Step` doesn't replay the player's direction directly - it moves the follower to `gObjectEvents[player].previousCoords` and calls `GetDirectionToFace(followerX, followerY, targetX, targetY)` to pick which way to step there. That function is cardinal-only by design (checks X first, returns `DIR_WEST`/`DIR_EAST` on any horizontal delta, only falls back to `DIR_NORTH`/`DIR_SOUTH` when X matches exactly) - it can never return a diagonal direction, even when the follower ends up diagonally offset from the player's last tile, which will now happen on every diagonal player step.
+
+`GetDirectionToFace` is also used elsewhere, including script-exposed via `GetDirectionToFaceScript` for other "face toward" scripted behavior that should keep its current cardinal-only behavior. So the fix is a new function, not a behavior change to the shared one: add a diagonal-aware direction resolver used only by `FollowablePlayerMovement_Step` - when the follower's position differs from the player's previous tile in both axes by exactly one tile (which it always will be here, since the player only ever moves one tile per step), it returns the matching diagonal direction instead of collapsing to a cardinal one.
+
 ## Diagonal sprite frame support
 
 Existing precedent (sideways stairs, diagonal bike animations) reuses the East/West cardinal sprite for every diagonal direction (`DIR_NORTHEAST`/`DIR_SOUTHEAST` → face-East frames, `DIR_NORTHWEST`/`DIR_SOUTHWEST` → face-West frames) - this remains the default and the fallback for every sprite that doesn't opt into more.
@@ -70,3 +83,5 @@ Existing precedent (sideways stairs, diagonal bike animations) reuses the East/W
 - New tests for `FieldGetPlayerInput`'s diagonal resolution: both-axis-held combinations produce the right diagonal direction with the config on, and produce today's single-cardinal-direction behavior with it off or with only one axis held.
 - Confirm existing cardinal-movement, ledge, and wild-encounter tests still pass unchanged with `OW_DIAGONAL_MOVEMENT` on (encounter/tile-behavior triggers fire on arrival regardless of which direction the step came from, so these should be unaffected, but verified rather than assumed).
 - NPC wander test: with the config on, a wandering object event picks and executes a diagonal step over enough trials, respecting the same corner-cutting rule as the player.
+- Follower test: after a diagonal player step, the follower's new diagonal-aware direction resolver returns the correct diagonal direction and the follower ends up on the player's previous tile in one step (not two, not a wrong cardinal detour).
+- Sideways-stairs test: diagonal input on a stairs tile resolves to the correct single cardinal component (horizontal preferred, vertical fallback) and produces byte-for-byte the same result as pressing that one cardinal key today; the existing stairs test coverage keeps passing unmodified.
