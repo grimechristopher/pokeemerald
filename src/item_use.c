@@ -411,7 +411,10 @@ static void Task_UseItemfinder(u8 taskId)
             else
             {
                 // Player is standing on hidden item
-                playerDir = GetPlayerFacingDirection();
+                // facingDirection can be diagonal; fold to a single cardinal component
+                // before this cardinal-only lookup (sClockwiseDirections has no diagonal
+                // entries) - same precedent as the other ResolveStairsMoveDirection sites.
+                playerDir = ResolveStairsMoveDirection(GetPlayerFacingDirection());
                 for (i = 0; i < ARRAY_COUNT(sClockwiseDirections); i++)
                 {
                     if (playerDir == sClockwiseDirections[i])
