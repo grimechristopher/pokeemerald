@@ -2156,7 +2156,13 @@ static void Task_DoPlayerSpinEntrance(u8 taskId)
         // Because the spin start facing direction is never set for this
         // warp type, the player will always exit the warp facing South.
         // This may have been intentional, unclear
-        tStartDir = GetSpinStartFacingDir();
+        // sSpinStartFacingDir can be a stale diagonal value left behind by a previous
+        // SetSpinStartFacingDir(object->facingDirection)/SetSpinStartFacingDir(
+        // GetPlayerFacingDirection()) call - fold to cardinal, same as TrySpinPlayerForWarp
+        // does for its own sSpinDirections lookups below, so this stays in bounds and so
+        // tStartDir compares equal to TrySpinPlayerForWarp's (always-cardinal) return value
+        // in case 3 below instead of leaving this task never terminating.
+        tStartDir = ResolveStairsMoveDirection(GetSpinStartFacingDir());
         ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(sSpinDirections[tStartDir]));
         tSpinDelayTimer = 0;
         tSpeed = 116;
