@@ -1243,6 +1243,61 @@ static const union AnimCmd *const sAnimTable_Standard[] = {
     [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
 };
 
+// Sample hasDiagonalFrames anim set. Frames 10/11 in sPicTable_BoyDiagonalDemo
+// are the only new art a diagonal-capable graphic needs; northeast/southeast
+// reuse the northwest/southwest frames mirrored, the same way sAnim_FaceEast
+// reuses sAnim_FaceWest's frame with .hFlip = TRUE above.
+static const union AnimCmd sAnim_FaceSouthwest[] =
+{
+    ANIMCMD_FRAME(10, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceNorthwest[] =
+{
+    ANIMCMD_FRAME(11, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceSoutheast[] =
+{
+    ANIMCMD_FRAME(10, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceNortheast[] =
+{
+    ANIMCMD_FRAME(11, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd *const sAnimTable_BoyDiagonalDemo[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNortheast,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorthwest,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSoutheast,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouthwest,
+};
+
 const union AnimCmd *const sAnimTable_Following[] = {
     [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
     [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,

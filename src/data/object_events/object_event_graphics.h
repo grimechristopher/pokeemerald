@@ -512,6 +512,8 @@ const u16 gObjectEventPic_SittingBoy[] = INCGFX_U16("graphics/object_events/pics
 const u16 gObjectEventPic_LassFrlg[] = INCGFX_U16("graphics/object_events/pics/people/lass_frlg.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_YoungsterFrlg[] = INCGFX_U16("graphics/object_events/pics/people/youngster_frlg.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_Boy[] = INCGFX_U16("graphics/object_events/pics/people/boy.png", ".4bpp", "-mwidth 2 -mheight 4");
+// Sample hasDiagonalFrames graphic: boy.png's 10 frames plus 2 placeholder diagonal frames (see object_event_pic_tables.h).
+const u16 gObjectEventPic_BoyDiagonalDemo[] = INCGFX_U16("graphics/object_events/pics/people/boy_diagonal_demo.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_Woman1Frlg[] = INCGFX_U16("graphics/object_events/pics/people/woman_1_frlg.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_Woman3Frlg[] = INCGFX_U16("graphics/object_events/pics/people/woman_3_frlg.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_BugCatcherFrlg[] = INCGFX_U16("graphics/object_events/pics/people/bug_catcher_frlg.png", ".4bpp", "-mwidth 2 -mheight 4");
