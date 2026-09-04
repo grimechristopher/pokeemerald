@@ -12,9 +12,9 @@
 
 So this is substantially a matter of generalizing what already works for stairs into a general-purpose input path, plus the corner-cutting collision rule and (optionally) real diagonal sprite art support - not building diagonal movement from scratch.
 
+**Note:** this section originally scoped Bikes/Surf/Dive and diagonal ledge-hopping out for a later pass. Both were brought in scope afterward - see "Addendum 2" at the end of the companion plan doc (`docs/superpowers/plans/2026-09-02-diagonal-movement.md`) for what changed and why.
+
 **Explicitly out of scope for this pass:**
-- Bikes (Mach/Acro), Surf, and Dive stay cardinal-only. Diagonal bike animation tables already exist in `event_object_movement.c` but bike/current mechanics get their own pass later.
-- Diagonal ledge-hopping. Jump ledges keep working exactly as today (cardinal-only trigger); a diagonal approach to a ledge is treated as any other blocked move.
 - Per-map opt-out. One global config flag, no map-level override.
 - Autotile/terrain-tile changes. Diagonal walking doesn't require new terrain art - the sprite just moves across existing tiles regardless of which of the 8 directions it came from.
 - Inventing a genuinely new "diagonal stairs" mechanic. Sideways stairs (see below) keep working through their existing, unmodified logic; diagonal input is decomposed back to a single cardinal component before it ever reaches that code.

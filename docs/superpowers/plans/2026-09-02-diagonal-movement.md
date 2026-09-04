@@ -1405,3 +1405,98 @@ Expected: no regressions vs. Task 10's numbers, plus the new Task 11-13 tests pa
 ```bash
 git status
 ```
+
+---
+
+## Addendum 2: extending scope to bikes, Surf, Dive, ledges, and arrow warps
+
+The original design explicitly scoped Bikes, Surf, and Dive out ("their own pass later"),
+and treated ledges/arrow warps as "diagonal approach = no special-case behavior, not a new
+task" (see Addendum 1 above). Both calls were revisited and reversed for this pass, at the
+user's request: bikes/Surf/Dive now support diagonal movement, and ledges/arrow warps now
+resolve a diagonal approach to a single cardinal component (like sideways stairs) instead of
+just not triggering.
+
+**Ledges** (`ResolveLedgeMoveDirection`, `src/event_object_movement.c`): an earlier attempt
+at this (visible in `GetLedgeJumpDirection`'s own comment) folded the direction *inside* the
+ledge check itself, after the diagonal destination coordinates had already been computed from
+the true diagonal direction - the ledge got *detected* against one direction but *jumped* in
+another, desyncing the player's position. The fix resolves the direction *before* any
+coordinate math happens at all: peek both cardinal components of the diagonal move from the
+object's current position, and if either would jump a ledge, resolve the whole move to that
+one cardinal direction up front (same shape as `ResolveStairsMoveDirection`, different trigger
+condition - "is either component a ledge" instead of "am I standing on a stairs tile"). Wired
+into `MovePlayerNotOnBike` and all three bike movement entry points, right after the existing
+stairs decomposition.
+
+Two small shared helpers, `GetDiagonalVerticalComponent`/`GetDiagonalHorizontalComponent`,
+factor out the vertical/horizontal split that `IsDiagonalMoveBlockedByCorner` already computed
+inline - now reused by the ledge resolver, the arrow-warp fix below, and the bike slope fix.
+
+**Arrow warps and directional stair warps** (`IsArrowWarpMetatileBehavior`,
+`src/field_control_avatar.c`; `IsDirectionalStairWarpMetatileBehavior`,
+`src/field_screen_effect.c`): both check the *player's own current tile* against a facing
+direction, not a destination tile, so - unlike ledges - there's no coordinate-mismatch risk.
+Diagonal input just recurses once per cardinal component and returns true if either matches;
+the direction is never needed again afterward (the warp doesn't depend on which component
+matched).
+
+**Surf and Dive**: both already routed through the same `MovePlayerNotOnBike` path already
+fixed for on-foot diagonal movement (surfing/underwater are just a different speed tier and
+sprite, not a different movement function) - confirmed no surf/dive-specific code indexes a
+cardinal-only table by facing/movement direction (`surfBlobDirectionAnims` was already sized
+for all 8 directions). The only change needed was extending `FieldGetPlayerInput`'s gate from
+`PLAYER_AVATAR_FLAG_ON_FOOT` alone to also include `PLAYER_AVATAR_FLAG_SURFING` and
+`PLAYER_AVATAR_FLAG_UNDERWATER`.
+
+**Bikes** (`src/bike.c`): the actual movement-execution primitives (`PlayerWalkNormal/Fast/
+Faster`, called by Mach Bike's and Standard Bike's speed tiers) were already fully
+diagonal-capable - this branch's core walk/run animation tables (`gWalkNormalMovementActions`
+etc.) already have real `MOVEMENT_ACTION_WALK_*_DIAGONAL_*` entries for all 4 diagonals. The
+gap was entirely in bikes' own input/state-tracking layer, which pre-dates this branch and was
+written for a world where the *only* way a direction could ever be diagonal was sideways
+stairs:
+
+- `GetMachBikeTransition` and `StandardBikeInputHandler_Normal` each unconditionally collapsed
+  `GetPlayerMovementDirection()`'s diagonal values down to East/West before using them for
+  turn-detection - dead weight now that the object event's `movementDirection` field correctly
+  preserves true diagonal values in general (not just on stairs, per this branch's core fix).
+  Deleted rather than conditionalized, since the field no longer needs "fixing" at all.
+- Extended `FieldGetPlayerInput`'s gate to `PLAYER_AVATAR_FLAG_BIKE` (Mach + Acro) alongside
+  on-foot/Surf/Dive.
+- Wired the same stairs-then-ledge resolution used by `MovePlayerNotOnBike` into all three
+  bike movement entry points (`MovePlayerOnMachBike`, `MovePlayerOnStandardBike`,
+  `MovePlayerOnAcroBike`).
+- `GetBikeCollision` never went through `CheckForPlayerAvatarCollision` (walking's collision
+  entry point, where the corner-cutting rule from Task 11 lives) - it calls
+  `CheckForObjectEventCollision` directly. Wired `IsDiagonalMoveBlockedByCorner` in here too,
+  or a player on a bike could cut corners a walking player and every NPC cannot.
+- Mach/Standard/Acro Bike's Cycling Road slope handling (`if (*direction_p < DIR_NORTH)`,
+  three near-identical sites) picks uphill vs. downhill by direction; a diagonal value never
+  satisfied that comparison at all (misclassifying southwest/southeast as uphill). Replaced
+  with `GetDiagonalVerticalComponent(direction) == DIR_SOUTH`, matching the pre-existing
+  West/East-also-means-uphill behavior exactly for cardinal input.
+
+**Deliberately left as-is:**
+- Acro Bike's trick maneuvers (bunny hop, side jump, turn jump) require an *exact* cardinal
+  match against `sAcroBikeTricksList`'s input history. A diagonal direction simply never
+  matches, so tricks stay cardinal-only for free, with no code change - normal riding and
+  wheelie-moving still get full diagonal support since they don't go through this history
+  check. This is the same "diagonal input to a special-case discrete mechanic doesn't get
+  special-case behavior" precedent as ledges pre-this-addendum, just for a mechanic narrow
+  enough (button-held directional tricks) that a diagonal equivalent doesn't make sense to add.
+- `WillPlayerCollideWithCollision`'s Cycling Road rail check (`direction == DIR_NORTH ||
+  DIR_SOUTH`, else treated as horizontal) - rails are a single-axis mechanic by construction;
+  a diagonal move against a vertical rail gets treated as a horizontal collision, which is a
+  reasonable, narrow, cosmetic-only quirk in a forced-scroll context where free diagonal input
+  is unlikely to matter.
+
+**Testing:** `ResolveLedgeMoveDirection` and `GetDiagonalVerticalComponent`/
+`GetDiagonalHorizontalComponent` have direct unit tests (cardinal pass-through, diagonal
+pass-through when nothing intercepts). The positive "diagonal move actually resolves onto a
+real ledge tile" case isn't covered by a unit test - it would need a real map fixture with a
+ledge tile, which none of this branch's existing tests set up - so it's covered by code review
+and the full regression suite instead, consistent with this branch's established practice of
+not building fragile deep-handler test fixtures. `FieldGetPlayerInput`'s existing surf test
+was updated (it previously asserted the old cardinal-only behavior) and extended to cover
+underwater and both bike types.
