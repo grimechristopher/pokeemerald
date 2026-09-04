@@ -360,6 +360,18 @@ TEST("GetWalkFasterMovementAction falls back to the WALK_FAST diagonal action")
     EXPECT_EQ(GetWalkFasterMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);
 }
 
+TEST("GetRideWaterCurrentMovementAction falls back to the WALK_FAST diagonal action instead of always going south")
+{
+    // Regression test: this table previously had no diagonal entries at all, so
+    // dirn_to_anim's bounds-safe default silently substituted DOWN for every diagonal -
+    // meaning an Acro Bike (the other caller of this table, via PlayerRideWaterCurrent)
+    // always rode south no matter which diagonal direction was actually held.
+    EXPECT_EQ(GetRideWaterCurrentMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetRideWaterCurrentMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetRideWaterCurrentMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetRideWaterCurrentMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT);
+}
+
 TEST("GetPlayerRunMovementAction falls back to the WALK_FAST diagonal action")
 {
     EXPECT_EQ(GetPlayerRunMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT);

@@ -1087,6 +1087,18 @@ const u8 gRideWaterCurrentMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_UP,
     [DIR_WEST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_RIGHT,
+    // River currents (this table's original purpose - see ForcedMovement_Pushed*ByCurrent in
+    // field_player_avatar.c) only ever call this with a cardinal direction, so these are dead
+    // weight there. They matter for this table's other caller, PlayerRideWaterCurrent, which
+    // Acro Bike's normal riding (AcroBikeTransition_Moving, src/bike.c) also uses - without
+    // these, a diagonal direction silently fell back to MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN
+    // (dirn_to_anim's bounds-safe default), so an Acro Bike always drove south regardless of
+    // which diagonal was actually held. No dedicated diagonal glide animation exists yet, so
+    // fall back to the closest available one, same as gWalkFasterMovementActions below.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FASTER_DOWN,
