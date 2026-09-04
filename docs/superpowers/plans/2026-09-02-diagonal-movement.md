@@ -1016,3 +1016,392 @@ Expected: every test from Tasks 1-9 passes, and the full suite's pass/fail/known
 git status
 # if clean, nothing to do - Tasks 1-9 already committed everything
 ```
+
+---
+
+## Addendum: fixes from the final whole-branch review
+
+Task 10 passed clean (4970 tests, 0 regressions), but the required final holistic code-reviewer subagent (per `subagent-driven-development`'s own process, run over the *entire* `expanded/base..feature/diagonal-movement` diff rather than task-by-task) found two **Critical**, silent, default-on integration gaps that no individual task's tests caught, because each task's tests exercised its own new function directly rather than the full player-input-to-collision path. It also found one **Important** gap in a second, separate follower system. Tasks 11-13 below close these before merge.
+
+**Not turned into tasks, by design:**
+- **Arrow warps** (`IsArrowWarpMetatileBehavior`, `src/field_control_avatar.c`): a diagonal approach already falls through its cardinal-only `switch`'s `default: return FALSE`, so the warp simply doesn't trigger - the player is not blocked, corrupted, or desynced, just not force-warped until they step in from a cardinal direction. This is already consistent with this feature's established "diagonal approach to a directional special-case tile does not get special-case behavior" precedent (see the ledge-jump fix in Task 8), so it's left as-is rather than turned into a new task.
+- **`GetJumpInPlaceMovementActions`/spin-timer edge cases** (`src/field_player_avatar.c`): cosmetic-only (wrong-facing animation on secret base mat jump; one missed spin-evolution turn count), no desync or corruption risk. Deferred.
+
+### Task 11: Enforce no-corner-cutting for the player's own movement
+
+**Problem:** `CanObjectEventMoveInDirection` (Task 3) is only ever called from NPC wander (`MovementType_WanderAround_Step4`). The player's collision path - `CheckForPlayerAvatarCollision` (`src/field_player_avatar.c`) - calls `CheckForObjectEventCollision`, a completely separate function that only checks the diagonal destination tile, never the two flanking cardinal tiles. **The player can freely cut corners between two blocking tiles**, the exact rule this branch built and unit-tested for NPCs, but never wired up for the character the feature is actually for.
+
+**Files:**
+- Modify: `src/event_object_movement.c` (extract the corner-cut check out of `CanObjectEventMoveInDirection` into its own reusable function)
+- Modify: `include/event_object_movement.h` (prototype)
+- Modify: `src/field_player_avatar.c:945-961` (`CheckForPlayerAvatarCollision`)
+- Test: `test/event_object_movement.c`
+
+- [ ] **Step 1: Write the failing test**
+
+Add near the existing `CanObjectEventMoveInDirection` corner-cutting tests in `test/event_object_movement.c`:
+
+```c
+TEST("IsDiagonalMoveBlockedByCorner returns FALSE for a cardinal direction")
+{
+    struct ObjectEvent objectEvent = {0};
+    objectEvent.currentCoords.x = 10;
+    objectEvent.currentCoords.y = 10;
+    EXPECT_FALSE(IsDiagonalMoveBlockedByCorner(&objectEvent, DIR_NORTH));
+}
+```
+
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `make TESTS="IsDiagonalMoveBlockedByCorner" check -j$(nproc)`
+Expected: FAIL to compile - `IsDiagonalMoveBlockedByCorner` undeclared.
+
+- [ ] **Step 3: Extract the shared corner-cut check**
+
+In `src/event_object_movement.c`, replace the existing `CanObjectEventMoveInDirection`:
+
+```c
+bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction vertical, horizontal;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+
+    vertical = (direction == DIR_NORTHEAST || direction == DIR_NORTHWEST) ? DIR_NORTH : DIR_SOUTH;
+    horizontal = (direction == DIR_NORTHEAST || direction == DIR_SOUTHEAST) ? DIR_EAST : DIR_WEST;
+
+    // No corner-cutting: at least one of the two flanking cardinal tiles must be passable.
+    if (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
+     && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE)
+        return FALSE;
+
+    return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+}
+```
+
+with:
+
+```c
+// No corner-cutting: for a diagonal move, at least one of the two flanking cardinal
+// tiles must be passable, or the move is rejected even if the diagonal destination
+// tile itself is open. Shared by the player's own collision path
+// (CheckForPlayerAvatarCollision, src/field_player_avatar.c) and the NPC-wander path
+// (CanObjectEventMoveInDirection below) so the rule can't drift apart between them.
+bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction vertical, horizontal;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return FALSE;
+
+    vertical = (direction == DIR_NORTHEAST || direction == DIR_NORTHWEST) ? DIR_NORTH : DIR_SOUTH;
+    horizontal = (direction == DIR_NORTHEAST || direction == DIR_SOUTHEAST) ? DIR_EAST : DIR_WEST;
+
+    return (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
+         && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE);
+}
+
+bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    if (IsDiagonalMoveBlockedByCorner(objectEvent, direction))
+        return FALSE;
+
+    return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
+}
+```
+
+Add the prototype to `include/event_object_movement.h` next to `CanObjectEventMoveInDirection`'s existing prototype:
+
+```c
+bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *, enum Direction);
+```
+
+- [ ] **Step 4: Run test to verify it passes**
+
+Run: `make TESTS="IsDiagonalMoveBlockedByCorner" check -j$(nproc)`
+Expected: PASS
+
+- [ ] **Step 5: Wire the check into the player's own collision path**
+
+In `src/field_player_avatar.c`, modify `CheckForPlayerAvatarCollision`:
+
+```c
+static enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
+{
+    s16 x, y;
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    x = playerObjEvent->currentCoords.x;
+    y = playerObjEvent->currentCoords.y;
+    if (IsDirectionalStairWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
+        return COLLISION_STAIR_WARP;
+
+    if (IsDiagonalMoveBlockedByCorner(playerObjEvent, direction))
+        return COLLISION_IMPASSABLE;
+
+    MoveCoords(direction, &x, &y);
+    return CheckForObjectEventCollision(playerObjEvent, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+}
+```
+
+(By the time a diagonal `direction` reaches this function on a sideways-stairs tile, Task 5's `ResolveStairsMoveDirection` has already reduced it to a single cardinal component, so `IsDiagonalMoveBlockedByCorner` is a no-op there - it only ever fires for a genuine, non-stairs diagonal move.)
+
+- [ ] **Step 6: Add an integration-level regression test**
+
+Add to `test/event_object_movement.c`, reusing the existing 21x21 test-map fixture from the `CanObjectEventMoveInDirection` tests (place the player object event instead of a generic one, and drive the same corner-blocked/corner-open coordinates through `CheckForPlayerAvatarCollision` if it's reachable from the test binary, or - if it is `static` and not exposed - through `CanObjectEventMoveInDirection` called with `&gObjectEvents[gPlayerAvatar.objectEventId]` after `TryInitLocalPlayerAvatar`/`ObjectEventSetGraphicsId` set up a real player object event, confirming the corner-cut result matches for the player's own object event, not just an arbitrary one). Confirm with the implementer subagent which is reachable and use it - do not skip this step if `CheckForPlayerAvatarCollision` turns out to be unreachable; expose it (drop `static`) rather than leave the fix untested at the integration level.
+
+- [ ] **Step 7: Run the tests to verify they pass**
+
+Run: `make TESTS="IsDiagonalMoveBlockedByCorner CanObjectEventMoveInDirection" check -j$(nproc)`
+Expected: all PASS
+
+- [ ] **Step 8: Verify the full build**
+
+Run: `make -j$(nproc)`
+Expected: builds clean.
+
+- [ ] **Step 9: Commit**
+
+```bash
+git add include/event_object_movement.h src/event_object_movement.c src/field_player_avatar.c test/event_object_movement.c
+git commit -m "fix: enforce no-corner-cutting for the player's own diagonal movement
+
+CanObjectEventMoveInDirection was only ever called from NPC wander -
+the player's own collision path (CheckForPlayerAvatarCollision) never
+checked the two flanking cardinal tiles on a diagonal move, so the
+player could freely cut corners between two blocking tiles. Extracted
+the shared check into IsDiagonalMoveBlockedByCorner and wired it into
+both call sites so the rule can't drift apart between them again."
+```
+
+---
+
+### Task 12: Restrict diagonal input to walking/running, excluding bikes and surf
+
+**Problem:** `FieldGetPlayerInput` combines the D-pad into a diagonal direction whenever `OW_DIAGONAL_MOVEMENT` is on, with no check of the player's current bike/surf state. The design spec explicitly scopes this pass to "walking + running only... Bikes (Mach/Acro), Surf, and Dive stay cardinal-only" - that boundary isn't enforced anywhere in code, so a player who is biking or surfing and holds a diagonal D-pad combo gets a diagonal *position* update while the bike/surf-specific movement and animation code (never audited for 8-direction input) is fed a value outside the range it was written for.
+
+**Files:**
+- Modify: `src/field_control_avatar.c:141-171` (`FieldGetPlayerInput`)
+- Test: `test/event_object_movement.c` (or a new `test/field_control_avatar.c` if the implementer subagent determines `FieldGetPlayerInput` is better tested from its own file - check for precedent first)
+
+- [ ] **Step 1: Write the failing test**
+
+`FieldGetPlayerInput` takes a `struct FieldInput *`, `heldKeys`, and reads the global `gPlayerAvatar.flags`. Add a test that sets `gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_SURFING`, calls `FieldGetPlayerInput` with `DPAD_UP | DPAD_RIGHT` held, and asserts `input.dpadDirection == DIR_NORTH` (i.e. collapses to the single most-recent/priority cardinal, exactly like today, not `DIR_NORTHEAST`) - then repeats with `gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_ON_FOOT` and asserts `input.dpadDirection == DIR_NORTHEAST`. Restore `gPlayerAvatar.flags` to its prior value at the end of the test (or confirm the test harness resets globals between tests - check existing tests in the same file for the established pattern before assuming).
+
+```c
+TEST("FieldGetPlayerInput does not combine diagonal input while surfing")
+{
+    struct FieldInput input = {0};
+    u8 savedFlags = gPlayerAvatar.flags;
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_SURFING;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTH);
+
+    gPlayerAvatar.flags = savedFlags;
+}
+
+TEST("FieldGetPlayerInput combines diagonal input while on foot")
+{
+    struct FieldInput input = {0};
+    u8 savedFlags = gPlayerAvatar.flags;
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_ON_FOOT;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
+
+    gPlayerAvatar.flags = savedFlags;
+}
+```
+
+- [ ] **Step 2: Run test to verify the surf test fails**
+
+Run: `make TESTS="FieldGetPlayerInput" check -j$(nproc)`
+Expected: the surfing test FAILs (`input.dpadDirection` is `DIR_NORTHEAST`, not `DIR_NORTH`); the on-foot test already PASSes.
+
+- [ ] **Step 3: Gate the diagonal-combine branch on foot travel**
+
+In `src/field_control_avatar.c`, change:
+
+```c
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6)
+    {
+```
+
+to:
+
+```c
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6 && (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT))
+    {
+```
+
+leaving the rest of that `if` block and its `else` (the existing single-cardinal if/else-if chain) unchanged - biking, surfing, and underwater all fall to the same `else` branch that config-off already uses, so their behavior is byte-for-byte what it is on `expanded/base` today.
+
+- [ ] **Step 4: Run test to verify both pass**
+
+Run: `make TESTS="FieldGetPlayerInput" check -j$(nproc)`
+Expected: both PASS
+
+- [ ] **Step 5: Verify the full build**
+
+Run: `make -j$(nproc)`
+Expected: builds clean.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add src/field_control_avatar.c test/event_object_movement.c
+git commit -m "fix: restrict diagonal input combining to on-foot travel
+
+FieldGetPlayerInput combined the D-pad into a diagonal direction
+regardless of the player's bike/surf state, violating this feature's
+explicit walking+running-only scope - bike and surf movement/animation
+code was never audited for 8-direction input. Gate the diagonal-combine
+branch on PLAYER_AVATAR_FLAG_ON_FOOT; biking, surfing, and underwater
+now fall through to the same cardinal-only chain config-off already
+uses."
+```
+
+---
+
+### Task 13: Diagonal-aware direction for the follower NPC system
+
+**Problem:** Task 8 fixed the Pokémon follower (`FollowablePlayerMovement_Step`) to step diagonally when the player does, by adding `GetFollowerStepDirection` rather than changing the shared `GetDirectionToFace`. The separate "follower NPC" system (`src/follower_npc.c` - a trailing human NPC, not a Pokémon) has the exact same shape of bug via its own cardinal-only resolver, `DetermineObjectEventDirectionFromObject` (`src/event_object_movement.c`), called from `DetermineFollowerNPCDirection`. `DetermineObjectEventDirectionFromObject` is also used by `ObjectEventsTurnToEachOther` for general scripted "face each other" behavior, so - same as Task 8 - it must not change; only the follower-NPC call site gets diagonal-aware.
+
+Unlike the Pokémon follower (always exactly one tile behind the player by construction), the follower NPC's offset from the player is not guaranteed to be exactly one tile (it can lag and catch up), so this needs a resolver based on the *sign* of the coordinate delta rather than `GetFollowerStepDirection`'s one-tile-offset assumption.
+
+**Files:**
+- Modify: `src/follower_npc.c` (`DetermineFollowerNPCDirection`)
+- Test: `test/event_object_movement.c` or a follower-NPC-specific test file if one already exists - check `test/` for `follower_npc` precedent first.
+
+- [ ] **Step 1: Write the failing test**
+
+```c
+TEST("DetermineFollowerNPCDirection returns a diagonal direction when both axes differ")
+{
+    struct ObjectEvent player = {0};
+    struct ObjectEvent follower = {0};
+
+    player.currentCoords.x = 12;
+    player.currentCoords.y = 8;
+    follower.currentCoords.x = 10;
+    follower.currentCoords.y = 10;
+
+    EXPECT_EQ(DetermineFollowerNPCDirection(&player, &follower), DIR_NORTHEAST);
+}
+```
+
+(Confirm the expected direction empirically against the existing, unchanged `DetermineObjectEventDirectionFromObject`'s per-axis sign convention - Step 3 below derives it from that function's current behavior; if the derivation and this expectation disagree, trust the derivation and fix this test's expected value rather than the implementation.)
+
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `make TESTS="DetermineFollowerNPCDirection" check -j$(nproc)`
+Expected: FAIL (returns a single cardinal direction today, not `DIR_NORTHEAST`).
+
+- [ ] **Step 3: Make the follower-NPC call site diagonal-aware**
+
+In `src/follower_npc.c`, replace:
+
+```c
+enum Direction DetermineFollowerNPCDirection(struct ObjectEvent *player, struct ObjectEvent *follower)
+{
+    if (player->currentCoords.x == follower->currentCoords.x
+     && player->currentCoords.y == follower->currentCoords.y)
+        return DIR_NONE;
+        
+    return DetermineObjectEventDirectionFromObject(player, follower);
+}
+```
+
+with:
+
+```c
+enum Direction DetermineFollowerNPCDirection(struct ObjectEvent *player, struct ObjectEvent *follower)
+{
+    s32 deltaX, deltaY;
+    enum Direction vertical, horizontal;
+
+    if (player->currentCoords.x == follower->currentCoords.x
+     && player->currentCoords.y == follower->currentCoords.y)
+        return DIR_NONE;
+
+    if (OW_DIAGONAL_MOVEMENT < GEN_6)
+        return DetermineObjectEventDirectionFromObject(player, follower);
+
+    // Sign-based, not one-tile-offset-based (unlike GetFollowerStepDirection): the
+    // follower NPC can lag and catch up across more than one tile, unlike the
+    // Pokemon follower's always-exactly-one-tile trail.
+    deltaX = player->currentCoords.x - follower->currentCoords.x;
+    deltaY = player->currentCoords.y - follower->currentCoords.y;
+    horizontal = (deltaX > 0) ? DIR_EAST : (deltaX < 0) ? DIR_WEST : DIR_NONE;
+    vertical = (deltaY > 0) ? DIR_SOUTH : (deltaY < 0) ? DIR_NORTH : DIR_NONE;
+
+    return GetDiagonalMoveDirection(vertical, horizontal);
+}
+```
+
+- [ ] **Step 4: Run test to verify it passes**
+
+Run: `make TESTS="DetermineFollowerNPCDirection" check -j$(nproc)`
+Expected: PASS
+
+- [ ] **Step 5: Add a config-off regression test**
+
+```c
+TEST("DetermineFollowerNPCDirection falls back to cardinal-only with the config off")
+{
+    // Only meaningful if OW_DIAGONAL_MOVEMENT can be overridden per-test in this
+    // codebase's test harness (check existing tests in this file for the established
+    // pattern, e.g. how the CanObjectEventMoveInDirection or FieldGetPlayerInput tests
+    // above handle the config-off case, and mirror it). If the config is a compile-time
+    // constant with no test-time override available, skip this step and note it in the
+    // commit message instead - do not fabricate a test that can't actually flip the config.
+}
+```
+
+- [ ] **Step 6: Verify the full build**
+
+Run: `make -j$(nproc)`
+Expected: builds clean.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add src/follower_npc.c test/event_object_movement.c
+git commit -m "fix: make the follower-NPC system step diagonally too
+
+Task 8 fixed this for the Pokemon follower (FollowablePlayerMovement_Step)
+but the separate follower-NPC system (src/follower_npc.c) had the same
+cardinal-only zigzag via DetermineObjectEventDirectionFromObject, left
+unaudited because it's a structurally distinct feature. Added a
+sign-based (not one-tile-offset-based, since this follower can lag by
+more than one tile) diagonal resolver at the follower-NPC call site only
+- DetermineObjectEventDirectionFromObject itself is untouched, since
+ObjectEventsTurnToEachOther's scripted face-each-other behavior must
+stay cardinal-only."
+```
+
+---
+
+### Task 14: Second full regression pass and final re-review
+
+**Files:** none (verification only)
+
+- [ ] **Step 1: Full clean build**
+
+Run: `make clean && make -j$(nproc)`
+Expected: builds clean, no new warnings.
+
+- [ ] **Step 2: Full test suite**
+
+Run: `make check -j$(nproc)`
+Expected: no regressions vs. Task 10's numbers, plus the new Task 11-13 tests passing.
+
+- [ ] **Step 3: Dispatch a final holistic code-reviewer subagent** over the full `expanded/base..feature/diagonal-movement` diff (now including Tasks 11-13), specifically re-checking: is `CanObjectEventMoveInDirection`/`IsDiagonalMoveBlockedByCorner` now reachable from every diagonal-move-producing path (player, NPC wander, and confirm follower/follower-NPC don't need it since they only ever target the player's own already-validated tile)? Is there still any diagonal-input path that bypasses the `PLAYER_AVATAR_FLAG_ON_FOOT` gate? Confirm before declaring the branch ready to merge.
+
+- [ ] **Step 4: Final commit (if any working-tree changes remain)**
+
+```bash
+git status
+```
