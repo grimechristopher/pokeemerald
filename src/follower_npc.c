@@ -481,7 +481,7 @@ static u32 ReturnFollowerNPCDelayedState(enum Direction direction)
     u32 newState = GetFollowerNPCData(FNPC_DATA_DELAYED_STATE);
     SetFollowerNPCData(FNPC_DATA_DELAYED_STATE, 0);
 
-    return newState + direction;
+    return GetFollowerNPCDirectionalAction(newState, direction);
 }
 
 static void TryUpdateFollowerNPCSpriteUnderwater(void)
@@ -504,9 +504,12 @@ static void SetSurfJump(void)
 
     ObjectEventClearHeldMovement(follower);
 
-    // Jump animation according to direction.
+    // Jump animation according to direction. GetJumpMovementAction has no diagonal jump
+    // sprite data (its dirn_to_anim fallback would silently always play JUMP_DOWN for any
+    // diagonal direction), so decompose to a cardinal component first, same as
+    // ScriptHideNPCFollower's lookup.
     direction = DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], follower);
-    jumpState = GetJumpMovementAction(direction);
+    jumpState = GetJumpMovementAction(ResolveFollowerNPCCardinalDirection(direction));
     SetUpSurfBlobFieldEffect(follower);
 
     // Adjust surf head spawn location infront of follower.
@@ -553,9 +556,10 @@ static void SetSurfDismount(void)
 
     ObjectEventClearHeldMovement(follower);
 
-    // Jump animation according to direction
+    // Jump animation according to direction. Same GetJumpMovementAction diagonal caveat as
+    // SetSurfJump above - decompose to a cardinal component first.
     direction = DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], follower);
-    jumpState = GetJumpMovementAction(direction);
+    jumpState = GetJumpMovementAction(ResolveFollowerNPCCardinalDirection(direction));
 
     // Unbind and destroy Surf Blob
     task = CreateTask(Task_FinishSurfDismount, 1);
@@ -875,7 +879,54 @@ void DestroyFollowerNPC(void)
     UpdateFollowingPokemon();
 }
 
-#define RETURN_STATE(state, dir) return newState == MOVEMENT_INVALID ? state + (dir - 1) : ReturnFollowerNPCDelayedState(dir - 1);
+// Most of the per-tile action blocks below (biking tricks, jumping, sliding, stairs,
+// running, water current...) are laid out as 4 consecutive MOVEMENT_ACTION_* constants
+// (DOWN, UP, LEFT, RIGHT) with no diagonal member at all - offsetting by (direction - 1)
+// for a diagonal direction (5-8) walks off that block into an unrelated, wrong
+// MOVEMENT_ACTION_* constant (e.g. MOVEMENT_ACTION_WALK_NORMAL_DOWN + 7 lands on
+// MOVEMENT_ACTION_JUMP_2_RIGHT). Decompose a diagonal direction down to a single
+// representative cardinal component - the horizontal half, mirroring
+// ResolveStairsMoveDirection's convention, though kept as its own function since that one
+// is stairs-specific - before it reaches any of them.
+enum Direction ResolveFollowerNPCCardinalDirection(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        return DIR_EAST;
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        return DIR_WEST;
+    default:
+        return direction;
+    }
+}
+
+// WALK_SLOW/WALK_NORMAL/WALK_FAST are the only action bases here with real diagonal
+// sprite data (added for the diagonal-movement feature) - reuse their existing,
+// already-tested getters for those instead of re-deriving the diagonal action IDs (which
+// aren't contiguous with the cardinal block). Every other base has no diagonal data at
+// all, so fall back to a single cardinal component via ResolveFollowerNPCCardinalDirection.
+u32 GetFollowerNPCDirectionalAction(u32 baseState, enum Direction direction)
+{
+    if (direction <= DIR_EAST)
+        return baseState + (direction - 1);
+
+    switch (baseState)
+    {
+    case MOVEMENT_ACTION_WALK_SLOW_DOWN:
+        return GetWalkSlowMovementAction(direction);
+    case MOVEMENT_ACTION_WALK_NORMAL_DOWN:
+        return GetWalkNormalMovementAction(direction);
+    case MOVEMENT_ACTION_WALK_FAST_DOWN:
+        return GetWalkFastMovementAction(direction);
+    default:
+        return baseState + (ResolveFollowerNPCCardinalDirection(direction) - 1);
+    }
+}
+
+#define RETURN_STATE(state, dir) return newState == MOVEMENT_INVALID ? GetFollowerNPCDirectionalAction(state, dir) : ReturnFollowerNPCDelayedState(dir);
 u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Direction direction)
 {
     u32 newState = MOVEMENT_INVALID;
@@ -922,7 +973,7 @@ u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Dire
         if (delayedState == MOVEMENT_ACTION_JUMP_DOWN && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
             follower->facingDirectionLocked = TRUE;
 
-        newState = delayedState + (direction -1);
+        newState = GetFollowerNPCDirectionalAction(delayedState, direction);
     }
 
     // Clear ice tile stuff.
@@ -958,10 +1009,10 @@ u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Dire
     case MOVEMENT_ACTION_JUMP_2_DOWN ... MOVEMENT_ACTION_JUMP_2_RIGHT:
         // Ledge jump.
         if (delayedState == MOVEMENT_ACTION_JUMP_2_DOWN)
-            return (MOVEMENT_ACTION_JUMP_2_DOWN + (direction - 1));
+            return GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, direction);
 
         if (delayedState == MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN)
-            return (MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN + (direction - 1));
+            return GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN, direction);
 
         SetFollowerNPCData(FNPC_DATA_DELAYED_STATE, MOVEMENT_ACTION_JUMP_2_DOWN);
         RETURN_STATE(MOVEMENT_ACTION_WALK_NORMAL_DOWN, direction);
@@ -1025,17 +1076,17 @@ u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Dire
         if (noSpecialAnimFrames)
         {
             if (delayedState == MOVEMENT_ACTION_JUMP_2_DOWN)
-                return (MOVEMENT_ACTION_JUMP_2_DOWN + (direction - 1));
+                return GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, direction);
 
             SetFollowerNPCData(FNPC_DATA_DELAYED_STATE, MOVEMENT_ACTION_JUMP_2_DOWN);
         }
         else
         {
             if (delayedState == MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN)
-                return (MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN + (direction - 1));
+                return GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN, direction);
 
             if (delayedState == MOVEMENT_ACTION_JUMP_2_DOWN)
-                return (MOVEMENT_ACTION_JUMP_2_DOWN + (direction - 1));
+                return GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, direction);
 
             SetFollowerNPCData(FNPC_DATA_DELAYED_STATE, MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN);
         }
@@ -1378,11 +1429,25 @@ void FollowerNPC_HandleSprite(void)
 
 enum Direction DetermineFollowerNPCDirection(struct ObjectEvent *player, struct ObjectEvent *follower)
 {
+    s32 deltaX, deltaY;
+    enum Direction vertical, horizontal;
+
     if (player->currentCoords.x == follower->currentCoords.x
      && player->currentCoords.y == follower->currentCoords.y)
         return DIR_NONE;
-        
-    return DetermineObjectEventDirectionFromObject(player, follower);
+
+    if (OW_DIAGONAL_MOVEMENT < GEN_6)
+        return DetermineObjectEventDirectionFromObject(player, follower);
+
+    // Sign-based, not one-tile-offset-based (unlike GetFollowerStepDirection): the
+    // follower NPC can lag and catch up across more than one tile, unlike the
+    // Pokemon follower's always-exactly-one-tile trail.
+    deltaX = player->currentCoords.x - follower->currentCoords.x;
+    deltaY = player->currentCoords.y - follower->currentCoords.y;
+    horizontal = (deltaX > 0) ? DIR_EAST : (deltaX < 0) ? DIR_WEST : DIR_NONE;
+    vertical = (deltaY > 0) ? DIR_SOUTH : (deltaY < 0) ? DIR_NORTH : DIR_NONE;
+
+    return GetDiagonalMoveDirection(vertical, horizontal);
 }
 
 u32 GetFollowerNPCObjectId(void)
@@ -1599,29 +1664,22 @@ void FollowerNPCWalkIntoPlayerForLeaveMap(void)
 {
     u32 followerObjId = GetFollowerNPCObjectId();
     struct ObjectEvent *follower = &gObjectEvents[GetFollowerNPCObjectId()];
+    enum Direction direction;
 
     if (followerObjId == OBJECT_EVENTS_COUNT)
         return;
 
     follower->singleMovementActive = FALSE;
     follower->heldMovementActive = FALSE;
-    switch (DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], &gObjectEvents[followerObjId]))
-    {
-    case DIR_NORTH:
-        ObjectEventSetHeldMovement(follower, MOVEMENT_ACTION_WALK_NORMAL_UP);
-        break;
-    case DIR_SOUTH:
-        ObjectEventSetHeldMovement(follower, MOVEMENT_ACTION_WALK_NORMAL_DOWN);
-        break;
-    case DIR_EAST:
-        ObjectEventSetHeldMovement(follower, MOVEMENT_ACTION_WALK_NORMAL_RIGHT);
-        break;
-    case DIR_WEST:
-        ObjectEventSetHeldMovement(follower, MOVEMENT_ACTION_WALK_NORMAL_LEFT);
-        break;
-    default:
-        break;
-    }
+
+    direction = DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], &gObjectEvents[followerObjId]);
+
+    // GetWalkNormalMovementAction already resolves every diagonal direction to the matching
+    // diagonal walk action (added for the diagonal-movement feature) - reuse it instead of a
+    // cardinal-only switch, which silently did nothing for a diagonal direction and left the
+    // follower without a held movement when leaving the map.
+    if (direction != DIR_NONE)
+        ObjectEventSetHeldMovement(follower, GetWalkNormalMovementAction(direction));
 }
 
 void FollowerNPCHideForLeaveMap(struct ObjectEvent *follower)
@@ -1860,7 +1918,11 @@ void ScriptHideNPCFollower(struct ScriptContext *ctx)
 
     if (npc->invisible == FALSE)
     {
-        enum Direction direction = DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], npc);
+        // FollowerNPCHideMovementsSpeedTable only has cardinal-direction movement scripts
+        // (no diagonal hide-walk animation exists) - decompose a diagonal direction down to
+        // a single cardinal component first, or a diagonal direction here would read past
+        // the table's 4 designated-initializer rows.
+        enum Direction direction = ResolveFollowerNPCCardinalDirection(DetermineFollowerNPCDirection(&gObjectEvents[gPlayerAvatar.objectEventId], npc));
 
         if (walkSpeed > 3)
             walkSpeed = 3;

@@ -3,6 +3,7 @@
 #include "field_control_avatar.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
+#include "follower_npc.h"
 #include "sprite.h"
 #include "test/test.h"
 
@@ -406,4 +407,125 @@ TEST("FieldGetPlayerInput combines diagonal input while on foot")
     EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
 
     gPlayerAvatar.flags = savedFlags;
+}
+
+TEST("DetermineFollowerNPCDirection returns a diagonal direction when both axes differ")
+{
+    struct ObjectEvent player = {0};
+    struct ObjectEvent follower = {0};
+
+    player.currentCoords.x = 12;
+    player.currentCoords.y = 8;
+    follower.currentCoords.x = 10;
+    follower.currentCoords.y = 10;
+
+    EXPECT_EQ(DetermineFollowerNPCDirection(&player, &follower), DIR_NORTHEAST);
+}
+
+TEST("DetermineFollowerNPCDirection returns DIR_NONE when the follower is on the player's tile")
+{
+    struct ObjectEvent player = {0};
+    struct ObjectEvent follower = {0};
+
+    player.currentCoords.x = 12;
+    player.currentCoords.y = 8;
+    follower.currentCoords.x = 12;
+    follower.currentCoords.y = 8;
+
+    EXPECT_EQ(DetermineFollowerNPCDirection(&player, &follower), DIR_NONE);
+}
+
+TEST("DetermineFollowerNPCDirection matches DetermineObjectEventDirectionFromObject for a pure cardinal delta")
+{
+    struct ObjectEvent player = {0};
+    struct ObjectEvent follower = {0};
+
+    player.currentCoords.x = 12;
+    player.currentCoords.y = 8;
+    follower.currentCoords.x = 10;
+    follower.currentCoords.y = 8;
+
+    EXPECT_EQ(DetermineFollowerNPCDirection(&player, &follower), DetermineObjectEventDirectionFromObject(&player, &follower));
+    EXPECT_EQ(DetermineFollowerNPCDirection(&player, &follower), DIR_EAST);
+}
+
+TEST("ResolveFollowerNPCCardinalDirection decomposes each diagonal to its horizontal component and passes cardinal input through")
+{
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_NORTHEAST), DIR_EAST);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_SOUTHEAST), DIR_EAST);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_NORTHWEST), DIR_WEST);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_SOUTHWEST), DIR_WEST);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_NORTH), DIR_NORTH);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_SOUTH), DIR_SOUTH);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_WEST), DIR_WEST);
+    EXPECT_EQ(ResolveFollowerNPCCardinalDirection(DIR_EAST), DIR_EAST);
+}
+
+TEST("ResolveFollowerNPCCardinalDirection never returns a diagonal direction, keeping cardinal-only table lookups like FollowerNPCHideMovementsSpeedTable in bounds")
+{
+    enum Direction directions[] = {DIR_SOUTH, DIR_NORTH, DIR_WEST, DIR_EAST, DIR_SOUTHWEST, DIR_SOUTHEAST, DIR_NORTHWEST, DIR_NORTHEAST};
+    s32 i;
+
+    for (i = 0; i < ARRAY_COUNT(directions); i++)
+    {
+        enum Direction resolved = ResolveFollowerNPCCardinalDirection(directions[i]);
+        EXPECT(resolved >= DIR_SOUTH && resolved <= DIR_EAST);
+    }
+}
+
+TEST("GetFollowerNPCDirectionalAction resolves a diagonal direction to the matching diagonal walk action for bases with diagonal sprite data")
+{
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_WALK_NORMAL_DOWN, DIR_NORTHEAST), GetWalkNormalMovementAction(DIR_NORTHEAST));
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_WALK_SLOW_DOWN, DIR_SOUTHWEST), GetWalkSlowMovementAction(DIR_SOUTHWEST));
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_WALK_FAST_DOWN, DIR_NORTHWEST), GetWalkFastMovementAction(DIR_NORTHWEST));
+
+    // Cardinal input is untouched - same linear offset as before this fix.
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_WALK_NORMAL_DOWN, DIR_EAST), MOVEMENT_ACTION_WALK_NORMAL_RIGHT);
+}
+
+TEST("GetFollowerNPCDirectionalAction decomposes a diagonal direction to a cardinal action instead of producing a wrong ledge-jump action")
+{
+    // Before this fix, DetermineFollowerNPCState's RETURN_STATE macro computed
+    // state + (dir - 1) unconditionally. For a normal walk step (the common per-tile
+    // follow path), MOVEMENT_ACTION_WALK_NORMAL_DOWN + (DIR_NORTHEAST - 1) landed on
+    // MOVEMENT_ACTION_JUMP_2_RIGHT - a ledge-jump action - instead of a diagonal walk.
+    u32 brokenResult = MOVEMENT_ACTION_WALK_NORMAL_DOWN + (DIR_NORTHEAST - 1);
+    u32 fixedResult = GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_WALK_NORMAL_DOWN, DIR_NORTHEAST);
+
+    EXPECT_EQ(brokenResult, MOVEMENT_ACTION_JUMP_2_RIGHT);
+    EXPECT_NE(fixedResult, MOVEMENT_ACTION_JUMP_2_RIGHT);
+    EXPECT_EQ(fixedResult, MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_RIGHT);
+
+    // The ledge-jump base itself has no diagonal sprite data - a diagonal direction there
+    // must decompose to a valid cardinal jump action (horizontal component preferred, same
+    // as ResolveFollowerNPCCardinalDirection), not read past the DOWN/UP/LEFT/RIGHT block
+    // into an unrelated MOVEMENT_ACTION_* constant.
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, DIR_NORTHEAST), MOVEMENT_ACTION_JUMP_2_RIGHT);
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, DIR_SOUTHEAST), MOVEMENT_ACTION_JUMP_2_RIGHT);
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, DIR_NORTHWEST), MOVEMENT_ACTION_JUMP_2_LEFT);
+    EXPECT_EQ(GetFollowerNPCDirectionalAction(MOVEMENT_ACTION_JUMP_2_DOWN, DIR_SOUTHWEST), MOVEMENT_ACTION_JUMP_2_LEFT);
+}
+
+TEST("DetermineFollowerNPCState resolves a diagonal direction to a diagonal walk action instead of a wrong ledge-jump action")
+{
+    struct ObjectEvent follower = {0};
+    u8 savedObjectEventId = gPlayerAvatar.objectEventId;
+    u32 result;
+
+    SetUpTestMap();
+    PlaceTestObjectEvent(&gObjectEvents[0], TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    gPlayerAvatar.objectEventId = 0;
+    PlaceTestObjectEvent(&follower, TEST_MAP_ORIGIN - 1, TEST_MAP_ORIGIN + 1);
+
+    // Before the RETURN_STATE fix, this exact call - a normal walk step (the common
+    // per-tile follow path reached via NPCFollow with state == MOVEMENT_ACTION_WALK_
+    // NORMAL_DOWN) taking a diagonal direction - computed
+    // MOVEMENT_ACTION_WALK_NORMAL_DOWN + (DIR_NORTHEAST - 1) and returned
+    // MOVEMENT_ACTION_JUMP_2_RIGHT: a ledge-jump action instead of a diagonal walk.
+    result = DetermineFollowerNPCState(&follower, MOVEMENT_ACTION_WALK_NORMAL_DOWN, DIR_NORTHEAST);
+
+    EXPECT_NE(result, MOVEMENT_ACTION_JUMP_2_RIGHT);
+    EXPECT_EQ(result, MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_RIGHT);
+
+    gPlayerAvatar.objectEventId = savedObjectEventId;
 }
