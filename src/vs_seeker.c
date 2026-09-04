@@ -535,10 +535,12 @@ void ClearRematchMovementByTrainerId(void)
 
         TryGetObjectEventIdByLocalIdAndMap(objectEventTemplates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
         objectEvent = &gObjectEvents[objEventId];
-        TryOverrideTemplateCoordsForObjectEvent(objectEvent, sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection]);
+        // facingDirection can be diagonal (e.g. a WANDER_AROUND trainer); fold to a single
+        // cardinal component before this cardinal-only lookup.
+        TryOverrideTemplateCoordsForObjectEvent(objectEvent, sFaceDirectionMovementTypeByFacingDirection[ResolveStairsMoveDirection(objectEvent->facingDirection)]);
 
         if (gSelectedObjectEvent == objEventId)
-            objectEvent->movementType = sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection];
+            objectEvent->movementType = sFaceDirectionMovementTypeByFacingDirection[ResolveStairsMoveDirection(objectEvent->facingDirection)];
         else
             objectEvent->movementType = MOVEMENT_TYPE_FACE_DOWN;
     }
