@@ -385,14 +385,59 @@ TEST("GetLedgeJumpDirection does not trigger a ledge jump for diagonal direction
     EXPECT_EQ(GetLedgeJumpDirection(0, 0, DIR_SOUTHWEST), DIR_NONE);
 }
 
-TEST("FieldGetPlayerInput does not combine diagonal input while surfing")
+TEST("ResolveLedgeMoveDirection leaves a cardinal direction unchanged")
+{
+    struct ObjectEvent objectEvent = {0};
+    objectEvent.currentCoords.x = 10;
+    objectEvent.currentCoords.y = 10;
+    EXPECT_EQ(ResolveLedgeMoveDirection(&objectEvent, DIR_SOUTH), DIR_SOUTH);
+    EXPECT_EQ(ResolveLedgeMoveDirection(&objectEvent, DIR_NONE), DIR_NONE);
+}
+
+TEST("ResolveLedgeMoveDirection leaves a diagonal direction unchanged when neither cardinal component is a ledge")
+{
+    struct ObjectEvent objectEvent = {0};
+    objectEvent.currentCoords.x = 10;
+    objectEvent.currentCoords.y = 10;
+    EXPECT_EQ(ResolveLedgeMoveDirection(&objectEvent, DIR_NORTHEAST), DIR_NORTHEAST);
+    EXPECT_EQ(ResolveLedgeMoveDirection(&objectEvent, DIR_SOUTHWEST), DIR_SOUTHWEST);
+}
+
+TEST("GetDiagonalVerticalComponent and GetDiagonalHorizontalComponent split every diagonal correctly")
+{
+    EXPECT_EQ(GetDiagonalVerticalComponent(DIR_NORTHEAST), DIR_NORTH);
+    EXPECT_EQ(GetDiagonalVerticalComponent(DIR_NORTHWEST), DIR_NORTH);
+    EXPECT_EQ(GetDiagonalVerticalComponent(DIR_SOUTHEAST), DIR_SOUTH);
+    EXPECT_EQ(GetDiagonalVerticalComponent(DIR_SOUTHWEST), DIR_SOUTH);
+    EXPECT_EQ(GetDiagonalHorizontalComponent(DIR_NORTHEAST), DIR_EAST);
+    EXPECT_EQ(GetDiagonalHorizontalComponent(DIR_SOUTHEAST), DIR_EAST);
+    EXPECT_EQ(GetDiagonalHorizontalComponent(DIR_NORTHWEST), DIR_WEST);
+    EXPECT_EQ(GetDiagonalHorizontalComponent(DIR_SOUTHWEST), DIR_WEST);
+    // Cardinal/none directions pass through both unchanged.
+    EXPECT_EQ(GetDiagonalVerticalComponent(DIR_NORTH), DIR_NORTH);
+    EXPECT_EQ(GetDiagonalHorizontalComponent(DIR_NORTH), DIR_NORTH);
+}
+
+TEST("FieldGetPlayerInput combines diagonal input while surfing, underwater, and on a bike")
 {
     struct FieldInput input = {0};
     u8 savedFlags = gPlayerAvatar.flags;
 
     gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_SURFING;
     FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
-    EXPECT_EQ(input.dpadDirection, DIR_NORTH);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_UNDERWATER;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_MACH_BIKE;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
+
+    gPlayerAvatar.flags = PLAYER_AVATAR_FLAG_ACRO_BIKE;
+    FieldGetPlayerInput(&input, 0, DPAD_UP | DPAD_RIGHT);
+    EXPECT_EQ(input.dpadDirection, DIR_NORTHEAST);
 
     gPlayerAvatar.flags = savedFlags;
 }

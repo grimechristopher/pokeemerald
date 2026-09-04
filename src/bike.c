@@ -170,6 +170,13 @@ void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
 
 static void MovePlayerOnStandardBike(u8 direction, u16 newKeys, u16 heldKeys)
 {
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    if (direction >= CARDINAL_DIRECTION_COUNT && IsOnSidewaysStairsTile(playerObjEvent->currentMetatileBehavior))
+        direction = ResolveStairsMoveDirection(direction);
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+        direction = ResolveLedgeMoveDirection(playerObjEvent, direction);
+
     sStandardBikeTransitions[GetStandardBikeTransitionId(&direction, newKeys, heldKeys)](direction);
 }
 
@@ -181,20 +188,11 @@ static u8 GetStandardBikeTransitionId(u8 *direction, u16 newKeys, u16 heldKeys)
 static u8 StandardBikeInputHandler_Normal(u8 *direction_p, u16 newKeys, u16 heldKeys)
 {
     struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    // GetPlayerMovementDirection() can legitimately be diagonal now - the object event's
+    // movementDirection preserves it correctly (see the diagonal-movement fix in
+    // event_object_movement.c), so unlike the old sideways-stairs-only world this no longer
+    // needs collapsing to a cardinal direction before use.
     u8 direction = GetPlayerMovementDirection();
-
-    // fix direction when moving on sideways stairs
-    switch (direction)
-    {
-    case DIR_SOUTHWEST:
-    case DIR_NORTHWEST:
-        direction = DIR_WEST;
-        break;
-    case DIR_SOUTHEAST:
-    case DIR_NORTHEAST:
-        direction = DIR_EAST;
-        break;
-    }
 
     gPlayerAvatar.bikeFrameCounter = 0;
     if (MetatileBehavior_IsCyclingRoadPullDownTile(playerObjEvent->currentMetatileBehavior) == TRUE)
@@ -203,7 +201,9 @@ static u8 StandardBikeInputHandler_Normal(u8 *direction_p, u16 newKeys, u16 held
         {
             gPlayerAvatar.acroBikeState = BIKE_STATE_SLOPE;
             gPlayerAvatar.runningState = MOVING;
-            if (*direction_p < DIR_NORTH)
+            // Cycling Road's pull tiles are a vertical-only mechanic; a diagonal direction
+            // resolves to its vertical component the same way ledges/stairs do elsewhere.
+            if (GetDiagonalVerticalComponent(*direction_p) == DIR_SOUTH || *direction_p == DIR_NONE)
                 return BIKE_TRANS_DOWNHILL;
             else
                 return BIKE_TRANS_UPHILL;
@@ -267,7 +267,9 @@ static u8 StandardBikeInputHandler_Slope(u8 *direction_p, u16 newKeys, u16 heldK
         {
             gPlayerAvatar.runningState = MOVING;
             gPlayerAvatar.acroBikeState = BIKE_STATE_SLOPE;
-            if (*direction_p < DIR_NORTH)
+            // Cycling Road's pull tiles are a vertical-only mechanic; a diagonal direction
+            // resolves to its vertical component the same way ledges/stairs do elsewhere.
+            if (GetDiagonalVerticalComponent(*direction_p) == DIR_SOUTH || *direction_p == DIR_NONE)
                 return BIKE_TRANS_DOWNHILL;
             else
                 return BIKE_TRANS_UPHILL;
@@ -348,6 +350,13 @@ static void StandardBikeTransition_Uphill(u8 direction)
 
 static void MovePlayerOnMachBike(enum Direction direction, u16 newKeys, u16 heldKeys)
 {
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    if (direction >= CARDINAL_DIRECTION_COUNT && IsOnSidewaysStairsTile(playerObjEvent->currentMetatileBehavior))
+        direction = ResolveStairsMoveDirection(direction);
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+        direction = ResolveLedgeMoveDirection(playerObjEvent, direction);
+
     sMachBikeTransitions[GetMachBikeTransition(&direction)](direction);
 }
 
@@ -355,22 +364,10 @@ static void MovePlayerOnMachBike(enum Direction direction, u16 newKeys, u16 held
 static enum MachTransition GetMachBikeTransition(enum Direction *dirTraveling)
 {
     // if the dir updated before this function, get the relevent new direction to check later.
+    // GetPlayerMovementDirection() can legitimately be diagonal now (see the diagonal-movement
+    // fix in event_object_movement.c) so, unlike the old sideways-stairs-only world, this no
+    // longer needs collapsing to a cardinal direction before use.
     enum Direction direction = GetPlayerMovementDirection();
-
-    // fix direction when moving on sideways stairs
-    switch (direction)
-    {
-    case DIR_SOUTHWEST:
-    case DIR_NORTHWEST:
-        direction = DIR_WEST;
-        break;
-    case DIR_SOUTHEAST:
-    case DIR_NORTHEAST:
-        direction = DIR_EAST;
-        break;
-    default:
-        break;
-    }
 
     // is the player standing still?
     if (*dirTraveling == 0)
@@ -507,6 +504,13 @@ static void MachBikeTransition_TrySlowDown(enum Direction direction)
 // the acro bike requires the input handler to be executed before the transition can.
 static void MovePlayerOnAcroBike(enum Direction newDirection, u16 newKeys, u16 heldKeys)
 {
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    if (newDirection >= CARDINAL_DIRECTION_COUNT && IsOnSidewaysStairsTile(playerObjEvent->currentMetatileBehavior))
+        newDirection = ResolveStairsMoveDirection(newDirection);
+    if (newDirection >= CARDINAL_DIRECTION_COUNT)
+        newDirection = ResolveLedgeMoveDirection(playerObjEvent, newDirection);
+
     sAcroBikeTransitions[CheckMovementInputAcroBike(&newDirection, newKeys, heldKeys)](newDirection);
 }
 
@@ -527,7 +531,9 @@ static enum AcroTransition AcroBikeHandleInputNormal(enum Direction *newDirectio
         {
             gPlayerAvatar.acroBikeState = ACRO_STATE_SLOPE;
             gPlayerAvatar.runningState = MOVING;
-            if (*newDirection < DIR_NORTH)
+            // Cycling Road's pull tiles are a vertical-only mechanic; a diagonal direction
+            // resolves to its vertical component the same way ledges/stairs do elsewhere.
+            if (GetDiagonalVerticalComponent(*newDirection) == DIR_SOUTH || *newDirection == DIR_NONE)
                 return ACRO_TRANS_DOWNHILL;
             else
                 return ACRO_TRANS_UPHILL;
@@ -801,7 +807,9 @@ static enum AcroTransition AcroBikeHandleInput_Slope(enum Direction *direction_p
         {
             gPlayerAvatar.runningState = MOVING;
             gPlayerAvatar.acroBikeState = ACRO_STATE_SLOPE;
-            if (*direction_p < DIR_NORTH)
+            // Cycling Road's pull tiles are a vertical-only mechanic; a diagonal direction
+            // resolves to its vertical component the same way ledges/stairs do elsewhere.
+            if (GetDiagonalVerticalComponent(*direction_p) == DIR_SOUTH || *direction_p == DIR_NONE)
                 return ACRO_TRANS_DOWNHILL;
             else
                 return ACRO_TRANS_UPHILL;
@@ -1183,6 +1191,12 @@ static enum Collision GetBikeCollision(enum Direction direction)
     struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     s16 x = playerObjEvent->currentCoords.x;
     s16 y = playerObjEvent->currentCoords.y;
+
+    // No corner-cutting on a bike either - CheckForPlayerAvatarCollision enforces this for
+    // walking, but bikes never went through that function, so this was missing entirely.
+    if (IsDiagonalMoveBlockedByCorner(playerObjEvent, direction))
+        return COLLISION_IMPASSABLE;
+
     MoveCoords(direction, &x, &y);
     metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
     return GetBikeCollisionAt(playerObjEvent, x, y, direction, metatileBehavior);

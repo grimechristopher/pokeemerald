@@ -139,7 +139,8 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (OW_DIAGONAL_MOVEMENT >= GEN_6 && (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT))
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6
+     && (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_ON_FOOT | PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_UNDERWATER | PLAYER_AVATAR_FLAG_BIKE)))
     {
         enum Direction vertical = DIR_NONE;
         enum Direction horizontal = DIR_NONE;
@@ -1057,6 +1058,16 @@ static bool8 IsWarpMetatileBehavior(u16 metatileBehavior)
 
 static bool8 IsArrowWarpMetatileBehavior(u16 metatileBehavior, enum Direction direction)
 {
+    // Arrow warp tiles only ever face one cardinal direction; a diagonal approach resolves
+    // to whichever cardinal component of it matches, the same as sideways stairs. The tile
+    // being checked doesn't depend on which component we try (it's the player's own current
+    // tile, not a destination), so there's no risk of testing the wrong tile here.
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+    {
+        return IsArrowWarpMetatileBehavior(metatileBehavior, GetDiagonalHorizontalComponent(direction))
+            || IsArrowWarpMetatileBehavior(metatileBehavior, GetDiagonalVerticalComponent(direction));
+    }
+
     switch (direction)
     {
     case DIR_NORTH:

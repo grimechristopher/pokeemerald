@@ -6502,11 +6502,46 @@ u8 GetCollisionInDirection(struct ObjectEvent *objectEvent, enum Direction direc
     return GetCollisionAtCoords(objectEvent, x, y, direction);
 }
 
+// A diagonal direction's vertical/horizontal cardinal components. Returns the direction
+// unchanged if it's already cardinal (or DIR_NONE). Shared by every "diagonal input
+// resolves to a single cardinal component" mechanic (corner-cutting, ledges, arrow warps,
+// sideways-stairs-adjacent bike slopes) so the decomposition itself can't drift.
+enum Direction GetDiagonalVerticalComponent(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_NORTHWEST:
+        return DIR_NORTH;
+    case DIR_SOUTHEAST:
+    case DIR_SOUTHWEST:
+        return DIR_SOUTH;
+    default:
+        return direction;
+    }
+}
+
+enum Direction GetDiagonalHorizontalComponent(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        return DIR_EAST;
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        return DIR_WEST;
+    default:
+        return direction;
+    }
+}
+
 // No corner-cutting: for a diagonal move, at least one of the two flanking cardinal
 // tiles must be passable, or the move is rejected even if the diagonal destination
 // tile itself is open. Shared by the player's own collision path
-// (CheckForPlayerAvatarCollision, src/field_player_avatar.c) and the NPC-wander path
-// (CanObjectEventMoveInDirection below) so the rule can't drift apart between them.
+// (CheckForPlayerAvatarCollision, src/field_player_avatar.c), the bike collision path
+// (GetBikeCollisionAt, src/bike.c), and the NPC-wander path (CanObjectEventMoveInDirection
+// below) so the rule can't drift apart between them.
 bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *objectEvent, enum Direction direction)
 {
     enum Direction vertical, horizontal;
@@ -6514,11 +6549,43 @@ bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *objectEvent, enum Direct
     if (direction < CARDINAL_DIRECTION_COUNT)
         return FALSE;
 
-    vertical = (direction == DIR_NORTHEAST || direction == DIR_NORTHWEST) ? DIR_NORTH : DIR_SOUTH;
-    horizontal = (direction == DIR_NORTHEAST || direction == DIR_SOUTHEAST) ? DIR_EAST : DIR_WEST;
+    vertical = GetDiagonalVerticalComponent(direction);
+    horizontal = GetDiagonalHorizontalComponent(direction);
 
     return (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
          && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE);
+}
+
+// Ledges are only jumpable from a cardinal approach (GetLedgeJumpDirection). For a diagonal
+// move, check whether either cardinal component would jump a ledge from the object's current
+// position and, if so, resolve the whole move to that single cardinal direction - the same
+// "diagonal input resolves to one cardinal component" precedent as sideways stairs, but
+// applied here (before collision checking) rather than inside GetLedgeJumpDirection itself:
+// folding only there left the ledge *detected* in one direction while the jump *executed* in
+// the original diagonal one, jumping the wrong way and desyncing the player's position.
+enum Direction ResolveLedgeMoveDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction component;
+    s16 x, y;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return direction;
+
+    component = GetDiagonalHorizontalComponent(direction);
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    MoveCoords(component, &x, &y);
+    if (GetLedgeJumpDirection(x, y, component) != DIR_NONE)
+        return component;
+
+    component = GetDiagonalVerticalComponent(direction);
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    MoveCoords(component, &x, &y);
+    if (GetLedgeJumpDirection(x, y, component) != DIR_NONE)
+        return component;
+
+    return direction;
 }
 
 bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)

@@ -77,6 +77,7 @@ bool8 ObjectMovingOnRockStairs(struct ObjectEvent *objectEvent, enum Direction d
 //sideways stairs
 enum Direction GetRightSideStairsDirection(enum Direction direction);
 enum Direction GetLeftSideStairsDirection(enum Direction direction);
+bool8 IsOnSidewaysStairsTile(u8 metatileBehavior);
 void UpdateSpinData(void);
 void ResetSpinTimer(void);
 bool32 CanTriggerSpinEvolution();
