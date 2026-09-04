@@ -1031,10 +1031,15 @@ const u8 gFaceDirectionMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_FACE_UP,
     [DIR_WEST] = MOVEMENT_ACTION_FACE_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_FACE_RIGHT,
-    [DIR_SOUTHWEST] = MOVEMENT_ACTION_FACE_LEFT,
-    [DIR_SOUTHEAST] = MOVEMENT_ACTION_FACE_RIGHT,
-    [DIR_NORTHWEST] = MOVEMENT_ACTION_FACE_LEFT,
-    [DIR_NORTHEAST] = MOVEMENT_ACTION_FACE_RIGHT
+    // Real diagonal actions (not the old MOVEMENT_ACTION_FACE_LEFT/RIGHT E/W substitutes) -
+    // those hardcoded facingDirection/movementDirection to DIR_WEST/DIR_EAST, which
+    // permanently desynced them from a diagonal input direction and left
+    // CheckMovementInputNotOnBike unable to ever see a match, so a diagonal move could
+    // turn to face but never actually step. See MOVEMENT_ACTION_FACE_DIAGONAL_* above.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT
 };
 static const u8 gWalkSlowStairsMovementActions[] = {
     [DIR_NONE]  = MOVEMENT_ACTION_WALK_SLOW_STAIRS_DOWN,
@@ -1183,10 +1188,18 @@ const u8 gWalkInPlaceFastMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT,
-    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
-    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
-    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT,
-    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT
+    // Real diagonal actions - this is the table PlayerTurnInPlace (and so
+    // PlayerNotOnBikeTurningInPlace, the very first frame of any diagonal player input)
+    // reads. The old MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT/RIGHT E/W substitutes here
+    // hardcoded movementDirection to DIR_WEST/DIR_EAST, which desynced it from the
+    // diagonal direction FieldGetPlayerInput keeps reporting - CheckMovementInputNotOnBike
+    // compares the two every frame and never saw a match, so the player could turn to
+    // face a diagonal but could never actually take the step. See
+    // MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_* above.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT
 };
 const u8 gWalkInPlaceFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTER_DOWN,
@@ -6945,6 +6958,7 @@ static u8 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u8 mo
 
 static const u8 sActionIdToCopyableMovement[] = {
     [MOVEMENT_ACTION_FACE_DOWN ... MOVEMENT_ACTION_FACE_RIGHT] = COPY_MOVE_FACE,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT ... MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT] = COPY_MOVE_FACE,
     [MOVEMENT_ACTION_WALK_SLOW_DOWN ... MOVEMENT_ACTION_WALK_NORMAL_RIGHT] = COPY_MOVE_WALK,
     [MOVEMENT_ACTION_JUMP_2_DOWN ... MOVEMENT_ACTION_JUMP_2_RIGHT] = COPY_MOVE_JUMP2,
     [MOVEMENT_ACTION_WALK_FAST_DOWN ... MOVEMENT_ACTION_WALK_FAST_RIGHT] = COPY_MOVE_WALK,
@@ -7204,6 +7218,34 @@ bool8 MovementAction_FaceLeft_Step0(struct ObjectEvent *objectEvent, struct Spri
 bool8 MovementAction_FaceRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     FaceDirection(objectEvent, sprite, DIR_EAST);
+    return TRUE;
+}
+
+// Unlike FaceLeft/FaceRight above, these preserve the true diagonal direction in
+// facingDirection/movementDirection (FaceDirection accepts any enum Direction) - only the
+// sprite's rendered animation number falls back to a cardinal substitute, via
+// GetMoveDirectionAnimNum inside FaceDirection reading the now-diagonal facingDirection.
+bool8 MovementAction_FaceDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_NORTHWEST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_NORTHEAST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_SOUTHWEST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_SOUTHEAST);
     return TRUE;
 }
 
@@ -8165,6 +8207,37 @@ bool8 MovementAction_WalkInPlaceFastLeft_Step0(struct ObjectEvent *objectEvent, 
 bool8 MovementAction_WalkInPlaceFastRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     InitMoveInPlace(objectEvent, sprite, DIR_EAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+// Same fix as MovementAction_FaceDiagonal* above, but for the "turn in place" action
+// PlayerNotOnBikeTurningInPlace actually dispatches to (PlayerTurnInPlace ->
+// GetWalkInPlaceFastMovementAction) - this is the specific action reached on the first
+// frame of any diagonal input, so it's the one that was causing the real bug: passing
+// InitMoveInPlace the true diagonal direction keeps facingDirection/movementDirection in
+// sync with the diagonal direction FieldGetPlayerInput is reporting, while the sprite
+// still renders using the explicit E/W-substituted anim number.
+bool8 MovementAction_WalkInPlaceFastDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_NORTHWEST, GetMoveDirectionFastAnimNum(DIR_WEST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_NORTHEAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_SOUTHWEST, GetMoveDirectionFastAnimNum(DIR_WEST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_SOUTHEAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
     return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
 }
 

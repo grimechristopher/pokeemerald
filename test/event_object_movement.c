@@ -557,3 +557,54 @@ TEST("PlayCollisionSoundIfNotFacingWarp does not read out of bounds for a diagon
 
     gPlayerAvatar.objectEventId = savedObjectEventId;
 }
+
+// Root-cause regression test for the branch's flagship bug: GetWalkInPlaceFastMovementAction
+// backs PlayerTurnInPlace, which PlayerNotOnBikeTurningInPlace calls on the very first frame
+// of ANY new direction (including every diagonal input, since it never exactly matches the
+// player's previous movementDirection). The old table mapped a diagonal direction to the
+// plain MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT/RIGHT actions, whose handlers hardcode
+// FaceDirection(..., DIR_WEST/DIR_EAST) - collapsing facingDirection/movementDirection to a
+// cardinal value and permanently desyncing it from the diagonal direction FieldGetPlayerInput
+// keeps reporting. CheckMovementInputNotOnBike compares the two every frame and never saw a
+// match, so a held diagonal direction could turn to face it but could NEVER transition to
+// actually walking - confirmed live in-game (not just in this unit test) via a real ROM run:
+// holding a diagonal direction moved the player's facing but never their tile position, on
+// every single map tested, until this table was fixed to route through the new
+// MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_* actions instead (see
+// MovementAction_WalkInPlaceFastDiagonalUpRight_Step0 and friends, which pass the true
+// diagonal direction to InitMoveInPlace while still rendering the E/W-substituted sprite).
+TEST("GetWalkInPlaceFastMovementAction preserves diagonal direction instead of the old E/W-only actions")
+{
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT);
+
+    // These would have been the old, buggy result - explicitly confirm the fix moved away
+    // from them, not just that it landed on *some* new value.
+    EXPECT_NE(GetWalkInPlaceFastMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT);
+    EXPECT_NE(GetWalkInPlaceFastMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT);
+
+    // Cardinal directions are unaffected.
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_NORTH), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_UP);
+    EXPECT_EQ(GetWalkInPlaceFastMovementAction(DIR_EAST), MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT);
+}
+
+// Same bug, second call site: PlayerNotOnBikeNotMoving calls PlayerFaceDirection every frame
+// the player holds no input, which re-applies the player's CURRENT facingDirection through
+// this table - if it still collapsed diagonal to E/W here, a player idling after a successful
+// diagonal step would have their facing (and the next diagonal press's starting comparison)
+// silently corrupted back to cardinal on the very next idle frame.
+TEST("GetFaceDirectionMovementAction preserves diagonal direction instead of the old E/W-only actions")
+{
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT);
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT);
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_SOUTHEAST), MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT);
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_SOUTHWEST), MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT);
+
+    EXPECT_NE(GetFaceDirectionMovementAction(DIR_NORTHEAST), MOVEMENT_ACTION_FACE_RIGHT);
+    EXPECT_NE(GetFaceDirectionMovementAction(DIR_NORTHWEST), MOVEMENT_ACTION_FACE_LEFT);
+
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_NORTH), MOVEMENT_ACTION_FACE_UP);
+    EXPECT_EQ(GetFaceDirectionMovementAction(DIR_EAST), MOVEMENT_ACTION_FACE_RIGHT);
+}

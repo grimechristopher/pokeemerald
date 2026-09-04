@@ -277,6 +277,20 @@
 #define MOVEMENT_ACTION_SPIN_LEFT                       0xB4
 #define MOVEMENT_ACTION_SPIN_RIGHT                      0xB5
 
+// Face/turn-in-place diagonal actions - unlike the WALK_*_DIAGONAL actions above, these
+// exist purely so a diagonal "turn without walking" preserves the true diagonal
+// direction (facingDirection/movementDirection) instead of collapsing it to the E/W
+// sprite substitute, which otherwise permanently desyncs CheckMovementInputNotOnBike's
+// direction comparison and leaves a diagonal move stuck re-turning forever.
+#define MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT                  0xB6
+#define MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT                 0xB7
+#define MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT                0xB8
+#define MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT               0xB9
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT    0xBA
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT   0xBB
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT  0xBC
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT 0xBD
+
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF
 

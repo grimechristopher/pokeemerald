@@ -4,6 +4,14 @@ u8 MovementAction_PauseSpriteAnim(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_FaceUp_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_FaceLeft_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_FaceRight_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_FaceDiagonalUpLeft_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_FaceDiagonalUpRight_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_FaceDiagonalDownLeft_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_FaceDiagonalDownRight_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkInPlaceFastDiagonalUpLeft_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkInPlaceFastDiagonalUpRight_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkInPlaceFastDiagonalDownLeft_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkInPlaceFastDiagonalDownRight_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkSlowDiagonalUpLeft_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkSlowDiagonalUpLeft_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkSlowDiagonalUpRight_Step0(struct ObjectEvent *, struct Sprite *);
@@ -307,6 +315,14 @@ u8 (*const gMovementActionFuncs_FaceDown[])(struct ObjectEvent *, struct Sprite 
 u8 (*const gMovementActionFuncs_FaceUp[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FaceLeft[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FaceRight[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_FaceDiagonalUpLeft[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_FaceDiagonalUpRight[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_FaceDiagonalDownLeft[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_FaceDiagonalDownRight[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalUpLeft[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalUpRight[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalDownLeft[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalDownRight[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_WalkSlowDown[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_WalkSlowUp[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_WalkSlowLeft[])(struct ObjectEvent *, struct Sprite *);
@@ -493,6 +509,14 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_FACE_UP] = gMovementActionFuncs_FaceUp,
     [MOVEMENT_ACTION_FACE_LEFT] = gMovementActionFuncs_FaceLeft,
     [MOVEMENT_ACTION_FACE_RIGHT] = gMovementActionFuncs_FaceRight,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT] = gMovementActionFuncs_FaceDiagonalUpLeft,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT] = gMovementActionFuncs_FaceDiagonalUpRight,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT] = gMovementActionFuncs_FaceDiagonalDownLeft,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT] = gMovementActionFuncs_FaceDiagonalDownRight,
+    [MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT] = gMovementActionFuncs_WalkInPlaceFastDiagonalUpLeft,
+    [MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT] = gMovementActionFuncs_WalkInPlaceFastDiagonalUpRight,
+    [MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT] = gMovementActionFuncs_WalkInPlaceFastDiagonalDownLeft,
+    [MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT] = gMovementActionFuncs_WalkInPlaceFastDiagonalDownRight,
     [MOVEMENT_ACTION_WALK_SLOW_DOWN] = gMovementActionFuncs_WalkSlowDown,
     [MOVEMENT_ACTION_WALK_SLOW_UP] = gMovementActionFuncs_WalkSlowUp,
     [MOVEMENT_ACTION_WALK_SLOW_LEFT] = gMovementActionFuncs_WalkSlowLeft,
@@ -691,6 +715,26 @@ u8 (*const gMovementActionFuncs_FaceLeft[])(struct ObjectEvent *, struct Sprite 
 
 u8 (*const gMovementActionFuncs_FaceRight[])(struct ObjectEvent *, struct Sprite *) = {
     MovementAction_FaceRight_Step0,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_FaceDiagonalUpLeft[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FaceDiagonalUpLeft_Step0,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_FaceDiagonalUpRight[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FaceDiagonalUpRight_Step0,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_FaceDiagonalDownLeft[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FaceDiagonalDownLeft_Step0,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_FaceDiagonalDownRight[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FaceDiagonalDownRight_Step0,
     MovementAction_PauseSpriteAnim,
 };
 
@@ -955,6 +999,30 @@ u8 (*const gMovementActionFuncs_WalkInPlaceFastLeft[])(struct ObjectEvent *, str
 
 u8 (*const gMovementActionFuncs_WalkInPlaceFastRight[])(struct ObjectEvent *, struct Sprite *) = {
     MovementAction_WalkInPlaceFastRight_Step0,
+    MovementAction_WalkInPlace_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalUpLeft[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkInPlaceFastDiagonalUpLeft_Step0,
+    MovementAction_WalkInPlace_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalUpRight[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkInPlaceFastDiagonalUpRight_Step0,
+    MovementAction_WalkInPlace_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalDownLeft[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkInPlaceFastDiagonalDownLeft_Step0,
+    MovementAction_WalkInPlace_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkInPlaceFastDiagonalDownRight[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkInPlaceFastDiagonalDownRight_Step0,
     MovementAction_WalkInPlace_Step1,
     MovementAction_PauseSpriteAnim,
 };
