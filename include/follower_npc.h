@@ -101,6 +101,8 @@ void ClearFollowerNPCData(void);
 void CreateFollowerNPC(u32 gfx, u32 followerFlags, const u8 *scriptPtr);
 void DestroyFollowerNPC(void);
 u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Direction direction);
+enum Direction ResolveFollowerNPCCardinalDirection(enum Direction direction);
+u32 GetFollowerNPCDirectionalAction(u32 baseState, enum Direction direction);
 void SetFollowerNPCSprite(u32 spriteIndex);
 
 bool32 PlayerHasFollowerNPC(void);

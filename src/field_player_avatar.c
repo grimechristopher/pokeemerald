@@ -101,7 +101,6 @@ static u8 CheckMovementInputNotOnBike(enum Direction);
 static void PlayerNotOnBikeNotMoving(enum Direction, u16);
 static void PlayerNotOnBikeTurningInPlace(enum Direction, u16);
 static void PlayerNotOnBikeMoving(enum Direction, u16);
-static enum Collision CheckForPlayerAvatarCollision(enum Direction);
 static enum Collision CheckForPlayerAvatarStaticCollision(enum Direction);
 static enum Collision CheckForObjectEventStaticCollision(struct ObjectEvent *, s16, s16, enum Direction, u8);
 static bool8 CanStopSurfing(s16, s16, enum Direction);
@@ -130,7 +129,6 @@ static void PlayerRun(enum Direction);
 static void PlayerNotOnBikeCollide(enum Direction);
 static void PlayerNotOnBikeCollideWithFarawayIslandMew(enum Direction);
 
-static void PlayCollisionSoundIfNotFacingWarp(enum Direction);
 static void PlayerGoSpin(enum Direction direction);
 static void PlayerApplyTileForcedMovement(u8 metatileBehavior);
 
@@ -711,8 +709,20 @@ static void PlaySpinSound(void)
     PlaySE(SE_M_RAZOR_WIND2);
 }
 
+bool8 IsOnSidewaysStairsTile(u8 metatileBehavior)
+{
+    return MetatileBehavior_IsSidewaysStairsLeftSideAny(metatileBehavior)
+        || MetatileBehavior_IsSidewaysStairsRightSideAny(metatileBehavior);
+}
+
 static void MovePlayerNotOnBike(enum Direction direction, u16 heldKeys)
 {
+    if (direction >= CARDINAL_DIRECTION_COUNT
+     && IsOnSidewaysStairsTile(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
+        direction = ResolveStairsMoveDirection(direction);
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+        direction = ResolveLedgeMoveDirection(&gObjectEvents[gPlayerAvatar.objectEventId], direction);
+
     sPlayerNotOnBikeFuncs[CheckMovementInputNotOnBike(direction)](direction, heldKeys);
 }
 
@@ -936,7 +946,7 @@ static void PlayerNotOnBikeMoving(enum Direction direction, u16 heldKeys)
     }
 }
 
-static enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
+enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
 {
     s16 x, y;
     struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
@@ -945,6 +955,9 @@ static enum Collision CheckForPlayerAvatarCollision(enum Direction direction)
     y = playerObjEvent->currentCoords.y;
     if (IsDirectionalStairWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
         return COLLISION_STAIR_WARP;
+
+    if (IsDiagonalMoveBlockedByCorner(playerObjEvent, direction))
+        return COLLISION_IMPASSABLE;
 
     MoveCoords(direction, &x, &y);
     return CheckForObjectEventCollision(playerObjEvent, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
@@ -1443,12 +1456,14 @@ void PlayerEndWheelieWhileMoving(enum Direction direction)
     PlayerSetAnimId(GetAcroEndWheelieMoveDirectionMovementAction(direction), COPY_MOVE_WALK);
 }
 
-static void PlayCollisionSoundIfNotFacingWarp(enum Direction direction)
+void PlayCollisionSoundIfNotFacingWarp(enum Direction direction)
 {
     s16 x, y;
     u8 metatileBehavior = gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior;
 
-    if (!sArrowWarpMetatileBehaviorChecks[direction - 1](metatileBehavior))
+    // Arrow warps are cardinal-only, so a diagonal collision direction can never match one -
+    // short-circuit before indexing sArrowWarpMetatileBehaviorChecks (4 cardinal entries only).
+    if (direction >= CARDINAL_DIRECTION_COUNT || !sArrowWarpMetatileBehaviorChecks[direction - 1](metatileBehavior))
     {
         // Check if walking up into a door
         if (direction == DIR_NORTH)
@@ -1945,7 +1960,10 @@ static bool8 PlayerAvatar_SecretBaseMatSpinStep1(struct Task *task, struct Objec
     {
         enum Direction direction;
 
-        ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(direction = directions[objectEvent->movementDirection - 1]));
+        // movementDirection can be diagonal; fold to a single cardinal component (same
+        // horizontal-preferred convention used for sideways stairs below) before this
+        // cardinal-only lookup.
+        ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(direction = directions[ResolveStairsMoveDirection(objectEvent->movementDirection) - 1]));
         if (direction == (u8)task->data[1])
             task->data[2]++;
         task->data[0]++;
@@ -2140,7 +2158,13 @@ static void Task_DoPlayerSpinEntrance(u8 taskId)
         // Because the spin start facing direction is never set for this
         // warp type, the player will always exit the warp facing South.
         // This may have been intentional, unclear
-        tStartDir = GetSpinStartFacingDir();
+        // sSpinStartFacingDir can be a stale diagonal value left behind by a previous
+        // SetSpinStartFacingDir(object->facingDirection)/SetSpinStartFacingDir(
+        // GetPlayerFacingDirection()) call - fold to cardinal, same as TrySpinPlayerForWarp
+        // does for its own sSpinDirections lookups below, so this stays in bounds and so
+        // tStartDir compares equal to TrySpinPlayerForWarp's (always-cardinal) return value
+        // in case 3 below instead of leaving this task never terminating.
+        tStartDir = ResolveStairsMoveDirection(GetSpinStartFacingDir());
         ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(sSpinDirections[tStartDir]));
         tSpinDelayTimer = 0;
         tSpeed = 116;
@@ -2199,9 +2223,11 @@ static u8 TrySpinPlayerForWarp(struct ObjectEvent *object, s16 *delayTimer)
     if (!ObjectEventCheckHeldMovementStatus(object))
         return object->facingDirection;
 
-    ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(sSpinDirections[object->facingDirection]));
+    // facingDirection can be diagonal; fold to a single cardinal component before this
+    // cardinal-only lookup (sSpinDirections has no diagonal entries).
+    ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(sSpinDirections[ResolveStairsMoveDirection(object->facingDirection)]));
     *delayTimer = 0;
-    return sSpinDirections[object->facingDirection];
+    return sSpinDirections[ResolveStairsMoveDirection(object->facingDirection)];
 }
 
 //sideways stairs

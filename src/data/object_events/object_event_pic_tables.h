@@ -1861,6 +1861,24 @@ static const struct SpriteFrameImage sPicTable_Boy[] = {
     overworld_frame(gObjectEventPic_Boy, 2, 4, 9),
 };
 
+// Sample hasDiagonalFrames pic table: frames 0-9 are identical to sPicTable_Boy,
+// frames 10-11 are placeholder southwest/northwest poses (mirrored for
+// northeast/southeast via .hFlip in sAnimTable_BoyDiagonalDemo).
+static const struct SpriteFrameImage sPicTable_BoyDiagonalDemo[] = {
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 1),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 2),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 3),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 4),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 5),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 6),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 7),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 8),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 9),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 10),
+    overworld_frame(gObjectEventPic_BoyDiagonalDemo, 2, 4, 11),
+};
+
 static const struct SpriteFrameImage sPicTable_PokeManiacFrlg[] = {
     overworld_frame(gObjectEventPic_PokeManiacFrlg, 2, 4, 0),
     overworld_frame(gObjectEventPic_PokeManiacFrlg, 2, 4, 1),

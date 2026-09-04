@@ -793,6 +793,29 @@ static const u8 sFaceDirectionAnimNums[] = {
     [DIR_NORTHWEST] = ANIM_STD_FACE_WEST,
     [DIR_NORTHEAST] = ANIM_STD_FACE_EAST,
 };
+
+u8 GetFaceDirectionAnimNumForGraphicsInfo(const struct ObjectEventGraphicsInfo *graphicsInfo, enum Direction direction)
+{
+    if (graphicsInfo->hasDiagonalFrames)
+    {
+        switch (direction)
+        {
+        case DIR_NORTHEAST:
+            return ANIM_STD_FACE_NORTHEAST;
+        case DIR_NORTHWEST:
+            return ANIM_STD_FACE_NORTHWEST;
+        case DIR_SOUTHEAST:
+            return ANIM_STD_FACE_SOUTHEAST;
+        case DIR_SOUTHWEST:
+            return ANIM_STD_FACE_SOUTHWEST;
+        default:
+            break;
+        }
+    }
+
+    return sFaceDirectionAnimNums[direction];
+}
+
 static const u8 sMoveDirectionAnimNums[] = {
     [DIR_NONE] = ANIM_STD_GO_SOUTH,
     [DIR_SOUTH] = ANIM_STD_GO_SOUTH,
@@ -1008,10 +1031,15 @@ const u8 gFaceDirectionMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_FACE_UP,
     [DIR_WEST] = MOVEMENT_ACTION_FACE_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_FACE_RIGHT,
-    [DIR_SOUTHWEST] = MOVEMENT_ACTION_FACE_LEFT,
-    [DIR_SOUTHEAST] = MOVEMENT_ACTION_FACE_RIGHT,
-    [DIR_NORTHWEST] = MOVEMENT_ACTION_FACE_LEFT,
-    [DIR_NORTHEAST] = MOVEMENT_ACTION_FACE_RIGHT
+    // Real diagonal actions (not the old MOVEMENT_ACTION_FACE_LEFT/RIGHT E/W substitutes) -
+    // those hardcoded facingDirection/movementDirection to DIR_WEST/DIR_EAST, which
+    // permanently desynced them from a diagonal input direction and left
+    // CheckMovementInputNotOnBike unable to ever see a match, so a diagonal move could
+    // turn to face but never actually step. See MOVEMENT_ACTION_FACE_DIAGONAL_* above.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT
 };
 static const u8 gWalkSlowStairsMovementActions[] = {
     [DIR_NONE]  = MOVEMENT_ACTION_WALK_SLOW_STAIRS_DOWN,
@@ -1026,6 +1054,10 @@ const u8 gWalkSlowMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_SLOW_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_SLOW_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_SLOW_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_SLOW_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkNormalMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_NORMAL_DOWN,
@@ -1033,6 +1065,10 @@ const u8 gWalkNormalMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_NORMAL_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_NORMAL_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_NORMAL_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_NORMAL_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkFastMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FAST_DOWN,
@@ -1040,6 +1076,10 @@ const u8 gWalkFastMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FAST_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_FAST_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_FAST_RIGHT,
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gRideWaterCurrentMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN,
@@ -1047,6 +1087,18 @@ const u8 gRideWaterCurrentMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_UP,
     [DIR_WEST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_RIGHT,
+    // River currents (this table's original purpose - see ForcedMovement_Pushed*ByCurrent in
+    // field_player_avatar.c) only ever call this with a cardinal direction, so these are dead
+    // weight there. They matter for this table's other caller, PlayerRideWaterCurrent, which
+    // Acro Bike's normal riding (AcroBikeTransition_Moving, src/bike.c) also uses - without
+    // these, a diagonal direction silently fell back to MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN
+    // (dirn_to_anim's bounds-safe default), so an Acro Bike always drove south regardless of
+    // which diagonal was actually held. No dedicated diagonal glide animation exists yet, so
+    // fall back to the closest available one, same as gWalkFasterMovementActions below.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gWalkFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FASTER_DOWN,
@@ -1054,6 +1106,12 @@ const u8 gWalkFasterMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FASTER_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_FASTER_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_FASTER_RIGHT,
+    // No WALK_FASTER-specific diagonal frames exist yet; fall back to the closest
+    // available diagonal animation (WALK_FAST) rather than leaving this unhandled.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gSlideMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_SLIDE_DOWN,
@@ -1068,6 +1126,12 @@ const u8 gPlayerRunMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_PLAYER_RUN_UP,
     [DIR_WEST] = MOVEMENT_ACTION_PLAYER_RUN_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_PLAYER_RUN_RIGHT,
+    // No PLAYER_RUN-specific diagonal frames exist yet; fall back to the closest
+    // available diagonal animation (WALK_FAST) rather than leaving this unhandled.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT,
 };
 const u8 gJump2MovementActions[] = {
     MOVEMENT_ACTION_JUMP_2_DOWN,
@@ -1136,10 +1200,18 @@ const u8 gWalkInPlaceFastMovementActions[] = {
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_UP,
     [DIR_WEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT,
-    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
-    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT,
-    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT,
-    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_RIGHT
+    // Real diagonal actions - this is the table PlayerTurnInPlace (and so
+    // PlayerNotOnBikeTurningInPlace, the very first frame of any diagonal player input)
+    // reads. The old MOVEMENT_ACTION_WALK_IN_PLACE_FAST_LEFT/RIGHT E/W substitutes here
+    // hardcoded movementDirection to DIR_WEST/DIR_EAST, which desynced it from the
+    // diagonal direction FieldGetPlayerInput keeps reporting - CheckMovementInputNotOnBike
+    // compares the two every frame and never saw a match, so the player could turn to
+    // face a diagonal but could never actually take the step. See
+    // MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_* above.
+    [DIR_SOUTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT,
+    [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT,
+    [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT,
+    [DIR_SOUTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT
 };
 const u8 gWalkInPlaceFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTER_DOWN,
@@ -3930,10 +4002,16 @@ bool8 MovementType_Wander_Step3(struct ObjectEvent *objectEvent, struct Sprite *
 
 bool8 MovementType_WanderAround_Step4(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    enum Direction chosenDirection = gStandardDirections[Random() & 3];
+    enum Direction chosenDirection;
+
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6)
+        chosenDirection = gStandardDirectionsWithDiagonals[Random() % ARRAY_COUNT(gStandardDirectionsWithDiagonals)];
+    else
+        chosenDirection = gStandardDirections[Random() & 3];
+
     SetObjectEventDirection(objectEvent, chosenDirection);
     sprite->sTypeFuncId = 5;
-    if (GetCollisionInDirection(objectEvent, chosenDirection))
+    if (!CanObjectEventMoveInDirection(objectEvent, chosenDirection))
         sprite->sTypeFuncId = 1;
 
     return TRUE;
@@ -5902,7 +5980,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     }
 
     // Follow player
-    direction = GetDirectionToFace(x, y, targetX, targetY);
+    direction = GetFollowerStepDirection(x, y, targetX, targetY);
     // During a script, if player sidesteps or backsteps,
     // mirror player's direction instead
     if (ArePlayerFieldControlsLocked() &&
@@ -6346,6 +6424,28 @@ enum Direction GetDirectionToFace(s16 x, s16 y, s16 targetX, s16 targetY)
     return DIR_SOUTH;
 }
 
+// Like GetDirectionToFace, but resolves a diagonal direction when the target differs in
+// both axes - used only for the follower's step toward the player's previous tile, which
+// can now be diagonally offset. GetDirectionToFace itself stays cardinal-only since it's
+// also script-exposed (GetDirectionToFaceScript) for unrelated "face toward" behavior.
+enum Direction GetFollowerStepDirection(s16 x, s16 y, s16 targetX, s16 targetY)
+{
+    enum Direction vertical = DIR_NONE;
+    enum Direction horizontal = DIR_NONE;
+
+    if (y > targetY)
+        vertical = DIR_NORTH;
+    else if (y < targetY)
+        vertical = DIR_SOUTH;
+
+    if (x > targetX)
+        horizontal = DIR_WEST;
+    else if (x < targetX)
+        horizontal = DIR_EAST;
+
+    return GetDiagonalMoveDirection(vertical, horizontal);
+}
+
 // Uses the above, but script accessible, and uses localIds
 void GetDirectionToFaceScript(struct ScriptContext *ctx)
 {
@@ -6412,6 +6512,100 @@ u8 GetCollisionInDirection(struct ObjectEvent *objectEvent, enum Direction direc
     s16 y = objectEvent->currentCoords.y;
     MoveCoords(direction, &x, &y);
     return GetCollisionAtCoords(objectEvent, x, y, direction);
+}
+
+// A diagonal direction's vertical/horizontal cardinal components. Returns the direction
+// unchanged if it's already cardinal (or DIR_NONE). Shared by every "diagonal input
+// resolves to a single cardinal component" mechanic (corner-cutting, ledges, arrow warps,
+// sideways-stairs-adjacent bike slopes) so the decomposition itself can't drift.
+enum Direction GetDiagonalVerticalComponent(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_NORTHWEST:
+        return DIR_NORTH;
+    case DIR_SOUTHEAST:
+    case DIR_SOUTHWEST:
+        return DIR_SOUTH;
+    default:
+        return direction;
+    }
+}
+
+enum Direction GetDiagonalHorizontalComponent(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        return DIR_EAST;
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        return DIR_WEST;
+    default:
+        return direction;
+    }
+}
+
+// No corner-cutting: for a diagonal move, at least one of the two flanking cardinal
+// tiles must be passable, or the move is rejected even if the diagonal destination
+// tile itself is open. Shared by the player's own collision path
+// (CheckForPlayerAvatarCollision, src/field_player_avatar.c), the bike collision path
+// (GetBikeCollisionAt, src/bike.c), and the NPC-wander path (CanObjectEventMoveInDirection
+// below) so the rule can't drift apart between them.
+bool8 IsDiagonalMoveBlockedByCorner(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction vertical, horizontal;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return FALSE;
+
+    vertical = GetDiagonalVerticalComponent(direction);
+    horizontal = GetDiagonalHorizontalComponent(direction);
+
+    return (GetCollisionInDirection(objectEvent, vertical) != COLLISION_NONE
+         && GetCollisionInDirection(objectEvent, horizontal) != COLLISION_NONE);
+}
+
+// Ledges are only jumpable from a cardinal approach (GetLedgeJumpDirection). For a diagonal
+// move, check whether either cardinal component would jump a ledge from the object's current
+// position and, if so, resolve the whole move to that single cardinal direction - the same
+// "diagonal input resolves to one cardinal component" precedent as sideways stairs, but
+// applied here (before collision checking) rather than inside GetLedgeJumpDirection itself:
+// folding only there left the ledge *detected* in one direction while the jump *executed* in
+// the original diagonal one, jumping the wrong way and desyncing the player's position.
+enum Direction ResolveLedgeMoveDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    enum Direction component;
+    s16 x, y;
+
+    if (direction < CARDINAL_DIRECTION_COUNT)
+        return direction;
+
+    component = GetDiagonalHorizontalComponent(direction);
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    MoveCoords(component, &x, &y);
+    if (GetLedgeJumpDirection(x, y, component) != DIR_NONE)
+        return component;
+
+    component = GetDiagonalVerticalComponent(direction);
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    MoveCoords(component, &x, &y);
+    if (GetLedgeJumpDirection(x, y, component) != DIR_NONE)
+        return component;
+
+    return direction;
+}
+
+bool8 CanObjectEventMoveInDirection(struct ObjectEvent *objectEvent, enum Direction direction)
+{
+    if (IsDiagonalMoveBlockedByCorner(objectEvent, direction))
+        return FALSE;
+
+    return GetCollisionInDirection(objectEvent, direction) == COLLISION_NONE;
 }
 
 enum Collision GetSidewaysStairsCollision(struct ObjectEvent *objectEvent, enum Direction dir, u8 currentBehavior, u8 nextBehavior, enum Collision collision)
@@ -6602,6 +6796,11 @@ static bool8 IsCoordOutsideObjectEventMovementRange(struct ObjectEvent *objectEv
 
 bool8 IsMetatileDirectionallyImpassable(struct ObjectEvent *objectEvent, s16 x, s16 y, enum Direction direction)
 {
+    // Directionally-blocked metatile behaviors (one-way ledges, currents) are a cardinal-only
+    // concept - a diagonal move is validated per cardinal component by the caller instead.
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+        return FALSE;
+
     if (gOppositeDirectionBlockedMetatileFuncs[direction - 1](objectEvent->currentMetatileBehavior)
         || gDirectionBlockedMetatileFuncs[direction - 1](MapGridGetMetatileBehaviorAt(x, y)))
         return TRUE;
@@ -6678,6 +6877,41 @@ void MoveCoords(enum Direction direction, s16 *x, s16 *y)
 {
     *x += sDirectionToVectors[direction].x;
     *y += sDirectionToVectors[direction].y;
+}
+
+enum Direction GetDiagonalMoveDirection(enum Direction vertical, enum Direction horizontal)
+{
+    if (vertical == DIR_NORTH && horizontal == DIR_WEST)
+        return DIR_NORTHWEST;
+    if (vertical == DIR_NORTH && horizontal == DIR_EAST)
+        return DIR_NORTHEAST;
+    if (vertical == DIR_SOUTH && horizontal == DIR_WEST)
+        return DIR_SOUTHWEST;
+    if (vertical == DIR_SOUTH && horizontal == DIR_EAST)
+        return DIR_SOUTHEAST;
+    if (vertical != DIR_NONE)
+        return vertical;
+    return horizontal;
+}
+
+// Sideways stairs are driven entirely by cardinal input (GetLeftSideStairsDirection/
+// GetRightSideStairsDirection translate a plain West/East press into the correct diagonal
+// walk). A genuinely diagonal input needs to be decomposed back into a single cardinal
+// component before it reaches that existing, unmodified logic - horizontal preferred,
+// since stairs are fundamentally a left/right-driven mechanic.
+enum Direction ResolveStairsMoveDirection(enum Direction direction)
+{
+    switch (direction)
+    {
+    case DIR_NORTHEAST:
+    case DIR_SOUTHEAST:
+        return DIR_EAST;
+    case DIR_NORTHWEST:
+    case DIR_SOUTHWEST:
+        return DIR_WEST;
+    default:
+        return direction;
+    }
 }
 
 static void UNUSED MoveCoordsInMapCoordIncrement(enum Direction direction, s16 *x, s16 *y)
@@ -6803,6 +7037,7 @@ static u8 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u8 mo
 
 static const u8 sActionIdToCopyableMovement[] = {
     [MOVEMENT_ACTION_FACE_DOWN ... MOVEMENT_ACTION_FACE_RIGHT] = COPY_MOVE_FACE,
+    [MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT ... MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT] = COPY_MOVE_FACE,
     [MOVEMENT_ACTION_WALK_SLOW_DOWN ... MOVEMENT_ACTION_WALK_NORMAL_RIGHT] = COPY_MOVE_WALK,
     [MOVEMENT_ACTION_JUMP_2_DOWN ... MOVEMENT_ACTION_JUMP_2_RIGHT] = COPY_MOVE_JUMP2,
     [MOVEMENT_ACTION_WALK_FAST_DOWN ... MOVEMENT_ACTION_WALK_FAST_RIGHT] = COPY_MOVE_WALK,
@@ -6920,7 +7155,7 @@ u8 name(u32 idx)\
     u8 animIds[sizeof(table)];\
     direction = idx;\
     memcpy(animIds, (table), sizeof(table));\
-    if (direction > sizeof(table)) direction = 0;\
+    if (direction >= sizeof(table)) direction = 0;\
     return animIds[direction];\
 }
 
@@ -7062,6 +7297,34 @@ bool8 MovementAction_FaceLeft_Step0(struct ObjectEvent *objectEvent, struct Spri
 bool8 MovementAction_FaceRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     FaceDirection(objectEvent, sprite, DIR_EAST);
+    return TRUE;
+}
+
+// Unlike FaceLeft/FaceRight above, these preserve the true diagonal direction in
+// facingDirection/movementDirection (FaceDirection accepts any enum Direction) - only the
+// sprite's rendered animation number falls back to a cardinal substitute, via
+// GetMoveDirectionAnimNum inside FaceDirection reading the now-diagonal facingDirection.
+bool8 MovementAction_FaceDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_NORTHWEST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_NORTHEAST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_SOUTHWEST);
+    return TRUE;
+}
+
+bool8 MovementAction_FaceDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    FaceDirection(objectEvent, sprite, DIR_SOUTHEAST);
     return TRUE;
 }
 
@@ -8023,6 +8286,37 @@ bool8 MovementAction_WalkInPlaceFastLeft_Step0(struct ObjectEvent *objectEvent, 
 bool8 MovementAction_WalkInPlaceFastRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     InitMoveInPlace(objectEvent, sprite, DIR_EAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+// Same fix as MovementAction_FaceDiagonal* above, but for the "turn in place" action
+// PlayerNotOnBikeTurningInPlace actually dispatches to (PlayerTurnInPlace ->
+// GetWalkInPlaceFastMovementAction) - this is the specific action reached on the first
+// frame of any diagonal input, so it's the one that was causing the real bug: passing
+// InitMoveInPlace the true diagonal direction keeps facingDirection/movementDirection in
+// sync with the diagonal direction FieldGetPlayerInput is reporting, while the sprite
+// still renders using the explicit E/W-substituted anim number.
+bool8 MovementAction_WalkInPlaceFastDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_NORTHWEST, GetMoveDirectionFastAnimNum(DIR_WEST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_NORTHEAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_SOUTHWEST, GetMoveDirectionFastAnimNum(DIR_WEST), 8);
+    return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkInPlaceFastDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitMoveInPlace(objectEvent, sprite, DIR_SOUTHEAST, GetMoveDirectionFastAnimNum(DIR_EAST), 8);
     return MovementAction_WalkInPlace_Step1(objectEvent, sprite);
 }
 
@@ -9970,10 +10264,11 @@ enum Direction GetLedgeJumpDirection(s16 x, s16 y, enum Direction direction)
     u8 behavior;
     enum Direction index = direction;
 
-    if (index == DIR_NONE)
+    // Ledges are only jumpable from a cardinal approach - a diagonal approach is treated as
+    // any other blocked move (see the design spec's "Ledges" section), not folded onto a
+    // cardinal jump direction, which used to jump the wrong way and desync position.
+    if (index == DIR_NONE || index >= CARDINAL_DIRECTION_COUNT)
         return DIR_NONE;
-    else if (index > DIR_EAST)
-        index -= DIR_EAST;
 
     index--;
     behavior = MapGridGetMetatileBehaviorAt(x, y);

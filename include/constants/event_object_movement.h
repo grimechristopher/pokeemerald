@@ -277,6 +277,20 @@
 #define MOVEMENT_ACTION_SPIN_LEFT                       0xB4
 #define MOVEMENT_ACTION_SPIN_RIGHT                      0xB5
 
+// Face/turn-in-place diagonal actions - unlike the WALK_*_DIAGONAL actions above, these
+// exist purely so a diagonal "turn without walking" preserves the true diagonal
+// direction (facingDirection/movementDirection) instead of collapsing it to the E/W
+// sprite substitute, which otherwise permanently desyncs CheckMovementInputNotOnBike's
+// direction comparison and leaves a diagonal move stuck re-turning forever.
+#define MOVEMENT_ACTION_FACE_DIAGONAL_UP_LEFT                  0xB6
+#define MOVEMENT_ACTION_FACE_DIAGONAL_UP_RIGHT                 0xB7
+#define MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_LEFT                0xB8
+#define MOVEMENT_ACTION_FACE_DIAGONAL_DOWN_RIGHT               0xB9
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_LEFT    0xBA
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_UP_RIGHT   0xBB
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_LEFT  0xBC
+#define MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DIAGONAL_DOWN_RIGHT 0xBD
+
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF
 
@@ -300,7 +314,11 @@
 #define ANIM_STD_GO_FASTEST_NORTH 17
 #define ANIM_STD_GO_FASTEST_WEST  18
 #define ANIM_STD_GO_FASTEST_EAST  19
-#define ANIM_STD_COUNT            20
+#define ANIM_STD_FACE_NORTHEAST   20
+#define ANIM_STD_FACE_NORTHWEST   21
+#define ANIM_STD_FACE_SOUTHEAST   22
+#define ANIM_STD_FACE_SOUTHWEST   23
+#define ANIM_STD_COUNT            24
 
 #define ANIM_RUN_SOUTH                   (ANIM_STD_COUNT + 0)
 #define ANIM_RUN_NORTH                   (ANIM_STD_COUNT + 1)

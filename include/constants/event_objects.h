@@ -413,6 +413,7 @@ enum
     OBJ_EVENT_GFX_PUSHABLE_BOULDER_FRLG,
     OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG,
     OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG,
+    OBJ_EVENT_GFX_BOY_DIAGONAL_DEMO, // Sample hasDiagonalFrames graphic, see gObjectEventGraphicsInfo_BoyDiagonalDemo
     NUM_OBJ_EVENT_GFX,
 };
 

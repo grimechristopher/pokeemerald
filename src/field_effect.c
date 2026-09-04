@@ -2556,6 +2556,8 @@ static void EscapeRopeWarpOutEffect_HideFollowerNPC(struct Task *task)
 static void EscapeRopeWarpOutEffect_Spin(struct Task *task)
 {
     struct ObjectEvent *objectEvent;
+    // facingDirection can be diagonal; fold to a single cardinal component before this
+    // cardinal-only lookup (spinDirections has no diagonal entries).
     enum Direction spinDirections[5] =  {DIR_SOUTH, DIR_WEST, DIR_EAST, DIR_NORTH, DIR_SOUTH};
     if (task->tTimer != 0 && (--task->tTimer) == 0)
     {
@@ -2576,7 +2578,7 @@ static void EscapeRopeWarpOutEffect_Spin(struct Task *task)
         }
         else if (task->tSpinDelay == 0 || (--task->tSpinDelay) == 0)
         {
-            ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(spinDirections[objectEvent->facingDirection]));
+            ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(spinDirections[ResolveStairsMoveDirection(objectEvent->facingDirection)]));
             if (task->tNumTurns < 12)
                 task->tNumTurns++;
             task->tSpinDelay = 8 >> (task->tNumTurns >> 2);
@@ -2632,7 +2634,7 @@ static void EscapeRopeWarpInEffect_Spin(struct Task *task)
             task->data[3]++;
         }
         if (task->data[3] == 0)
-            ObjectEventSetHeldMovement(player, GetFaceDirectionMovementAction(spinDirections[player->facingDirection]));
+            ObjectEventSetHeldMovement(player, GetFaceDirectionMovementAction(spinDirections[ResolveStairsMoveDirection(player->facingDirection)]));
 
         if (task->tNumTurns < 32)
             task->tNumTurns++;
@@ -2714,7 +2716,7 @@ static void TeleportWarpOutFieldEffect_SpinGround(struct Task *task)
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     if (task->data[1] == 0 || (--task->data[1]) == 0)
     {
-        ObjectEventTurn(objectEvent, spinDirections[objectEvent->facingDirection]);
+        ObjectEventTurn(objectEvent, spinDirections[ResolveStairsMoveDirection(objectEvent->facingDirection)]);
         task->data[1] = 8;
         task->data[2]++;
     }
@@ -2736,7 +2738,7 @@ static void TeleportWarpOutFieldEffect_SpinExit(struct Task *task)
     if ((--task->data[1]) <= 0)
     {
         task->data[1] = 4;
-        ObjectEventTurn(objectEvent, spinDirections[objectEvent->facingDirection]);
+        ObjectEventTurn(objectEvent, spinDirections[ResolveStairsMoveDirection(objectEvent->facingDirection)]);
     }
     sprite->y -= task->data[3];
     task->data[4] += task->data[3];
@@ -2848,7 +2850,7 @@ static void TeleportWarpInFieldEffect_SpinEnter(struct Task *task)
     if ((--task->data[2]) == 0)
     {
         task->data[2] = 4;
-        ObjectEventTurn(objectEvent, spinDirections[objectEvent->facingDirection]);
+        ObjectEventTurn(objectEvent, spinDirections[ResolveStairsMoveDirection(objectEvent->facingDirection)]);
     }
     if (sprite->y2 >= 0)
     {
@@ -2868,7 +2870,7 @@ static void TeleportWarpInFieldEffect_SpinGround(struct Task *task)
     enum Direction spinDirections[5] = {DIR_SOUTH, DIR_WEST, DIR_EAST, DIR_NORTH, DIR_SOUTH};
     if ((--task->data[1]) == 0 && task->data[3] == 0)
     {
-        ObjectEventTurn(player, spinDirections[player->facingDirection]);
+        ObjectEventTurn(player, spinDirections[ResolveStairsMoveDirection(player->facingDirection)]);
         task->data[1] = 8;
         if ((++task->data[2]) > 4 && task->data[14] == player->facingDirection)
         {

@@ -139,14 +139,35 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (heldKeys & DPAD_UP)
-        input->dpadDirection = DIR_NORTH;
-    else if (heldKeys & DPAD_DOWN)
-        input->dpadDirection = DIR_SOUTH;
-    else if (heldKeys & DPAD_LEFT)
-        input->dpadDirection = DIR_WEST;
-    else if (heldKeys & DPAD_RIGHT)
-        input->dpadDirection = DIR_EAST;
+    if (OW_DIAGONAL_MOVEMENT >= GEN_6
+     && (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_ON_FOOT | PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_UNDERWATER | PLAYER_AVATAR_FLAG_BIKE)))
+    {
+        enum Direction vertical = DIR_NONE;
+        enum Direction horizontal = DIR_NONE;
+
+        if (heldKeys & DPAD_UP)
+            vertical = DIR_NORTH;
+        else if (heldKeys & DPAD_DOWN)
+            vertical = DIR_SOUTH;
+
+        if (heldKeys & DPAD_LEFT)
+            horizontal = DIR_WEST;
+        else if (heldKeys & DPAD_RIGHT)
+            horizontal = DIR_EAST;
+
+        input->dpadDirection = GetDiagonalMoveDirection(vertical, horizontal);
+    }
+    else
+    {
+        if (heldKeys & DPAD_UP)
+            input->dpadDirection = DIR_NORTH;
+        else if (heldKeys & DPAD_DOWN)
+            input->dpadDirection = DIR_SOUTH;
+        else if (heldKeys & DPAD_LEFT)
+            input->dpadDirection = DIR_WEST;
+        else if (heldKeys & DPAD_RIGHT)
+            input->dpadDirection = DIR_EAST;
+    }
 
     if (DEBUG_OVERWORLD_MENU && !DEBUG_OVERWORLD_IN_MENU)
     {
@@ -1037,6 +1058,16 @@ static bool8 IsWarpMetatileBehavior(u16 metatileBehavior)
 
 static bool8 IsArrowWarpMetatileBehavior(u16 metatileBehavior, enum Direction direction)
 {
+    // Arrow warp tiles only ever face one cardinal direction; a diagonal approach resolves
+    // to whichever cardinal component of it matches, the same as sideways stairs. The tile
+    // being checked doesn't depend on which component we try (it's the player's own current
+    // tile, not a destination), so there's no risk of testing the wrong tile here.
+    if (direction >= CARDINAL_DIRECTION_COUNT)
+    {
+        return IsArrowWarpMetatileBehavior(metatileBehavior, GetDiagonalHorizontalComponent(direction))
+            || IsArrowWarpMetatileBehavior(metatileBehavior, GetDiagonalVerticalComponent(direction));
+    }
+
     switch (direction)
     {
     case DIR_NORTH:

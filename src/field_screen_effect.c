@@ -1714,6 +1714,15 @@ void DoStairWarp(u16 metatileBehavior, u16 delay)
 
 bool32 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, enum Direction playerDirection)
 {
+    // Same cardinal-component resolution as IsArrowWarpMetatileBehavior above it in the
+    // warp-checking chain (field_control_avatar.c) - this checks the player's own current
+    // tile too, so either diagonal component is safe to try.
+    if (playerDirection >= CARDINAL_DIRECTION_COUNT)
+    {
+        return IsDirectionalStairWarpMetatileBehavior(metatileBehavior, GetDiagonalHorizontalComponent(playerDirection))
+            || IsDirectionalStairWarpMetatileBehavior(metatileBehavior, GetDiagonalVerticalComponent(playerDirection));
+    }
+
     if (playerDirection == DIR_WEST)
     {
         if (MetatileBehavior_IsDirectionalUpLeftStairWarp(metatileBehavior))

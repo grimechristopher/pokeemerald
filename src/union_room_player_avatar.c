@@ -70,12 +70,19 @@ static const s8 sUnionRoomGroupOffsets[MAX_RFU_PLAYERS][2] = {
     { 0,  1}  // Bottom
 };
 
+// GetPlayerFacingDirection() (the only caller's argument) can be diagonal now that the local
+// player can face diagonally - extend with the diagonal opposites too, or a diagonal approach
+// to a Union Room group member would read past this table's 5 designated-initializer rows.
 static const u8 sOppositeFacingDirection[] = {
-    [DIR_NONE]  = DIR_NONE,
-    [DIR_SOUTH] = DIR_NORTH,
-    [DIR_NORTH] = DIR_SOUTH,
-    [DIR_WEST]  = DIR_EAST,
-    [DIR_EAST]  = DIR_WEST
+    [DIR_NONE]      = DIR_NONE,
+    [DIR_SOUTH]     = DIR_NORTH,
+    [DIR_NORTH]     = DIR_SOUTH,
+    [DIR_WEST]      = DIR_EAST,
+    [DIR_EAST]      = DIR_WEST,
+    [DIR_SOUTHWEST] = DIR_NORTHEAST,
+    [DIR_SOUTHEAST] = DIR_NORTHWEST,
+    [DIR_NORTHWEST] = DIR_SOUTHEAST,
+    [DIR_NORTHEAST] = DIR_SOUTHWEST
 };
 
 // Compare to sUnionRoomGroupOffsets, the direction each group member
