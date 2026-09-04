@@ -529,3 +529,31 @@ TEST("DetermineFollowerNPCState resolves a diagonal direction to a diagonal walk
 
     gPlayerAvatar.objectEventId = savedObjectEventId;
 }
+
+// sArrowWarpMetatileBehaviorChecks is a 4-entry (cardinal-only) array of function pointers,
+// indexed by direction - 1. Before this test's fix, a diagonal direction reaching
+// PlayCollisionSoundIfNotFacingWarp (reachable from ordinary on-foot wall-collision, e.g.
+// PlayerNotOnBikeCollide) indexed 4-7 into that 4-entry table and called whatever garbage
+// bytes were there as a bool8(*)(u8) function pointer - undefined behavior, not just a wrong
+// result. Confirm every diagonal direction returns without crashing (an out-of-bounds
+// function-pointer call would abort the test run with an illegal-opcode fault) and leaves
+// the object event's state untouched.
+TEST("PlayCollisionSoundIfNotFacingWarp does not read out of bounds for a diagonal direction")
+{
+    u8 savedObjectEventId = gPlayerAvatar.objectEventId;
+    u8 behaviorBefore;
+
+    SetUpTestMap();
+    PlaceTestObjectEvent(&gObjectEvents[0], TEST_MAP_ORIGIN, TEST_MAP_ORIGIN);
+    gPlayerAvatar.objectEventId = 0;
+    behaviorBefore = gObjectEvents[0].currentMetatileBehavior;
+
+    PlayCollisionSoundIfNotFacingWarp(DIR_NORTHEAST);
+    PlayCollisionSoundIfNotFacingWarp(DIR_NORTHWEST);
+    PlayCollisionSoundIfNotFacingWarp(DIR_SOUTHEAST);
+    PlayCollisionSoundIfNotFacingWarp(DIR_SOUTHWEST);
+
+    EXPECT_EQ(gObjectEvents[0].currentMetatileBehavior, behaviorBefore);
+
+    gPlayerAvatar.objectEventId = savedObjectEventId;
+}

@@ -34,6 +34,9 @@ enum Collision CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16
 // Exposed (non-static) so tests can exercise the player's own collision path directly,
 // including the no-corner-cutting check it shares with CanObjectEventMoveInDirection.
 enum Collision CheckForPlayerAvatarCollision(enum Direction direction);
+// Exposed (non-static) so tests can confirm a diagonal direction is guarded before it
+// indexes sArrowWarpMetatileBehaviorChecks, a 4-entry cardinal-only function pointer table.
+void PlayCollisionSoundIfNotFacingWarp(enum Direction direction);
 u8 PlayerGetElevation(void);
 void SetPlayerAvatarTransitionFlags(u16 transitionFlags);
 void CancelPlayerForcedMovement(void);

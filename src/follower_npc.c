@@ -937,6 +937,7 @@ u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Dire
     u32 nextBehavior;
     u32 noSpecialAnimFrames = (GetFollowerNPCSprite() == GetFollowerNPCData(FNPC_DATA_GFX_ID));
     u32 delayedState = GetFollowerNPCData(FNPC_DATA_DELAYED_STATE);
+    enum Direction stairsDirection;
     s16 playerDestX, playerDestY;
     enum Direction playerMoveDirection = GetNewPlayerMovementDirection(state);
     u32 newPlayerMB;
@@ -982,15 +983,21 @@ u32 DetermineFollowerNPCState(struct ObjectEvent *follower, u32 state, enum Dire
     // Clear overwrite movement.
     follower->directionOverwrite = DIR_NONE;
 
-    // Sideways stairs checks.
-    collision = GetSidewaysStairsCollision(follower, direction, currentBehavior, nextBehavior, collision);
+    // Sideways stairs checks. GetSidewaysStairsCollision/GetLeftSideStairsDirection/
+    // GetRightSideStairsDirection are shared with the player's own stairs path (which only
+    // ever reaches them with an already-cardinal direction, via ResolveStairsMoveDirection)
+    // and assume the same - decompose separately into stairsDirection rather than mutate
+    // direction itself, since the follower's actual step (MoveCoords above) deliberately
+    // stays genuinely diagonal.
+    stairsDirection = ResolveFollowerNPCCardinalDirection(direction);
+    collision = GetSidewaysStairsCollision(follower, stairsDirection, currentBehavior, nextBehavior, collision);
     switch (collision)
     {
     case COLLISION_SIDEWAYS_STAIRS_TO_LEFT:
-        follower->directionOverwrite = GetLeftSideStairsDirection(direction);
+        follower->directionOverwrite = GetLeftSideStairsDirection(stairsDirection);
         break;
     case COLLISION_SIDEWAYS_STAIRS_TO_RIGHT:
-        follower->directionOverwrite = GetRightSideStairsDirection(direction);
+        follower->directionOverwrite = GetRightSideStairsDirection(stairsDirection);
         break;
     default:
         break;
